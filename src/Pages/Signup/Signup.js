@@ -1,12 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import signupImage from '../../assets/signup/signup.png';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import signupImage from '../../assets/signup/Signup.png';
 import { useForm } from 'react-hook-form';
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
+import { AuthContext } from '../../contexts/AuthProvider';
 const Signup = () => {
     // Taking Signup Data with React Hook Form
     const { register, formState: { errors }, handleSubmit, watch } = useForm();
+    const { createUser, updateUser } = useContext(AuthContext);
+    const [signupError, setSignupError] = useState("");
+    const navigate = useNavigate();
 
-    const handelLogin = (data, event) => {
+    const handelSignup = (data, event) => {
+        setSignupError("");
+        createUser()
         console.log(data)
         event.target.reset();
     };
@@ -14,8 +22,8 @@ const Signup = () => {
         <div className="hero my-10">
             <div className="hero-content grid md:grid-cols-2 gap-20">
                 <div className="card shadow-2xl border">
-                    <form onSubmit={handleSubmit(handelLogin)} className="card-body">
-                        <h1 className="text-2xl text-center font-semibold">Please Login</h1>
+                    <form onSubmit={handleSubmit(handelSignup)} className="card-body">
+                        <h1 className="text-2xl text-center font-semibold">Signup</h1>
                         <hr />
 
                         <div className="form-control">
@@ -121,9 +129,23 @@ const Signup = () => {
                                     validate: value =>
                                         value === watch("password") || "Passwords don't match"
                                 })}
-                                type="password" placeholder="Enter Your Password" className="input input-bordered" />
+                                type="password" placeholder="Confirm Your Password" className="input input-bordered" />
                             <div className="label">
                                 {errors.confirmPassword && <p className="text-red-600">{errors.confirmPassword.message}</p>}
+                            </div>
+                        </div>
+
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Insert Your Photo</span>
+                            </label>
+                            <input {...register("photo",
+                                {
+                                    required: { value: true, message: "Photo is Required" }
+                                })}
+                                type="file" className="file-input file-input-bordered w-full" />
+                            <div className="label">
+                                {errors.name && <p className="text-red-600">{errors.name.message}</p>}
                             </div>
                         </div>
 
@@ -131,10 +153,14 @@ const Signup = () => {
                             <input type="submit" value="Signup" className="btn btn-neutral hover:bg-slate-600 text-xl font-semibold" />
                         </div>
 
-                        <div className="label">
-                            <div className="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">content</div>
-                            <div className="divider divider-horizontal">OR</div>
-                            <div className="grid h-20 flex-grow card bg-base-300 rounded-box place-items-center">content</div>
+                        <label className="my-2 text-center">
+                            <span className="">Already Have Account! <Link to="/login" className="text-info hover:text-primary">Login</Link></span>
+                        </label>
+
+                        <div>
+                            <button className="btn w-full"><FcGoogle className="text-4xl"></FcGoogle> <span className="text-xl">Google</span></button>
+                            <div className="divider">OR</div>
+                            <button className="btn w-full"><FaGithub className="text-4xl"></FaGithub> <span className="text-xl">Github</span></button>
                         </div>
                     </form>
                 </div>
