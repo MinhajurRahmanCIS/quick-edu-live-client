@@ -5,19 +5,86 @@ import { useForm } from 'react-hook-form';
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from '../../contexts/AuthProvider';
+import toast from 'react-hot-toast';
+import useToken from '../../hooks/useToken';
 const Signup = () => {
     // Taking Signup Data with React Hook Form
     const { register, formState: { errors }, handleSubmit, watch } = useForm();
     const { createUser, updateUser } = useContext(AuthContext);
+    const imageHostKey = process.env.REACT_APP_imgBB_key;
     const [signupError, setSignupError] = useState("");
+    const [createdUserEmail, setCreatedUserEmail] = useState("")
+    const [token] = useToken(createdUserEmail);
     const navigate = useNavigate();
 
     const handelSignup = (data, event) => {
         setSignupError("");
-        createUser()
-        console.log(data)
-        event.target.reset();
+
+        // Create New User Function
+        createUser(data.email, data.password)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                // Image formatting to send ImageBB Host Server
+                const image = data.image[0];
+                const formData = new FormData();
+                formData.append('image', image);
+                fetch(`https://api.imgbb.com/1/upload?key=${imageHostKey}`,
+                    {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(res => res.json())
+                    .then(imageData => {
+                        const userInfo = {
+                            displayName: data.name,
+                            photoURL: imageData.data.url
+                        };
+                        updateUser(userInfo)
+                            .then(() => {
+                                const user = {
+                                    name: data.name,
+                                    email: data.email,
+                                    image: imageData.data.url,
+                                    role: "",
+                                    account: "",
+                                    institution: data.institution,
+                                    country: data.country,
+                                    dob: data.dob
+                                };
+                                saveUser(user);
+                            })
+                            .catch(error => {
+                                setSignupError(error.message);
+                            })
+                    })
+            })
+            .catch(error => {
+                setSignupError(error.message);
+            })
     };
+
+    const saveUser = user => {
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success("Account Created!")
+                console.log(data)
+                setCreatedUserEmail(user.email);
+            });
+    };
+
+    if(token){
+        // toast.success("Account Created");
+        navigate("/");
+    }
+
     return (
         <div className="hero my-10">
             <div className="hero-content grid md:grid-cols-2 gap-20">
@@ -139,13 +206,17 @@ const Signup = () => {
                             <label className="label">
                                 <span className="label-text">Insert Your Photo</span>
                             </label>
-                            <input {...register("photo",
+                            <input {...register("image",
                                 {
-                                    required: { value: true, message: "Photo is Required" }
+                                    required: { value: true, message: "Photo is Required" },
+                                    validate: (value) =>
+                                        ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'].includes(value[0]?.type) ||
+                                        'Invalid Photo format. Only PNG, JPEG, JPG, and GIF files are allowed.',
+
                                 })}
-                                type="file" className="file-input file-input-bordered w-full" />
+                                type="file" accept=".png, .jpg, .jpeg, .gif" className="file-input file-input-bordered w-full" />
                             <div className="label">
-                                {errors.name && <p className="text-red-600">{errors.name.message}</p>}
+                                {errors.image && <p className="text-red-600">{errors.image.message}</p>}
                             </div>
                         </div>
 
@@ -153,7 +224,11 @@ const Signup = () => {
                             <input type="submit" value="Signup" className="btn btn-neutral hover:bg-slate-600 text-xl font-semibold" />
                         </div>
 
-                        <label className="my-2 text-center">
+                        <div className="label">
+                            {signupError && <p className="text-red-600">{signupError}</p>}
+                        </div>
+
+                        <label className="text-center">
                             <span className="">Already Have Account! <Link to="/login" className="text-info hover:text-primary">Login</Link></span>
                         </label>
 

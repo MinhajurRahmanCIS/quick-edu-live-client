@@ -1,11 +1,9 @@
 import React from 'react';
-
-const Classes = () => {
+const Sidebar = () => {
     return (
         <div>
-            class
         </div>
     );
 };
 
-export default Classes;
+export default Sidebar;
