@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
-import { CgHomeAlt } from 'react-icons/cg';
-import { FaGraduationCap } from "react-icons/fa";
-import { MdOutlineLiveHelp } from "react-icons/md";
+import Sidebar from '../Pages/Shared/Sidebar/Sidebar';
+import { AuthContext } from '../contexts/AuthProvider';
+import toast, { Toaster } from 'react-hot-toast';
 const Main = () => {
+    const { user, logOut } = useContext(AuthContext);
+    const handelLogout = () => {
+        logOut()
+            .then(() => {
+                toast.success("Logout Successfully!")
+             })
+            .catch(err => console.log(err));
+    }
     return (
         <section className="max-w-[1440px] mx-auto">
             <div className="navbar border-2">
@@ -16,14 +23,20 @@ const Main = () => {
                 </div>
 
                 <div className="navbar-end gap-2">
-                    <p className="font-semibold">Welcome, Newman</p>
+                    <p className="font-semibold hidden lg:block md:block"> {user?.uid && user?.displayName}</p>
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 ring ring-neutral ring-offset-base-100 ring-offset-2 rounded-full">
-                                <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                                <img src={user?.uid && user?.photoURL ? user?.photoURL : "https://i.ibb.co/TbC7PBT/male-Student.png"}  alt="User Profile"/>
+
                             </div>
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 gap-1">
+                            <li className="block md:hidden lg:hidden">
+                                <Link className="justify-between">
+                                <p className="font-semibold"> {user?.uid && user?.displayName}</p>
+                                </Link>
+                            </li>
                             <li>
                                 <Link className="justify-between">
                                     Profile
@@ -36,7 +49,9 @@ const Main = () => {
                                 </Link>
                             </li>
                             <li><Link>Report a Problem</Link></li>
-                            <li><Link className="bg-error">Logout</Link></li>
+                            {
+                                user?.uid && <li><Link onClick={handelLogout} className="bg-error text-white border-2 border-neutral hover:bg-slate-300 hover:text-black">Logout</Link></li>
+                            }
                         </ul>
                     </div>
                 </div>
@@ -48,28 +63,8 @@ const Main = () => {
                         {/* Page content here */}
                         <Outlet></Outlet>
                         <Toaster></Toaster>
-
                     </div>
-                    <div className="drawer-side border-x-2">
-                        <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                        <ul className="menu w-80 min-h-full bg-base-200 md:bg-transparent text-base-content">
-                            {/* Sidebar content here */}
-                            <li className="text-xl font-bold"><Link to="/myhome"><CgHomeAlt></CgHomeAlt> Home</Link></li>
-                            <ul className="menu">
-                                <li>
-                                    <details open>
-                                        <summary className="text-xl font-bold"><FaGraduationCap></FaGraduationCap>Enrolled Course</summary>
-                                        <ul className="text-md font-semibold">
-                                            <li><Link>Bangla</Link></li>
-                                            <li><Link>Math</Link></li>
-                                        </ul>
-                                    </details>
-                                </li>
-                            </ul>
-                            <li className="text-xl font-bold"><Link> <CgHomeAlt></CgHomeAlt> Home</Link></li>
-                            <li className="text-xl font-bold"><Link> <MdOutlineLiveHelp></MdOutlineLiveHelp> Help</Link></li>
-                        </ul>
-                    </div>
+                    <Sidebar></Sidebar>
                 </div>
             </div>
         </section>

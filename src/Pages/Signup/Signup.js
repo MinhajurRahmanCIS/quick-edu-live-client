@@ -10,7 +10,7 @@ import useToken from '../../hooks/useToken';
 const Signup = () => {
     // Taking Signup Data with React Hook Form
     const { register, formState: { errors }, handleSubmit, watch } = useForm();
-    const { createUser, updateUser } = useContext(AuthContext);
+    const { createUser, updateUser, signInWithGoogle } = useContext(AuthContext);
     const imageHostKey = process.env.REACT_APP_imgBB_key;
     const [signupError, setSignupError] = useState("");
     const [createdUserEmail, setCreatedUserEmail] = useState("")
@@ -64,6 +64,25 @@ const Signup = () => {
             })
     };
 
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then(result => {
+                const loggedUser = result.user;
+                const user = {
+                    name: loggedUser.displayName,
+                    email: loggedUser.email,
+                    image: loggedUser.photoURL,
+                    role: "",
+                    account: "",
+                    institution: "",
+                    country: "",
+                    dob: ""
+                };
+                saveUser(user);
+            })
+            .catch(error => console.error(error));
+    };
+
     const saveUser = user => {
         fetch('http://localhost:5000/users', {
             method: 'POST',
@@ -74,16 +93,15 @@ const Signup = () => {
         })
             .then(res => res.json())
             .then(data => {
-                toast.success("Account Created!")
                 console.log(data)
                 setCreatedUserEmail(user.email);
             });
     };
 
-    if(token){
-        // toast.success("Account Created");
-        navigate("/");
-    }
+    if (token) {
+        navigate("/myhome");
+        toast.success("Account Created!");
+    };
 
     return (
         <div className="hero my-10">
@@ -233,7 +251,7 @@ const Signup = () => {
                         </label>
 
                         <div>
-                            <button className="btn w-full"><FcGoogle className="text-4xl"></FcGoogle> <span className="text-xl">Google</span></button>
+                            <button onClick={handleGoogleSignIn} className="btn w-full"><FcGoogle className="text-4xl"></FcGoogle> <span className="text-xl">Google</span></button>
                             <div className="divider">OR</div>
                             <button className="btn w-full"><FaGithub className="text-4xl"></FaGithub> <span className="text-xl">Github</span></button>
                         </div>

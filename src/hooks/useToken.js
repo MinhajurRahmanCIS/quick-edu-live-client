@@ -4,11 +4,11 @@ const useToken = email => {
     const [token, setToken] = useState("");
     useEffect(() => {
         if (email) {
-            console.log(email)
+            // console.log(email)
             fetch(`http://localhost:5000/jwt?email=${email}`)
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data.data.accessToken)
+                    // console.log(data.data.accessToken)
                     if (data.data.accessToken) {
                         localStorage.setItem("quickEdu-token", data.data.accessToken);
                         setToken(data.data.accessToken);

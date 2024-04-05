@@ -5,6 +5,7 @@ import Signup from "../../Pages/Signup/Signup";
 import Login from "../../Pages/Login/Login";
 import MyHome from "../../Pages/MyHome/MyHome/MyHome";
 import Main from "../../Layout/Main";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
     //Home Directory
@@ -28,11 +29,11 @@ const router = createBrowserRouter([
     },
     {
         path: "/myhome",
-        element: <Main></Main>,
+        element:  <PrivateRoute><Main></Main></PrivateRoute>,
         children: [
             {
                 path: "/myhome",
-                element: <MyHome></MyHome>
+                element: <PrivateRoute><MyHome></MyHome></PrivateRoute>
             }
         ]
 
