@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider';
+import ProfileMenu from '../ProfileMenu/ProfileMenu';
 
 const Navbar = () => {
+    const { user } = useContext(AuthContext);
     const menu =
         <>
             <li><Link to="/">Home</Link></li>
@@ -24,13 +27,24 @@ const Navbar = () => {
                     {menu}
                 </ul>
             </div>
-            <div className="navbar-center">
-                {/* Blank */}
-            </div>
-            <div className="navbar-end gap-2">
-                <Link to="/signup" className="btn text-white font-bold btn-neutral btn-sm md:btn-md hover:bg-slate-700">Signup</Link>
-                <Link to="/login" className="btn text-white font-bold btn-neutral btn-sm md:btn-md hover:bg-slate-700">Login</Link>
-            </div>
+
+            {
+                user?.uid
+                    ?
+                    <div className="navbar-end gap-2">
+                        {
+                            user?.uid &&
+                                <Link className="menu rounded-md bg-neutral-950 text-white hover:bg-neutral-400 hover:text-neutral" to="/myhome">Go To Class</Link>
+                        }
+                        <ProfileMenu></ProfileMenu>
+                    </div>
+                    :
+                    <div className="navbar-end gap-2">
+                        <Link to="/signup" className="btn text-white font-bold btn-neutral btn-sm md:btn-md hover:bg-slate-700">Signup</Link>
+                        <Link to="/login" className="btn text-white font-bold btn-neutral btn-sm md:btn-md hover:bg-slate-700">Login</Link>
+                    </div>
+            }
+
         </nav>
     );
 };

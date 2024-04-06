@@ -1,4 +1,5 @@
-# Getting Started with Create React App
+# Quick Edu Live
+Quick Edu Live is an Educational Platform.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
