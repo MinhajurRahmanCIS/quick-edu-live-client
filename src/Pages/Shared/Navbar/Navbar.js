@@ -34,7 +34,7 @@ const Navbar = () => {
                     <div className="navbar-end gap-2">
                         {
                             user?.uid &&
-                                <Link className="menu rounded-md bg-neutral-950 text-white hover:bg-neutral-400 hover:text-neutral" to="/myhome">Go To Class</Link>
+                                <Link className="btn btn-sm md:btn-md rounded-md bg-neutral-950 text-white hover:bg-neutral-400 hover:text-neutral" to="/myhome">Go To Class</Link>
                         }
                         <ProfileMenu></ProfileMenu>
                     </div>
