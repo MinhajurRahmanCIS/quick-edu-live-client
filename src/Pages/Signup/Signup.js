@@ -157,13 +157,13 @@ const Signup = () => {
                             <label className="label">
                                 <span className="label-text">Date of Birth</span>
                             </label>
-                            <input {...register("date",
+                            <input {...register("dob",
                                 {
-                                    required: { value: true, message: "Date is Required" }
+                                    required: { value: true, message: "Date of birth is Required" }
                                 })}
                                 type="date" className="input input-bordered" />
                             <div className="label">
-                                {errors.date && <p className="text-red-600">{errors.date.message}</p>}
+                                {errors.dob && <p className="text-red-600">{errors.dob.message}</p>}
                             </div>
                         </div>
 

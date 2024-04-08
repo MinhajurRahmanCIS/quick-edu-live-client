@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import Sidebar from '../Pages/Shared/Sidebar/Sidebar';
 import { Toaster } from 'react-hot-toast';
 import ProfileMenu from '../Pages/Shared/ProfileMenu/ProfileMenu';
+import { AuthContext } from '../contexts/AuthProvider';
+import Loading from '../Pages/Shared/Loading/Loading';
+import useClasses from '../hooks/useClasses';
 const Main = () => {
+    const { user } = useContext(AuthContext);
+    const {classes, isLoading} = useClasses(user);
+
+    if (isLoading) {
+        return <Loading></Loading>
+    };
+
     return (
-        <section className="max-w-[1440px] mx-auto">
+        // <section className="max-w-[1440px] mx-auto">
+        <section >
             <div className="navbar border-2">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -26,7 +37,9 @@ const Main = () => {
                         <Outlet></Outlet>
                         <Toaster></Toaster>
                     </div>
-                    <Sidebar></Sidebar>
+                    <Sidebar 
+                    classes={classes.data}
+                    ></Sidebar>
                 </div>
             </div>
         </section>

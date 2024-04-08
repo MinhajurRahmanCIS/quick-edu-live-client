@@ -6,7 +6,8 @@ import { Toaster } from 'react-hot-toast';
 
 const HomeLayout = () => {
     return (
-        <div className="max-w-[1440px] mx-auto">
+        // <div className="max-w-[1440px] mx-auto">
+        <div>
             <Navbar></Navbar>
             <Outlet></Outlet>
             <Toaster></Toaster>

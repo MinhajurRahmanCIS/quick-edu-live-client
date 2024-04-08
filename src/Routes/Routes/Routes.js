@@ -6,6 +6,7 @@ import Login from "../../Pages/Login/Login";
 import MyHome from "../../Pages/MyHome/MyHome/MyHome";
 import Main from "../../Layout/Main";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Profile from "../../Pages/Profile/Profile";
 
 const router = createBrowserRouter([
     //Home Directory
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path: "/myhome",
                 element: <PrivateRoute><MyHome></MyHome></PrivateRoute>
+            },
+            {
+                path: "/myhome/profile",
+                element: <PrivateRoute><Profile></Profile></PrivateRoute>
             }
         ]
 
