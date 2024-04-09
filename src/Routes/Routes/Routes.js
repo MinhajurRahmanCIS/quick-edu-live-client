@@ -8,9 +8,9 @@ import Main from "../../Layout/Main";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Profile from "../../Pages/Profile/Profile";
 import ClassLayout from "../../Layout/ClassLayout";
-import ClassInfo from "../../Pages/ClassInfo/ClassInfo/ClassInfo";
 import ClassWork from "../../Pages/ClassInfo/ClassWork/ClassWork";
 import ClassPeople from "../../Pages/ClassInfo/ClassPeople/ClassPeople";
+import ClassInfo from "../../Pages/ClassInfo/ClassInfo/ClassInfo/ClassInfo";
 
 const router = createBrowserRouter([
     //Home Directory
