@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { MdOutlineAddToPhotos } from "react-icons/md";
-import Class from './Class';
 import Loading from '../../Shared/Loading/Loading';
 import { AuthContext } from '../../../contexts/AuthProvider';
+import ClassCard from './ClassCard';
 const Classes = ({ classes, isLoading, setModal}) => {
     const { user } = useContext(AuthContext);
     if(isLoading){
@@ -18,11 +18,11 @@ const Classes = ({ classes, isLoading, setModal}) => {
             {
                 classes &&
                 classes?.map(c =>
-                    <Class
+                    <ClassCard
                     key={c._id}
                     c={c}
                     >
-                    </Class>)
+                    </ClassCard>)
             }
         </div>
     );

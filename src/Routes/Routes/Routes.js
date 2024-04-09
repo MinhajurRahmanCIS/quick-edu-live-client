@@ -7,6 +7,10 @@ import MyHome from "../../Pages/MyHome/MyHome/MyHome";
 import Main from "../../Layout/Main";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Profile from "../../Pages/Profile/Profile";
+import ClassLayout from "../../Layout/ClassLayout";
+import ClassInfo from "../../Pages/MyHome/ClassInfo/ClassInfo/ClassInfo";
+import Classwork from "../../Pages/MyHome/Classwork/Classwork";
+import People from "../../Pages/MyHome/People/People";
 
 const router = createBrowserRouter([
     //Home Directory
@@ -30,7 +34,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/myhome",
-        element:  <PrivateRoute><Main></Main></PrivateRoute>,
+        element: <PrivateRoute><Main></Main></PrivateRoute>,
         children: [
             {
                 path: "/myhome",
@@ -39,12 +43,27 @@ const router = createBrowserRouter([
             {
                 path: "/myhome/profile",
                 element: <PrivateRoute><Profile></Profile></PrivateRoute>
-            }
+            },
+            {
+                path: "/myhome/classinfo",
+                element: <PrivateRoute><ClassLayout></ClassLayout></PrivateRoute>,
+                children: [
+                    {
+                        path: "/myhome/classinfo/:id",
+                        element: <PrivateRoute><ClassInfo></ClassInfo></PrivateRoute>
+                    },
+                    {
+                        path: "/myhome/classinfo/classwork/:id",
+                        element: <PrivateRoute><Classwork></Classwork></PrivateRoute>
+                    },
+                    {
+                        path: "/myhome/classinfo/people/:id",
+                        element: <PrivateRoute><People></People></PrivateRoute>
+                    },
+                ]
+            },
         ]
-
-
-    }
-
+    },
 ])
 
 export default router;

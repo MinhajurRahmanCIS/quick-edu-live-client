@@ -18,7 +18,7 @@ const ProfileMenu = () => {
             <div className="dropdown dropdown-end">
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                     <div className="w-10 ring ring-neutral ring-offset-base-100 ring-offset-2 rounded-full">
-                        <img src={user?.uid && user.photoURL ? user.photoURL : "https://i.ibb.co/TbC7PBT/male-Student.png"} alt="User Profile" />
+                        <img src={user?.uid && user?.photoURL ? user.photoURL : "https://i.ibb.co/TbC7PBT/male-Student.png"} alt="User Profile" />
                     </div>
                 </div>
                 <ul tabIndex={1} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 gap-1">
