@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-
 const ClassMenu = () => {
     const { id } = useParams();
     return (
@@ -21,7 +20,7 @@ const ClassMenu = () => {
                 </Link>
             </li>
             <li>
-                <Link to={`/myhome/classinfo/people/${id}`}>
+                <Link to={`/myhome/classinfo/classpeople/${id}`}>
                     People
                     <span className="badge badge-xs badge-info"></span>
                 </Link>

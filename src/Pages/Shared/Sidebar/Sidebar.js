@@ -21,7 +21,7 @@ const Sidebar = ({ classes }) => {
                                         <li
                                             key={c._id}
                                             c={c}
-                                            className="mt-0.5"><Link>{c.name}</Link></li>)
+                                            className="mt-0.5"><Link to={`/myhome/classinfo/${c._id}`}>{c.name}</Link></li>)
                                 }
                             </ul>
                         </details>
