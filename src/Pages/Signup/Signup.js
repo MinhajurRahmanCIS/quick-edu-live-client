@@ -228,8 +228,8 @@ const Signup = () => {
                                 {
                                     required: { value: true, message: "Photo is Required" },
                                     validate: (value) =>
-                                        ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'].includes(value[0]?.type) ||
-                                        'Invalid Photo format. Only PNG, JPEG, JPG, and GIF files are allowed.',
+                                        ['image/png', 'image/jpeg', 'image/jpg'].includes(value[0]?.type) ||
+                                        'Invalid Photo format. Only PNG, JPEG and JPG files are allowed.',
 
                                 })}
                                 type="file" accept=".png, .jpg, .jpeg, .gif" className="file-input file-input-bordered w-full" />

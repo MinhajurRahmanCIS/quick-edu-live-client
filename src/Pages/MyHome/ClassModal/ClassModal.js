@@ -105,10 +105,10 @@ const ClassModal = ({refetch, modal, setModal}) => {
                                 {
                                     validate: (value) =>
                                         ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'].includes(value[0]?.type) ||
-                                        'Invalid Photo format. Only PNG, JPEG, JPG, and GIF files are allowed.',
+                                        'Invalid Photo format. Only PNG, JPEG and  JPG files are allowed.',
 
                                 })}
-                                type="file" accept=".png, .jpg, .jpeg, .gif" className="file-input file-input-bordered w-full" />
+                                type="file" accept=".png, .jpg, .jpeg" className="file-input file-input-bordered w-full" />
                             <div className="label">
                                 {errors.image && <p className="text-red-600">{errors.image.message}</p>}
                             </div>

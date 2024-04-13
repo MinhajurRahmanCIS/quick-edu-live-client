@@ -21,7 +21,7 @@ const ClassCard = ({ c }) => {
 
     return (
         <div className="card bg-base-100 shadow-md rounded-none hover:shadow-xl">
-            <figure><img className="object-fill h-[250px] w-full" src={photoURL} alt={name + " Class Image"} /></figure>
+            <Link to={`/myhome/classinfo/${_id}`}><img className="object-fill h-[250px] w-full cursor-pointer" src={photoURL} alt={name + " Class Image"} /></Link>
             <div className="card-body">
                 <h2 className="card-title">
                     {name}
