@@ -8,9 +8,9 @@ import Main from "../../Layout/Main";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Profile from "../../Pages/Profile/Profile";
 import ClassLayout from "../../Layout/ClassLayout";
-import ClassWork from "../../Pages/ClassInfo/ClassWork/ClassWork";
 import ClassPeople from "../../Pages/ClassInfo/ClassPeople/ClassPeople";
 import ClassInfo from "../../Pages/ClassInfo/ClassInfo/ClassInfo/ClassInfo";
+import Works from "../../Pages/ClassInfo/Works/Works/Works";
 
 const router = createBrowserRouter([
     //Home Directory
@@ -53,8 +53,8 @@ const router = createBrowserRouter([
                         element: <PrivateRoute><ClassInfo></ClassInfo></PrivateRoute>
                     },
                     {
-                        path: "/myhome/classinfo/classwork/:id",
-                        element: <PrivateRoute><ClassWork></ClassWork></PrivateRoute>
+                        path: "/myhome/classinfo/works/:id",
+                        element: <PrivateRoute><Works></Works></PrivateRoute>
                     },
                     {
                         path: "/myhome/classinfo/classpeople/:id",

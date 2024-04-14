@@ -11,7 +11,7 @@ const CreateAnnouncement = ({user, classData, refetch}) => {
             photoURL: user.photoURL,
             message: data.announcement,
             classId: classData._id,
-            date: format(currentDate, "d/MM/yyyy HH:mm:ss"),
+            date: format(currentDate, "d/MM/yyyy HH:mm:ss a"),
         };
         fetch("http://localhost:5000/announcements", {
             method: "POST",
@@ -30,7 +30,7 @@ const CreateAnnouncement = ({user, classData, refetch}) => {
         })
     };
     return (
-        <div className="my-5">
+        <div className="my-5 p-2">
             <form onSubmit={handleSubmit(handelAnnouncement)}>
                 <h3 className="text-2xl font-bold mb-2">Announcement</h3>
                 <textarea {...register("announcement")} placeholder="Write an Announcement..." className="textarea textarea-bordered textarea-lg w-full" ></textarea>

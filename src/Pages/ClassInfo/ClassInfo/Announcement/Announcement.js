@@ -8,7 +8,7 @@ const Announcement = ({ classData, user }) => {
     const { data: announcements = [], isLoading, refetch } = useQuery({
         queryKey: ["announcements", classData?._id],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/announcements?classId=${classData?._id}`, {
+            const res = await fetch(`http://localhost:5000/announcements?classId=${classData?._id}&sorted=${-1}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
                 }
@@ -30,7 +30,7 @@ const Announcement = ({ classData, user }) => {
                 refetch={refetch}
             >
             </CreateAnnouncement>
-            <div className="grid grid-cols-1 gap-5">
+            <div className="grid grid-cols-1 gap-5 p-5">
                 {
                     announcements.data &&
                     announcements?.data.map(announcement =>

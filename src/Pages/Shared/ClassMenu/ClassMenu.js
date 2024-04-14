@@ -13,7 +13,7 @@ const ClassMenu = () => {
                 </Link>
             </li>
             <li className="border rounded-lg">
-                <Link to={`/myhome/classinfo/classwork/${id}`}>
+                <Link to={`/myhome/classinfo/works/${id}`}>
                    
                     Classwork
                     {/* <span className="badge badge-sm badge-warning">NEW</span> */}

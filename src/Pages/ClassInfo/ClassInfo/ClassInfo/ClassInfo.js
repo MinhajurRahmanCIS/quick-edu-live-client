@@ -9,7 +9,6 @@ const ClassInfo = () => {
     const { user } = useContext(AuthContext);
     const { id } = useParams();
     const { classData, isLoading, refetch } = useClass(id);
-    console.log(classData.data);
     if (isLoading) {
         return <Loading></Loading>
     };
