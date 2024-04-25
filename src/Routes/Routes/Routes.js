@@ -11,6 +11,9 @@ import ClassLayout from "../../Layout/ClassLayout";
 import ClassPeople from "../../Pages/ClassInfo/ClassPeople/ClassPeople";
 import ClassInfo from "../../Pages/ClassInfo/ClassInfo/ClassInfo/ClassInfo";
 import Works from "../../Pages/ClassInfo/Works/Works/Works";
+import ViewQuizzes from "../../Pages/ClassInfo/Works/Quizzes/ViewQuizzes/ViewQuizzes";
+import Quizzes from "../../Pages/ClassInfo/Works/Quizzes/Quizzes/Quizzes";
+import Assignments from "../../Pages/ClassInfo/Works/Assignments/Assignments/Assignments";
 
 const router = createBrowserRouter([
     //Home Directory
@@ -53,13 +56,18 @@ const router = createBrowserRouter([
                         element: <PrivateRoute><ClassInfo></ClassInfo></PrivateRoute>
                     },
                     {
-                        path: "/myhome/classinfo/works/:id",
-                        element: <PrivateRoute><Works></Works></PrivateRoute>
+                        path: "/myhome/classinfo/quizzes/:id",
+                        element: <PrivateRoute><Quizzes></Quizzes></PrivateRoute>
+                    },
+                    {
+                        path: "/myhome/classinfo/assignments/:id",
+                        element: <PrivateRoute><Assignments></Assignments></PrivateRoute>
                     },
                     {
                         path: "/myhome/classinfo/classpeople/:id",
                         element: <PrivateRoute><ClassPeople></ClassPeople></PrivateRoute>
                     },
+                    
                 ]
             },
         ]

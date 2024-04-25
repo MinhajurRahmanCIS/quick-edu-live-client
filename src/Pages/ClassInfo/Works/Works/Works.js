@@ -3,10 +3,10 @@ import { useParams } from 'react-router-dom';
 import Quizzes from '../Quizzes/Quizzes/Quizzes';
 
 const Works = () => {
-    const { id } = useParams();
+    // const { id } = useParams();
     return (
         <div>
-            <Quizzes id={id}></Quizzes>
+            {/* <Quizzes id={id}></Quizzes> */}
         </div>
     );
 };

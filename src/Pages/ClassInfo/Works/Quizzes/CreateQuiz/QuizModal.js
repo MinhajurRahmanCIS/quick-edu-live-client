@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { SiGooglebard } from "react-icons/si";
 import toast from 'react-hot-toast';
-const QuizModal = ({ modal, setModal }) => {
+const QuizModal = ({ modal, setModal, refetch }) => {
     const [resultLoading, setResultLoading] = useState(false);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const currentUTC = new Date();
@@ -18,7 +18,7 @@ const QuizModal = ({ modal, setModal }) => {
 
     const handelGenerateQuestion = (data, e) => {
         setResultLoading(true);
-        console.log(data)
+        // console.log(data)
         data.classId = modal._id;
         fetch("http://localhost:5000/classwork", {
             method: "POST",
@@ -29,13 +29,14 @@ const QuizModal = ({ modal, setModal }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.data.insertedId) {
                     setResultLoading(false);
                     toast.success("Question Generated!");
                     e.target.reset();
                     setModal(null);
-                }
+                    refetch();
+                };
             })
             .catch(error => {
                 toast.error("Please Try again! Something went wrong...");
@@ -55,7 +56,7 @@ const QuizModal = ({ modal, setModal }) => {
                             <div className="modal-box ">
                                 <label htmlFor="quiz-modal" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-xl font-bold">X</label>
                                 <div className="flex flex-col justify-center items-center sm:text-md md:text-xl p-7">
-                                    <span>Generating Your Quiz.</span>
+                                    <span>Generating Your Quiz</span>
                                     <span>Please Wait</span>
                                     <br />
                                     <span className="loading loading-ball loading-xs "></span>
@@ -72,7 +73,7 @@ const QuizModal = ({ modal, setModal }) => {
                         <input type="checkbox" id="quiz-modal" className="modal-toggle" />
                         <div className="modal" role="dialog">
                             <div className="modal-box ">
-                                <label htmlFor="quiz-modal" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-xl font-bold">X</label>
+                                <label htmlFor="quiz-modal" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-xl font-bold border border-black">X</label>
                                 <form onSubmit={handleSubmit(handelGenerateQuestion)} className="card-body">
                                     <h1 className="text-2xl font-semibold">Generate Quiz with Gemini <SiGooglebard className="text-sky-600 mt-1"></SiGooglebard></h1>
                                     <div className="form-control">
@@ -156,17 +157,17 @@ const QuizModal = ({ modal, setModal }) => {
                                             <input {...register("level",
                                                 {
                                                     required: { value: true, message: "Class Name is Required" }
-                                                })} type="radio" name="level" value={"easy"} className="radio radio-info" />
+                                                })} type="radio" name="level" value={"Easy"} className="radio radio-info" />
                                             <span className='mx-3'>Easy</span>
                                             <input {...register("level",
                                                 {
                                                     required: { value: true, message: "Class Name is Required" }
-                                                })} type="radio" name="level" value={"medium"} className="radio radio-warning" />
+                                                })} type="radio" name="level" value={"Medium"} className="radio radio-warning" />
                                             <span className='mx-3'>Medium</span>
                                             <input {...register("level",
                                                 {
                                                     required: { value: true, message: "Class Name is Required" }
-                                                })} type="radio" name="level" value={"hard"} className="radio radio-error" />
+                                                })} type="radio" name="level" value={"Hard"} className="radio radio-error" />
                                             <span className='mx-3'>Hard</span>
                                         </div>
                                     </div>

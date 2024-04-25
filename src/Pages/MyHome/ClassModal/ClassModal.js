@@ -28,7 +28,7 @@ const ClassModal = ({refetch, modal, setModal}) => {
                     classCode: Math.random().toString(36).substr(2, 6).toUpperCase(),
                     createdDate: format(currentDate, "d/MM/yyyy HH:mm:ss")
                 }
-                console.log(classInfo)
+                
                 fetch("http://localhost:5000/classes", {
                     method: "POST",
                     headers: {
@@ -38,7 +38,7 @@ const ClassModal = ({refetch, modal, setModal}) => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data.data);
+                        // console.log(data.data);
                         if (data.data.insertedId) { 
                             toast.success("Class Created!");
                             setModal(null);
