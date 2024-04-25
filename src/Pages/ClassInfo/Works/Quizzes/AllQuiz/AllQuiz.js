@@ -23,7 +23,7 @@ const AllQuiz = ({ quiz }) => {
                 <p><strong>Total Question : </strong>{questions.length}</p>
                 <p><strong>Difficulty Level : </strong>{level}</p>
                 <div className="card-actions justify-end gap-3">
-                    <Link to={`/myhome/classinfo/viewQuizzes/${_id}`} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"View Question"}><FaRegEye></FaRegEye></Link>
+                    <Link to={`/myhome/viewQuizzes/${_id}`} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"View Question"}><FaRegEye></FaRegEye></Link>
                 </div>
             </div>
         </div>

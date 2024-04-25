@@ -10,10 +10,9 @@ import Profile from "../../Pages/Profile/Profile";
 import ClassLayout from "../../Layout/ClassLayout";
 import ClassPeople from "../../Pages/ClassInfo/ClassPeople/ClassPeople";
 import ClassInfo from "../../Pages/ClassInfo/ClassInfo/ClassInfo/ClassInfo";
-import Works from "../../Pages/ClassInfo/Works/Works/Works";
-import ViewQuizzes from "../../Pages/ClassInfo/Works/Quizzes/ViewQuizzes/ViewQuizzes";
 import Quizzes from "../../Pages/ClassInfo/Works/Quizzes/Quizzes/Quizzes";
 import Assignments from "../../Pages/ClassInfo/Works/Assignments/Assignments/Assignments";
+import ViewQuiz from "../../Pages/ClassInfo/Works/Quizzes/ViewQuiz/ViewQuiz/ViewQuiz";
 
 const router = createBrowserRouter([
     //Home Directory
@@ -46,6 +45,10 @@ const router = createBrowserRouter([
             {
                 path: "/myhome/profile",
                 element: <PrivateRoute><Profile></Profile></PrivateRoute>
+            },
+            {
+                path: "/myhome/viewQuizzes/:id",
+                element: <PrivateRoute><ViewQuiz></ViewQuiz></PrivateRoute>
             },
             {
                 path: "/myhome/classinfo",

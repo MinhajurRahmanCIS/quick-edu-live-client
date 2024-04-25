@@ -9,7 +9,7 @@ const ClassMenu = () => {
     const { id } = useParams();
     return (
         <div className="navbar bg-base-300 my-3">
-            <div className="flex text-xs md:text-lg ">
+            <div className="flex ">
                 <p className="font-bold">Classroom</p>
             </div>
             <div className="flex flex-1 px-2">

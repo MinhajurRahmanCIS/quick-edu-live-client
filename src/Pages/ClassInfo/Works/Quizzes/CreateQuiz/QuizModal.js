@@ -29,7 +29,7 @@ const QuizModal = ({ modal, setModal, refetch }) => {
         })
             .then(res => res.json())
             .then(data => {
-                // console.log(data);
+                console.log(data);
                 if (data.data.insertedId) {
                     setResultLoading(false);
                     toast.success("Question Generated!");
