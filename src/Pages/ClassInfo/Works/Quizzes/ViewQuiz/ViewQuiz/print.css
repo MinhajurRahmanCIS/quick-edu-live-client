@@ -1,0 +1,27 @@
+@media print {
+    /* Hide elements not meant for printing */
+    .no-print {
+        display: none;
+    }
+
+    /* Adjust layout and styling for printing */
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .print-container {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .print-content {
+        width: 100%;
+        float: left;
+    }
+
+    /* Ensure each question appears on the same page */
+    .p-3 {
+        page-break-inside: avoid;
+    }
+}

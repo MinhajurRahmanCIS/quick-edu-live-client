@@ -10,7 +10,7 @@ const CreateQuiz = ({id, setModal}) => {
     };
     return (
         <div>
-            <label onClick={()=>setModal(classData.data)} htmlFor="quiz-modal" className="card justify-center items-center bg-base-100 hover:bg-base-300 border cursor-pointer">
+            <label onClick={()=>setModal(classData.data)} htmlFor="quiz-modal" className="card justify-center items-center bg-base-100 hover:bg-base-300 border cursor-pointer h-full">
                 <MdOutlineAddToPhotos className="text-9xl"></MdOutlineAddToPhotos> Create Quiz
                 {/* <span className="text-md font-bold">Create Class</span> */}
             </label >

@@ -1,5 +1,5 @@
 # Quick Edu Live
-Quick Edu Live is an Educational Platform.
+Quick Edu Live is an Ai Classroom. With less human interaction.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

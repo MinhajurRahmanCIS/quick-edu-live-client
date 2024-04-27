@@ -16,7 +16,7 @@ const ClassMenu = () => {
                 <div className="flex items-stretch">
                     <Link to={`/myhome/classinfo/${id}`} className="btn btn-ghost rounded-btn">Home</Link>
                     <div className="dropdown dropdown-bottom dropdown-end">
-                        <div tabIndex={0} role="button" className="btn btn-ghost rounded-btn">Class Work <IoIosArrowDown></IoIosArrowDown></div>
+                        <div tabIndex={0} role="button" className="btn btn-ghost rounded-btn">Classwork <IoIosArrowDown></IoIosArrowDown></div>
                         <ul tabIndex={0} className="menu dropdown-content z-[1] shadow bg-base-100 border rounded-box mt-4 gap-0.5">
                             <li className="border rounded-lg"><Link to={`/myhome/classinfo/quizzes/${id}`}>Quiz</Link></li>
                             <li className="border rounded-lg"><Link to={`/myhome/classinfo/assignments/${id}`}>Assignment</Link></li>
