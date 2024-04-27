@@ -48,10 +48,11 @@ const Quizzes = () => {
                 {
                     quizzes
                     &&
-                    quizzes.data?.map(quiz =>
+                    quizzes.data?.map((quiz, i) =>
                         <AllQuiz
                             key={quiz._id}
                             quiz={quiz}
+                            i={i+1}
                         >
                         </AllQuiz>)
                 }

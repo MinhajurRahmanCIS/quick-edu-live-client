@@ -2,7 +2,7 @@ import React from 'react';
 import { FaRegEye } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
 
-const AllQuiz = ({ quiz }) => {
+const AllQuiz = ({ quiz, i }) => {
     const { _id, topic, quizNo, questions, date, examDuration, level } = quiz;
     return (
         <div className="card bg-base-100 shadow-md rounded-none hover:shadow-xl border-2">
@@ -17,7 +17,7 @@ const AllQuiz = ({ quiz }) => {
             </Link>
             <div className="card-body text-md">
                 <h2><strong>Topic : </strong> {topic} </h2>
-                <p><strong>Quiz No : </strong> {quizNo}</p>
+                <p><strong>Quiz No : </strong> {i}</p>
                 <p><strong>Date : </strong>{date}</p>
                 <p><strong>Duration : </strong>{examDuration}</p>
                 <p><strong>Total Question : </strong>{questions.length}</p>

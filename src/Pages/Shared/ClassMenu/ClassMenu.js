@@ -2,15 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { IoIosArrowDown } from "react-icons/io";
-
+import { SiGooglebard } from "react-icons/si";
 
 
 const ClassMenu = () => {
     const { id } = useParams();
     return (
         <div className="navbar bg-base-300 my-3">
-            <div className="flex ">
-                <p className="font-bold">Classroom</p>
+            <div className="flex items-center gap-1 text-md md:text-xl">
+                <SiGooglebard className="text-sky-600"></SiGooglebard>
+                <p className="font-bold"><span className="text-slate-950">Ai</span> <span className="text-cyan-700">Classroom</span></p>
             </div>
             <div className="flex flex-1 px-2">
                 <div className="flex items-stretch">

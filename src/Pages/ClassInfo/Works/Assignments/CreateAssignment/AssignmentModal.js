@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { SiGooglebard } from "react-icons/si";
 import toast from 'react-hot-toast';
-const QuizModal = ({ modal, setModal, refetch }) => {
+import { SiGooglebard } from 'react-icons/si';
+
+const AssignmentModal = ({ modal, setModal }) => {
     const [resultLoading, setResultLoading] = useState(false);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const currentUTC = new Date();
@@ -16,7 +17,7 @@ const QuizModal = ({ modal, setModal, refetch }) => {
         setSelectedDate(e.target.value);
     };
 
-    const handelGenerateQuestion = (data, e) => {
+    const handelGenerateAssignmentQuestion = (data, e) => {
         setResultLoading(true);
         // console.log(data)
         data.classId = modal._id;
@@ -35,7 +36,7 @@ const QuizModal = ({ modal, setModal, refetch }) => {
                     toast.success("Question Generated!");
                     e.target.reset();
                     setModal(null);
-                    refetch();
+                    // refetch();
                 };
             })
             .catch(error => {
@@ -51,12 +52,12 @@ const QuizModal = ({ modal, setModal, refetch }) => {
                 resultLoading ?
                     <div>
                         {/* The button to open modal */}
-                        <input type="checkbox" id="quiz-modal" className="modal-toggle" />
+                        <input type="checkbox" id="assignment-modal" className="modal-toggle" />
                         <div className="modal" role="dialog">
                             <div className="modal-box ">
-                                <label htmlFor="quiz-modal" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-xl font-bold">X</label>
+                                <label htmlFor="assignment-modal" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-xl font-bold">X</label>
                                 <div className="flex flex-col justify-center items-center sm:text-md md:text-xl p-7">
-                                    <span>Generating Your Quiz</span>
+                                    <span>Generating Your Assignment</span>
                                     <span>Please Wait</span>
                                     <br />
                                     <span className="loading loading-ball loading-xs "></span>
@@ -70,41 +71,41 @@ const QuizModal = ({ modal, setModal, refetch }) => {
                     :
                     <div>
                         {/* The button to open modal */}
-                        <input type="checkbox" id="quiz-modal" className="modal-toggle" />
+                        <input type="checkbox" id="assignment-modal" className="modal-toggle" />
                         <div className="modal" role="dialog">
                             <div className="modal-box ">
-                                <label htmlFor="quiz-modal" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-xl font-bold border border-black">X</label>
-                                <form onSubmit={handleSubmit(handelGenerateQuestion)} className="card-body">
-                                <div className="flex items-center gap-1 text-2xl">
-                                    <h1 className="font-semibold">Generate Quiz with Gemini </h1>
-                                    <SiGooglebard className="text-sky-600"></SiGooglebard>
-                                </div>
-                                    <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text font-semibold">Quiz Subject</span>
-                                        </label>
-                                        <input {...register("subject")} type="text" placeholder="Example: Math101" className="input input-bordered" defaultValue={modal.subject} />
-                                        <div className="label">
-                                            {errors.subject && <p className="text-red-600">{errors.subject.message}</p>}
-                                        </div>
+                                <label htmlFor="assignment-modal" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-xl font-bold border border-black">X</label>
+                                <form onSubmit={handleSubmit(handelGenerateAssignmentQuestion)} className="card-body">
+                                    <div className="flex items-center gap-1 text-2xl">
+                                        <h1 className="font-semibold">Generate Assignment with Gemini </h1>
+                                        <SiGooglebard className="text-sky-600"></SiGooglebard>
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text font-semibold">Quiz No</span>
+                                            <span className="label-text font-semibold">Demo</span>
                                         </label>
-                                        <input {...register("quizNo",
+                                        <textarea {...register("demo",
                                             {
-                                                required: { value: true, message: "Quiz No is Required" }
+                                                required: { value: true, message: "Demo is Required" }
+                                            })} placeholder="Demo" className="textarea textarea-bordered textarea-lg w-full" ></textarea>
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text font-semibold">Assignment No</span>
+                                        </label>
+                                        <input {...register("assignmentNo",
+                                            {
+                                                required: { value: true, message: "Assignment No is Required" }
                                             })} type="number" placeholder="Example: 1/2" className="input input-bordered" min={1} />
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text font-semibold">Quiz Date</span>
+                                            <span className="label-text font-semibold">Assignment Date</span>
                                         </label>
                                         <div className="flex gap-1">
                                             <input {...register("date",
                                                 {
-                                                    required: { value: true, message: "Quiz No is Required" }
+                                                    required: { value: true, message: "Assignment No is Required" }
                                                 })}
                                                 type="date"
                                                 className="input input-bordered w-full"
@@ -123,25 +124,6 @@ const QuizModal = ({ modal, setModal, refetch }) => {
                                         </div>
 
                                     </div>
-                                    <div className="form-control">
-                                        <label className="label">
-                                            <span className="label-text font-semibold">Quiz Time</span>
-                                        </label>
-                                        <div className="flex gap-1">
-                                            <input {...register("duration",
-                                                {
-                                                    required: { value: true, message: "Class Name is Required" }
-                                                })} type="number" placeholder="10 M / 1 H / 1.30 HM" className="input input-bordered" min={1}/>
-                                            <select {...register("timeUnit",
-                                                {
-                                                    required: { value: true, message: "Class Name is Required" }
-                                                })} className="select select-bordered w-full max-w-xs">
-                                                <option value={"Minutes"}>Minutes</option>
-                                                <option value={"Hour"}>Hour</option>
-                                                <option value={"Hour+Minutes"}>Hour+Minutes</option>
-                                            </select>
-                                        </div>
-                                    </div>
 
                                     <div className="form-control">
                                         <label className="label">
@@ -154,7 +136,7 @@ const QuizModal = ({ modal, setModal, refetch }) => {
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text font-semibold">Quiz Level</span>
+                                            <span className="label-text font-semibold">Assignment Level</span>
                                         </label>
                                         <div className='flex items-center'>
                                             <input {...register("level",
@@ -177,15 +159,15 @@ const QuizModal = ({ modal, setModal, refetch }) => {
 
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text font-semibold">Quiz Topic</span>
+                                            <span className="label-text font-semibold">Assignment Description</span>
                                         </label>
-                                        <textarea {...register("topic",
+                                        <textarea {...register("description",
                                             {
                                                 required: { value: true, message: "Class Name is Required" }
-                                            })} placeholder="Describe Properly Course Topic. Example: Algebra,OOP" className="textarea textarea-bordered textarea-lg w-full" ></textarea>
+                                            })} placeholder="Describe Properly Course description. Example: Algebra,OOP" className="textarea textarea-bordered textarea-lg w-full" ></textarea>
                                     </div>
 
-                                    <input className="btn btn-neutral mt-3 text-2xl" type="submit" value="Generate Quiz" />
+                                    <input className="btn btn-neutral mt-3 text-2xl" type="submit" value="Generate Assignment" />
                                 </form>
                             </div>
                         </div>
@@ -196,4 +178,4 @@ const QuizModal = ({ modal, setModal, refetch }) => {
     );
 };
 
-export default QuizModal;
+export default AssignmentModal;

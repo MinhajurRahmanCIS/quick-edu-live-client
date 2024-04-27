@@ -12,7 +12,7 @@ const ViewQuiz = () => {
     const { id } = useParams();
     const printRef = useRef();
     const [showAnswer, setShowAnswer] = useState(false);
-    const { data: viewQuiz = [], isLoading, refetch } = useQuery({
+    const { data: viewQuiz = [], isLoading } = useQuery({
         queryKey: ["viewQuiz", id],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/classwork/${id}`, {
