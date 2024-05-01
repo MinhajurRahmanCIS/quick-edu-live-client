@@ -13,6 +13,7 @@ import ClassInfo from "../../Pages/ClassInfo/ClassInfo/ClassInfo/ClassInfo";
 import Quizzes from "../../Pages/ClassInfo/Works/Quizzes/Quizzes/Quizzes";
 import Assignments from "../../Pages/ClassInfo/Works/Assignments/Assignments/Assignments";
 import ViewQuiz from "../../Pages/ClassInfo/Works/Quizzes/ViewQuiz/ViewQuiz/ViewQuiz";
+import ViewAssignment from "../../Pages/ClassInfo/Works/Assignments/ViewAssignment/ViewAssignment";
 
 const router = createBrowserRouter([
     //Home Directory
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
             {
                 path: "/myhome/viewQuizzes/:id",
                 element: <PrivateRoute><ViewQuiz></ViewQuiz></PrivateRoute>
+            },
+            {
+                path: "/myhome/viewAssignment/:id",
+                element: <PrivateRoute><ViewAssignment></ViewAssignment></PrivateRoute>
             },
             {
                 path: "/myhome/classinfo",

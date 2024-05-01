@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { SiGooglebard } from 'react-icons/si';
 
-const AssignmentModal = ({ modal, setModal }) => {
+const AssignmentModal = ({ modal, setModal, refetch }) => {
     const [resultLoading, setResultLoading] = useState(false);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const currentUTC = new Date();
@@ -30,13 +30,13 @@ const AssignmentModal = ({ modal, setModal }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.data.insertedId) {
                     setResultLoading(false);
-                    toast.success("Question Generated!");
+                    toast.success("Assignment Generated!");
                     e.target.reset();
                     setModal(null);
-                    // refetch();
+                    refetch();
                 };
             })
             .catch(error => {
@@ -82,13 +82,22 @@ const AssignmentModal = ({ modal, setModal }) => {
                                     </div>
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text font-semibold">Demo</span>
+                                            <span className="label-text font-semibold">Quiz Subject</span>
                                         </label>
-                                        <textarea {...register("demo",
-                                            {
-                                                required: { value: true, message: "Demo is Required" }
-                                            })} placeholder="Demo" className="textarea textarea-bordered textarea-lg w-full" ></textarea>
+                                        <input {...register("subject")} type="text" placeholder="Example: Math101" className="input input-bordered" defaultValue={modal.subject} />
+                                        <div className="label">
+                                            {errors.subject && <p className="text-red-600">{errors.subject.message}</p>}
+                                        </div>
                                     </div>
+                                    {/* <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text font-semibold">Example</span>
+                                        </label>
+                                        <textarea {...register("example",
+                                            {
+                                                required: { value: true, message: "Example is Required" }
+                                            })} placeholder="Give an example of assignment" className="textarea textarea-bordered textarea-lg w-full" ></textarea>
+                                    </div> */}
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text font-semibold">Assignment No</span>
@@ -159,12 +168,12 @@ const AssignmentModal = ({ modal, setModal }) => {
 
                                     <div className="form-control">
                                         <label className="label">
-                                            <span className="label-text font-semibold">Assignment Description</span>
+                                            <span className="label-text font-semibold">Assignment Topic</span>
                                         </label>
-                                        <textarea {...register("description",
+                                        <textarea {...register("topic",
                                             {
                                                 required: { value: true, message: "Class Name is Required" }
-                                            })} placeholder="Describe Properly Course description. Example: Algebra,OOP" className="textarea textarea-bordered textarea-lg w-full" ></textarea>
+                                            })} placeholder="Assignment Topic" className="textarea textarea-bordered textarea-lg w-full" ></textarea>
                                     </div>
 
                                     <input className="btn btn-neutral mt-3 text-2xl" type="submit" value="Generate Assignment" />
