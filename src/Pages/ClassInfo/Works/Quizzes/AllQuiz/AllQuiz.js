@@ -6,7 +6,7 @@ const AllQuiz = ({ quiz, i }) => {
     const { _id, topic, quizNo, questions, date, examDuration, level } = quiz;
     return (
         <div className="card bg-base-100 shadow-md rounded-none hover:shadow-xl border-2">
-            <Link to="">
+            <Link to={`/myhome/viewQuizzes/${_id}`}>
                 <div className="flex justify-center items-center">
                     <div className="avatar placeholder cursor-pointer mt-3">
                         <div className="bg-neutral text-neutral-content rounded-full w-32 border-10 border-red-600 hover:shadow-2xl">

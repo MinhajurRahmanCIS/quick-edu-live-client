@@ -6,7 +6,7 @@ const AllAssignment = ({ assignment, i }) => {
     const { _id, topic, assignmentNo, date, level } = assignment;
     return (
         <div className="card bg-base-100 shadow-md rounded-none hover:shadow-xl border-2">
-            <Link to="">
+            <Link to={`/myhome/viewAssignment/${_id}`}>
                 <div className="flex justify-center items-center">
                     <div className="avatar placeholder cursor-pointer mt-3">
                         <div className="bg-neutral text-neutral-content rounded-full w-32 border-10 border-red-600 hover:shadow-2xl">
