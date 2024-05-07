@@ -16,7 +16,7 @@ const AllQuiz = ({ quiz, i, refetch }) => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Delete Class"
+            confirmButtonText: "Delete Quiz"
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(`http://localhost:5000/classwork/${id}`, {

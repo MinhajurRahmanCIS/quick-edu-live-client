@@ -37,6 +37,7 @@ const Announcement = ({ classData, user }) => {
                         <AllAnnouncement
                             key={announcement._id}
                             announcement={announcement}
+                            refetch={refetch}
                         >
                         </AllAnnouncement>)
                 }

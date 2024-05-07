@@ -1,7 +1,48 @@
 import React from 'react';
+import Swal from 'sweetalert2';
 
-const AllAnnouncement = ({ announcement }) => {
-    const { userName, photoURL, date, message } = announcement;
+const AllAnnouncement = ({ announcement, refetch }) => {
+    const { _id, userName, photoURL, date, message } = announcement;
+
+    const handelDeleteAnnouncement = id => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this Announcement!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Delete Announcement"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/announcements/${id}`, {
+                    method: "DELETE",
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
+                    }
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log(data);
+                        if (data.data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                title: "Announcement Deleted!",
+                                text: "Your Announcement has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                        else {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                text: "Something went wrong! Please Try Again"
+                            });
+                        }
+                    })
+            };
+        });
+    };
     return (
             <div className="border p-10">
                 <div className="flex items-center gap-3">
@@ -15,6 +56,9 @@ const AllAnnouncement = ({ announcement }) => {
                 {date}
             </div>
             <p className="my-5">{message}</p>
+            <div>
+                <button onClick={() => handelDeleteAnnouncement(_id)} className="btn btn-error btn-sm">Delete</button>
+            </div>
             </div>
     );
 };
