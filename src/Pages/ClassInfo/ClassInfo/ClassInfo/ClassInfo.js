@@ -8,7 +8,7 @@ import { AuthContext } from '../../../../contexts/AuthProvider';
 const ClassInfo = () => {
     const { user } = useContext(AuthContext);
     const { id } = useParams();
-    const { classData, isLoading, refetch } = useClass(id);
+    const { classData, isLoading } = useClass(id);
     if (isLoading) {
         return <Loading></Loading>
     };
