@@ -56,6 +56,7 @@ const Assignments = () => {
                     <AllAssignment
                         key={i}
                         assignment={assignment}
+                        refetch={refetch}
                     >
                     </AllAssignment>)
             }

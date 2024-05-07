@@ -3,7 +3,7 @@ import { MdOutlineAddToPhotos } from "react-icons/md";
 import Loading from '../../Shared/Loading/Loading';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import ClassCard from './ClassCard';
-const Classes = ({ classes, isLoading, setModal}) => {
+const Classes = ({ classes, isLoading, setModal, refetch}) => {
     const { user } = useContext(AuthContext);
     if(isLoading){
         return <Loading></Loading>
@@ -21,6 +21,7 @@ const Classes = ({ classes, isLoading, setModal}) => {
                     <ClassCard
                     key={c._id}
                     c={c}
+                    refetch={refetch}
                     >
                     </ClassCard>)
             }

@@ -43,14 +43,15 @@ const ViewQuiz = () => {
         <div className="max-w-[1440px] mx-auto my-3 p-2 print-container" >
             <Link to={-1} className="btn btn-neutral rounded-none hover:bg-slate-500 text-xl"> <IoArrowUndoOutline></IoArrowUndoOutline> Go Back</Link>
 
-            <div onClick={handleClick} className="text-end">
-
+            <div className="text-end">
+                <span onClick={handleClick}>
                 {
                     showAnswer ?
                         <button className="btn btn-error"><FaRegEyeSlash></FaRegEyeSlash> Hide Answer</button>
                         :
                         <button className="btn btn-success"><FaRegEye></FaRegEye> Show Answer </button>
                 }
+                </span>
             </div>
             <div className="flex justify-end mt-3 items-center">
                 <h1 onClick={handelPrint} className="text-4xl cursor-pointer btn btn-outline btn-info tooltip tooltip-left p-1" data-tip="Print Question"><FaPrint></FaPrint></h1>

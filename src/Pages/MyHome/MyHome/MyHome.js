@@ -14,6 +14,7 @@ const MyHome = () => {
                 classes={classes.data}
                 isLoading={isLoading}
                 setModal={setModal}
+                refetch={refetch}
             >
             </Classes>
             {

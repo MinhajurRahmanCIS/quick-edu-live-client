@@ -53,6 +53,7 @@ const Quizzes = () => {
                             key={i}
                             quiz={quiz}
                             i={i+1}
+                            refetch={refetch}
                         >
                         </AllQuiz>)
                 }
