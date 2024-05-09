@@ -4,6 +4,8 @@ import { CgHomeAlt } from 'react-icons/cg';
 import { FaGraduationCap } from "react-icons/fa";
 import { MdOutlineLiveHelp } from "react-icons/md";
 import { GrScan } from "react-icons/gr";
+import { LuFileScan } from "react-icons/lu";
+import { FcDocument } from "react-icons/fc";
 const Sidebar = ({ classes }) => {
     return (
         <div className="drawer-side border-x-2">
@@ -28,8 +30,18 @@ const Sidebar = ({ classes }) => {
                         </details>
                     </li>
                 </ul>
-                
-                <li className="text-xl font-bold"><Link> <GrScan></GrScan>Paper Checker</Link></li>
+                <ul className="menu">
+                    <li>
+                        <details open>
+                            <summary className="text-xl font-bold"><GrScan></GrScan>Paper Checker</summary>
+                            <ul className="text-md font-semibold">
+                                <li className="text-xl font-bold"><Link to="/myhome/paperchecker"> <LuFileScan></LuFileScan>Check Paper</Link></li>
+                                <li className="text-xl font-bold mt-0.5"><Link to="/myhome/allpaper"> <FcDocument></FcDocument>All Paper</Link></li>
+                            </ul>
+                        </details>
+                    </li>
+                </ul>
+
                 <li className="text-xl font-bold"><Link> <MdOutlineLiveHelp></MdOutlineLiveHelp> Help</Link></li>
             </ul>
         </div>

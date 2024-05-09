@@ -49,7 +49,7 @@ const AllQuiz = ({ quiz, i, refetch }) => {
     };
     return (
         <div className="card bg-base-100 shadow-md rounded-none hover:shadow-xl border-2">
-            <Link to={`/myhome/viewQuizzes/${_id}`}>
+            <Link to={`/myhome/viewquizzes/${_id}`}>
                 <div className="flex justify-center items-center">
                     <div className="avatar placeholder cursor-pointer mt-3">
                         <div className="bg-neutral text-neutral-content rounded-full w-32 border-10 border-red-600 hover:shadow-2xl">
@@ -66,7 +66,7 @@ const AllQuiz = ({ quiz, i, refetch }) => {
                 <p><strong>Total Question : </strong>{questions.length}</p>
                 <p><strong>Difficulty Level : </strong>{level}</p>
                 <div className="card-actions justify-end gap-3">
-                    <Link to={`/myhome/viewQuizzes/${_id}`} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"View Question"}><FaRegEye></FaRegEye></Link>
+                    <Link to={`/myhome/viewquizzes/${_id}`} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"View Question"}><FaRegEye></FaRegEye></Link>
 
                     <div onClick={() => handelDeleteQuiz(_id)} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"Delete Quiz"}><RiDeleteBin6Line></RiDeleteBin6Line></div>
                 </div>

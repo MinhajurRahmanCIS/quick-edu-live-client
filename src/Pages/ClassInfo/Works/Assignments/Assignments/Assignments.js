@@ -4,7 +4,6 @@ import CreateAssignment from '../CreateAssignment/CreateAssignment';
 import AssignmentModal from '../CreateAssignment/AssignmentModal';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../../Shared/Loading/Loading';
-import ViewAssignment from '../ViewAssignment/ViewAssignment';
 import AllAssignment from '../AllAssignment/AllAssignment';
 
 const Assignments = () => {

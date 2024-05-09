@@ -14,6 +14,10 @@ import Quizzes from "../../Pages/ClassInfo/Works/Quizzes/Quizzes/Quizzes";
 import Assignments from "../../Pages/ClassInfo/Works/Assignments/Assignments/Assignments";
 import ViewQuiz from "../../Pages/ClassInfo/Works/Quizzes/ViewQuiz/ViewQuiz/ViewQuiz";
 import ViewAssignment from "../../Pages/ClassInfo/Works/Assignments/ViewAssignment/ViewAssignment";
+import PaperChecker from "../../Pages/PaperChecker/PaperChecker/PaperChecker";
+import Chat from "../../Pages/ClassInfo/Chat/Chat/Chat";
+import PaperSummery from "../../Pages/PaperChecker/PaperSummery/PaperSummery";
+import AllPaper from "../../Pages/PaperChecker/AllPaper/AllPaper";
 
 const router = createBrowserRouter([
     //Home Directory
@@ -48,12 +52,24 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><Profile></Profile></PrivateRoute>
             },
             {
-                path: "/myhome/viewQuizzes/:id",
+                path: "/myhome/viewquizzes/:id",
                 element: <PrivateRoute><ViewQuiz></ViewQuiz></PrivateRoute>
             },
             {
-                path: "/myhome/viewAssignment/:id",
+                path: "/myhome/viewassignment/:id",
                 element: <PrivateRoute><ViewAssignment></ViewAssignment></PrivateRoute>
+            },
+            {
+                path: "/myhome/paperchecker",
+                element: <PrivateRoute><PaperChecker></PaperChecker></PrivateRoute>
+            },
+            {
+                path: "/myhome/allpaper",
+                element: <PrivateRoute><AllPaper></AllPaper></PrivateRoute>
+            },
+            {
+                path: "/myhome/papersummery/:id",
+                element: <PrivateRoute><PaperSummery></PaperSummery></PrivateRoute>
             },
             {
                 path: "/myhome/classinfo",
@@ -75,7 +91,10 @@ const router = createBrowserRouter([
                         path: "/myhome/classinfo/classpeople/:id",
                         element: <PrivateRoute><ClassPeople></ClassPeople></PrivateRoute>
                     },
-                    
+                    {
+                        path: "/myhome/classinfo/chat/:id",
+                        element: <PrivateRoute><Chat></Chat></PrivateRoute>
+                    }
                 ]
             },
         ]

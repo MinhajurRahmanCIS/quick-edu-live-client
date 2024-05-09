@@ -46,7 +46,7 @@ const ClassModal = ({refetch, modal, setModal}) => {
                         };
                     })
             });
-    }
+    };
     return (
         <div>
             {/* The button to open modal */}
