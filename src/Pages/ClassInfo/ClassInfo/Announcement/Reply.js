@@ -1,23 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Swal from 'sweetalert2';
-import { AuthContext } from '../../../../contexts/AuthProvider';
-import useLoadUser from '../../../../hooks/useLoadUser';
-import Loading from '../../../Shared/Loading/Loading';
 
-const AllAnnouncement = ({ announcement, refetch, setModal }) => {
-    const { user } = useContext(AuthContext);
-    const { userInfo, isLoading } = useLoadUser(user);
-    const { _id, userName, photoURL, date, message } = announcement;
+const Reply = ({ c, role, refetch }) => {
+    const { _id, userName, photoURL, date, comment } = c;
 
-    const handelDeleteAnnouncement = id => {
+    const handelDeleteComment = id => {
         Swal.fire({
             title: "Are you sure?",
-            text: "You won't be able to revert this Announcement!",
+            text: "You won't be able to revert this Comment!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Delete Announcement"
+            confirmButtonText: "Delete Comment"
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(`http://localhost:5000/announcements/${id}`, {
@@ -32,8 +27,8 @@ const AllAnnouncement = ({ announcement, refetch, setModal }) => {
                         if (data.data.deletedCount > 0) {
                             refetch();
                             Swal.fire({
-                                title: "Announcement Deleted!",
-                                text: "Your Announcement has been deleted.",
+                                title: "Comment Deleted!",
+                                text: "Your Announcement has been Comment.",
                                 icon: "success"
                             });
                         }
@@ -48,19 +43,9 @@ const AllAnnouncement = ({ announcement, refetch, setModal }) => {
             };
         });
     };
-
-    if (isLoading) {
-        return <Loading></Loading>
-    };
-
-    const { role } = userInfo.data[0];
-
-    const userComment = 
-    {
-        _id, role
-    };
+    console.log(c)
     return (
-        <div className="border p-10">
+        <div className="border p-5 mb-3">
             <div className="flex items-center gap-3">
                 <div className="avatar">
                     <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
@@ -71,19 +56,16 @@ const AllAnnouncement = ({ announcement, refetch, setModal }) => {
                 <br />
                 {date}
             </div>
-            <p className="my-5">{message}</p>
-            <div className="flex justify-end items-center gap-2">
-                <label htmlFor="reply-modal" className="btn btn-neutral btn-sm" onClick={() => setModal(userComment)}>
-                    Reply
-                    {/* <span className="text-md font-bold">Create Class</span> */}
-                </label >
-                {
-                    role === "Teacher" &&
-                    <button onClick={() => handelDeleteAnnouncement(_id)} className="btn btn-error btn-sm">Delete</button>
-                }
-            </div>
+            <p className="mt-4">{comment}</p>
+            {
+                role === "Teacher" ?
+                    <div className="flex justify-end items-center gap-2">
+                        <button onClick={() => handelDeleteComment(_id)} className="btn btn-error btn-sm">Delete</button>
+                    </div> :
+                    " "
+            }
         </div>
     );
 };
 
-export default AllAnnouncement;
+export default Reply;

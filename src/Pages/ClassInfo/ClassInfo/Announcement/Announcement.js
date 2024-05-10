@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AllAnnouncement from './AllAnnouncement';
 import CreateAnnouncement from './CreateAnnouncement';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../Shared/Loading/Loading';
+import ReplyModal from './ReplyModal';
 
 const Announcement = ({ classData, user }) => {
+    const [modal, setModal] = useState(null);
     const { data: announcements = [], isLoading, refetch } = useQuery({
         queryKey: ["announcements", classData?._id],
         queryFn: async () => {
@@ -37,12 +39,24 @@ const Announcement = ({ classData, user }) => {
                         <AllAnnouncement
                             key={announcement._id}
                             announcement={announcement}
+                            setModal={setModal}
                             refetch={refetch}
                         >
                         </AllAnnouncement>)
                 }
-
             </div>
+
+            {
+                modal &&
+                <ReplyModal
+                modal={modal}
+                setModal={setModal}
+                >
+                </ReplyModal>
+            }
+
+
+
         </div>
     );
 };

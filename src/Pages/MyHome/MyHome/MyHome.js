@@ -12,7 +12,7 @@ const MyHome = () => {
         <div>
             <Classes
                 classes={classes.data}
-                isLoading={isLoading}
+                classLoading={isLoading}
                 setModal={setModal}
                 refetch={refetch}
             >

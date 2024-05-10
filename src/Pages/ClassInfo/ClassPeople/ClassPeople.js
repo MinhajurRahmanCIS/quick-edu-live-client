@@ -4,7 +4,7 @@ const ClassPeople = () => {
     const { id } = useParams();
     return (
         <div>
-            
+            Under Development
         </div>
     );
 };

@@ -18,7 +18,7 @@ const ClassMenu = () => {
                 </ul>
             </div>
             <Link to={`/myhome/classinfo/classpeople/${id}`} className="btn btn-ghost rounded-btn">People</Link>
-            <Link to={`/myhome/classinfo/chat/${id}`} className="btn btn-ghost rounded-btn">Chat</Link>
+            {/* <Link to={`/myhome/classinfo/chat/${id}`} className="btn btn-ghost rounded-btn">Chat</Link> */}
         </>;
     return (
         <div className="navbar bg-base-300 my-3">

@@ -1,7 +1,8 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Loading from '../../Shared/Loading/Loading';
 import { useQuery } from '@tanstack/react-query';
+import { IoArrowUndoOutline } from 'react-icons/io5';
 
 const PaperSummery = () => {
     const { id } = useParams();
@@ -24,6 +25,7 @@ const PaperSummery = () => {
 
     return (
         <div className="p-5">
+            <Link to={-1} className="btn btn-neutral rounded-none hover:bg-slate-500 text-xl mb-2"> <IoArrowUndoOutline></IoArrowUndoOutline> Go Back</Link>
             <p className="text-2xl">Result</p>
             {
                 paperChecking

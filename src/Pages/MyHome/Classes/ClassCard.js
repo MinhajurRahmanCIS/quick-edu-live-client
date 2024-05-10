@@ -11,11 +11,11 @@ const ClassCard = ({ c, refetch }) => {
         navigator.clipboard.writeText(classCode)
             .then(() => {
                 // console.log('Code copied to clipboard:', code);
-                toast.success('Code copied to clipboard!');
+                toast.success('Enrollment Key copied to clipboard!');
             })
             .catch(err => {
                 // console.error('Failed to copy code to clipboard:', err);
-                toast.error('Failed to copy code to clipboard. Please try again.');
+                toast.error('Failed to copy Enrollment Key to clipboard. Please try again.');
             });
     };
 
