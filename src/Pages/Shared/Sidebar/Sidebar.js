@@ -13,8 +13,8 @@ const Sidebar = ({ classes }) => {
     const { user } = useContext(AuthContext);
     const { userInfo, isLoading } = useLoadUser(user);
     if (isLoading) {
-        return <Loading></Loading>
-    }
+        return <Loading></Loading>;
+    };
     const { role, account } = userInfo.data[0];
     return (
         <div className="drawer-side border-x-2">
@@ -26,9 +26,9 @@ const Sidebar = ({ classes }) => {
                     <li>
                         <details open>
                             <summary className="text-xl font-bold"><FaGraduationCap></FaGraduationCap>
-                            {
-                                role === "Teacher" ? "Teaching" : "Enrolled"
-                            }
+                                {
+                                    role === "Teacher" ? "Teaching" : "Enrolled"
+                                }
                             </summary>
                             <ul className="text-md font-semibold">
                                 {
@@ -44,19 +44,20 @@ const Sidebar = ({ classes }) => {
                     </li>
                 </ul>
                 {
-                    account === "Premium" &&
-                    <ul className="menu">
-                        <li>
-                            <details open>
-                                <summary className="text-xl font-bold"><GrScan></GrScan>Paper Checker</summary>
-                                <ul className="text-md font-semibold">
-                                    <li className="text-xl font-bold"><Link to="/myhome/paperchecker"> <LuFileScan></LuFileScan>Check Paper</Link></li>
-                                    <li className="text-xl font-bold mt-0.5"><Link to="/myhome/allpaper"> <FcDocument></FcDocument>All Paper</Link></li>
-                                </ul>
-                            </details>
-                        </li>
-                    </ul>
-
+                    role === "Teacher" && account === "Premium" ?
+                        <ul className="menu">
+                            <li>
+                                <details open>
+                                    <summary className="text-xl font-bold"><GrScan></GrScan>Paper Checker</summary>
+                                    <ul className="text-md font-semibold">
+                                        <li className="text-xl font-bold"><Link to="/myhome/paperchecker"> <LuFileScan></LuFileScan>Check Paper</Link></li>
+                                        <li className="text-xl font-bold mt-0.5"><Link to="/myhome/allpaper"> <FcDocument></FcDocument>All Paper</Link></li>
+                                    </ul>
+                                </details>
+                            </li>
+                        </ul>
+                        :
+                        <li className="text-xl font-bold"><Link><GrScan></GrScan>Ai Paper Checker</Link></li>
                 }
                 <li className="text-xl font-bold"><Link> <MdOutlineLiveHelp></MdOutlineLiveHelp> Help</Link></li>
             </ul>

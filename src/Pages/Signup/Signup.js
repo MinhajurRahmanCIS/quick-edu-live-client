@@ -46,7 +46,7 @@ const Signup = () => {
                                     name: data.name,
                                     email: data.email,
                                     image: imageData.data.url,
-                                    role: "",
+                                    role: data.role,
                                     account: "",
                                     institution: data.institution,
                                     country: data.country,
@@ -164,6 +164,24 @@ const Signup = () => {
                                 type="date" className="input input-bordered" />
                             <div className="label">
                                 {errors.dob && <p className="text-red-600">{errors.dob.message}</p>}
+                            </div>
+                        </div>
+
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text font-semibold">Role</span>
+                            </label>
+                            <div className='flex items-center'>
+                                <input {...register("role",
+                                    {
+                                        required: { value: true, message: "Role is Required" }
+                                    })} type="radio" name="role" value={"Teacher"} className="radio radio-neutral" />
+                                <span className='mx-3'>Teacher</span>
+                                <input {...register("role",
+                                    {
+                                        required: { value: true, message: "Role is Required" }
+                                    })} type="radio" name="role" value={"Student"} className="radio radio-info" />
+                                <span className='mx-3'>Student</span>
                             </div>
                         </div>
 
