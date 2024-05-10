@@ -20,7 +20,7 @@ const AllPaper = () => {
     if (isLoading) {
         return <Loading></Loading>
     };
-    console.log(allPaper)
+    // console.log(allPaper);
     return (
         <div className="card-body grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-4 sm:grid-cols-1 gap-3 gap-y-10">
             {

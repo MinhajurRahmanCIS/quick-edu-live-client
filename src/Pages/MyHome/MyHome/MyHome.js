@@ -6,13 +6,13 @@ import useClasses from '../../../hooks/useClasses';
 
 const MyHome = () => {
     const { user } = useContext(AuthContext);
-    const {classes, isLoading, refetch} = useClasses(user);
+    const {classes, classLoading, refetch} = useClasses(user);
     const [modal, setModal] = useState(null);
     return (
         <div>
             <Classes
                 classes={classes.data}
-                classLoading={isLoading}
+                classLoading={classLoading}
                 setModal={setModal}
                 refetch={refetch}
             >

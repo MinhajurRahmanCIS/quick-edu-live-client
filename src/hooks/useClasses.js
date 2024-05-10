@@ -13,7 +13,7 @@ const useClasses = user => {
             return data;
         }
     });
-    return { classes, isLoading, refetch };
+    return { classes, classLoading:isLoading, refetch };
 };
 
 export default useClasses;

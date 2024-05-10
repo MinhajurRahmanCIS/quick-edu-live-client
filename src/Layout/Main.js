@@ -8,9 +8,9 @@ import Loading from '../Pages/Shared/Loading/Loading';
 import useClasses from '../hooks/useClasses';
 const Main = () => {
     const { user } = useContext(AuthContext);
-    const {classes, isLoading} = useClasses(user);
+    const {classes, classLoading} = useClasses(user);
 
-    if (isLoading) {
+    if (classLoading) {
         return <Loading></Loading>
     };
 
