@@ -18,6 +18,7 @@ import PaperChecker from "../../Pages/PaperChecker/PaperChecker/PaperChecker";
 import Chat from "../../Pages/ClassInfo/Chat/Chat/Chat";
 import PaperSummery from "../../Pages/PaperChecker/PaperSummery/PaperSummery";
 import AllPaper from "../../Pages/PaperChecker/AllPaper/AllPaper";
+import TeacherRoute from "../TeacherRoute/TeacherRoute";
 
 const router = createBrowserRouter([
     //Home Directory
@@ -61,15 +62,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "/myhome/paperchecker",
-                element: <PrivateRoute><PaperChecker></PaperChecker></PrivateRoute>
+                element: <TeacherRoute><PaperChecker></PaperChecker></TeacherRoute>
             },
             {
                 path: "/myhome/allpaper",
-                element: <PrivateRoute><AllPaper></AllPaper></PrivateRoute>
+                element: <TeacherRoute><AllPaper></AllPaper></TeacherRoute>
             },
             {
                 path: "/myhome/papersummery/:id",
-                element: <PrivateRoute><PaperSummery></PaperSummery></PrivateRoute>
+                element: <TeacherRoute><PaperSummery></PaperSummery></TeacherRoute>
             },
             {
                 path: "/myhome/classinfo",

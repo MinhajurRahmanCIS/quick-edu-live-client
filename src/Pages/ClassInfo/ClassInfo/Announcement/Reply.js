@@ -1,7 +1,7 @@
 import React from 'react';
 import Swal from 'sweetalert2';
 
-const Reply = ({ c, role, refetch }) => {
+const Reply = ({ c, isTeacher, refetch }) => {
     const { _id, userName, photoURL, date, comment } = c;
 
     const handelDeleteComment = id => {
@@ -43,7 +43,7 @@ const Reply = ({ c, role, refetch }) => {
             };
         });
     };
-    console.log(c)
+    // console.log(c);
     return (
         <div className="border p-5 mb-3">
             <div className="flex items-center gap-3">
@@ -58,11 +58,10 @@ const Reply = ({ c, role, refetch }) => {
             </div>
             <p className="mt-4">{comment}</p>
             {
-                role === "Teacher" ?
+                isTeacher &&
                     <div className="flex justify-end items-center gap-2">
                         <button onClick={() => handelDeleteComment(_id)} className="btn btn-error btn-sm">Delete</button>
-                    </div> :
-                    " "
+                    </div> 
             }
         </div>
     );

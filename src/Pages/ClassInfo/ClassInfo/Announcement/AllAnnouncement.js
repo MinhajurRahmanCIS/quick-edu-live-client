@@ -3,10 +3,11 @@ import Swal from 'sweetalert2';
 import { AuthContext } from '../../../../contexts/AuthProvider';
 import useLoadUser from '../../../../hooks/useLoadUser';
 import Loading from '../../../Shared/Loading/Loading';
+import useTeacher from '../../../../hooks/useTeacher';
 
 const AllAnnouncement = ({ announcement, refetch, setModal }) => {
     const { user } = useContext(AuthContext);
-    const { userInfo, isLoading } = useLoadUser(user);
+    const [isTeacher] = useTeacher(user?.email);
     const { _id, userName, photoURL, date, message } = announcement;
 
     const handelDeleteAnnouncement = id => {
@@ -49,15 +50,15 @@ const AllAnnouncement = ({ announcement, refetch, setModal }) => {
         });
     };
 
-    if (isLoading) {
-        return <Loading></Loading>
-    };
+    // if (isLoading) {
+    //     return <Loading></Loading>
+    // };
 
-    const { role } = userInfo.data[0];
+    // const { role } = userInfo.data[0];
 
     const userComment = 
     {
-        _id, role
+        _id, isTeacher
     };
     return (
         <div className="border p-10">
@@ -78,7 +79,7 @@ const AllAnnouncement = ({ announcement, refetch, setModal }) => {
                     {/* <span className="text-md font-bold">Create Class</span> */}
                 </label >
                 {
-                    role === "Teacher" &&
+                    isTeacher &&
                     <button onClick={() => handelDeleteAnnouncement(_id)} className="btn btn-error btn-sm">Delete</button>
                 }
             </div>

@@ -3,7 +3,7 @@ import React from 'react';
 import Loading from '../../../Shared/Loading/Loading';
 import Reply from './Reply';
 
-const Replies = ({ modal, user }) => {
+const Replies = ({ modal, isTeacher }) => {
     const { data: comments = [], isLoading, refetch } = useQuery({
         queryKey: ["comments", modal?._id],
         queryFn: async () => {
@@ -23,7 +23,7 @@ const Replies = ({ modal, user }) => {
 
 
 
-    console.log(comments.data)
+    // console.log(comments.data)
     return (
         <div>
             {
@@ -32,7 +32,7 @@ const Replies = ({ modal, user }) => {
                     <Reply
                         key={c._id}
                         c={c}
-                        role={modal.role}
+                        isTeacher={isTeacher}
                         refetch={refetch}
                     >
                     </Reply>)

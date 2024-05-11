@@ -18,7 +18,7 @@ const ReplyModal = ({ modal, setModal }) => {
             comment: data.comment,
             date: format(currentDate, "d/MM/yyyy HH:mm:ss a"),
         };
-        console.log(classComment);
+        // console.log(classComment);
         fetch("http://localhost:5000/announcements", {
             method: "POST",
             headers: {
@@ -51,7 +51,7 @@ const ReplyModal = ({ modal, setModal }) => {
                         <h1 className="text-2xl font-bold">Replies</h1>
                         <Replies 
                         modal={modal}
-                        user={user}
+                        isTeacher={modal.isTeacher}
                         >
                         </Replies>
                         <div className="form-control">

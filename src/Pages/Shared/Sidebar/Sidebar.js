@@ -7,15 +7,12 @@ import { GrScan } from "react-icons/gr";
 import { LuFileScan } from "react-icons/lu";
 import { FcDocument } from "react-icons/fc";
 import { AuthContext } from '../../../contexts/AuthProvider';
-import useLoadUser from '../../../hooks/useLoadUser';
-import Loading from '../Loading/Loading';
+import useTeacher from '../../../hooks/useTeacher';
+import usePremium from '../../../hooks/UsePremium';
 const Sidebar = ({ classes }) => {
     const { user } = useContext(AuthContext);
-    const { userInfo, isLoading } = useLoadUser(user);
-    if (isLoading) {
-        return <Loading></Loading>;
-    };
-    const { role, account } = userInfo.data[0];
+    const [isTeacher] = useTeacher(user?.email);
+    const [isPremium] = usePremium(user?.email);
     return (
         <div className="drawer-side border-x-2">
             <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
@@ -27,7 +24,7 @@ const Sidebar = ({ classes }) => {
                         <details open>
                             <summary className="text-xl font-bold"><FaGraduationCap></FaGraduationCap>
                                 {
-                                    role === "Teacher" ? "Teaching" : "Enrolled"
+                                    isTeacher ? "Teaching" : "Enrolled"
                                 }
                             </summary>
                             <ul className="text-md font-semibold">
@@ -44,7 +41,7 @@ const Sidebar = ({ classes }) => {
                     </li>
                 </ul>
                 {
-                    role === "Teacher" && account === "Premium" ?
+                    isPremium ?
                         <ul className="menu">
                             <li>
                                 <details open>
