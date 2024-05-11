@@ -1,8 +1,6 @@
 import React, { useContext } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../../contexts/AuthProvider';
-import useLoadUser from '../../../../hooks/useLoadUser';
-import Loading from '../../../Shared/Loading/Loading';
 import useTeacher from '../../../../hooks/useTeacher';
 
 const AllAnnouncement = ({ announcement, refetch, setModal }) => {
@@ -53,8 +51,6 @@ const AllAnnouncement = ({ announcement, refetch, setModal }) => {
     // if (isLoading) {
     //     return <Loading></Loading>
     // };
-
-    // const { role } = userInfo.data[0];
 
     const userComment = 
     {

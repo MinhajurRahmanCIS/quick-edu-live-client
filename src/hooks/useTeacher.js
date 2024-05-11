@@ -8,8 +8,8 @@ const useTeacher = email => {
             fetch(`http://localhost:5000/users/teacher/${email}`)
                 .then(res => res.json())
                 .then(data => {
-                    // console.log(data);
-                    setIsTeacher(data.isTeacher);
+                    // console.log("Teacher", data.data);
+                    setIsTeacher(data.data.isTeacher);
                     setIsTeacherLoading(false);
                 })
         }

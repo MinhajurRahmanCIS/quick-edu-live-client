@@ -4,7 +4,7 @@ const useLoadUser = user => {
     const { data: userInfo = [], isLoading, refetch } = useQuery({
         queryKey: ["User"],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/users?email=${user?.email}`, {
+            const res = await fetch(`http://localhost:5000/users/${user?.email}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
                 }

@@ -53,6 +53,7 @@ const Signup = () => {
                                     dob: data.dob
                                 };
                                 saveUser(user);
+                                event.target.reset();
                             })
                             .catch(error => {
                                 setSignupError(error.message);
@@ -182,6 +183,9 @@ const Signup = () => {
                                         required: { value: true, message: "Role is Required" }
                                     })} type="radio" name="role" value={"Student"} className="radio radio-info" />
                                 <span className='mx-3'>Student</span>
+                            </div>
+                            <div className="label">
+                                {errors.role && <p className="text-red-600">{errors.role.message}</p>}
                             </div>
                         </div>
 

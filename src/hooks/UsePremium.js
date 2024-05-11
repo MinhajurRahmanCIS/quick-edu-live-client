@@ -8,13 +8,13 @@ const usePremium = email => {
             fetch(`http://localhost:5000/users/premium/${email}`)
                 .then(res => res.json())
                 .then(data => {
-                    // console.log(data);
-                    setIsPremium(data.isPremium);
+                    // console.log("Premium", data.data);
+                    setIsPremium(data.data.isPremium);
                     setIsPremiumLoading(false);
                 })
         }
     }, [email])
-    return [isPremium, isPremiumLoading]
+    return [isPremium, isPremiumLoading];
 }
 
 export default usePremium;
