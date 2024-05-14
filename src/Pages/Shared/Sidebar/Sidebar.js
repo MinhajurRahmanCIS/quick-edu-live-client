@@ -6,6 +6,7 @@ import { MdOutlineLiveHelp } from "react-icons/md";
 import { GrScan } from "react-icons/gr";
 import { LuFileScan } from "react-icons/lu";
 import { FcDocument } from "react-icons/fc";
+import { IoDiamond } from "react-icons/io5";
 import { AuthContext } from '../../../contexts/AuthProvider';
 import useTeacher from '../../../hooks/useTeacher';
 import usePremium from '../../../hooks/UsePremium';
@@ -41,7 +42,7 @@ const Sidebar = ({ classes }) => {
                     </li>
                 </ul>
                 {
-                    isPremium ?
+                  isTeacher && isPremium ?
                         <ul className="menu">
                             <li>
                                 <details open>
@@ -54,9 +55,9 @@ const Sidebar = ({ classes }) => {
                             </li>
                         </ul>
                         :
-                        <li className="text-xl font-bold"><Link><GrScan></GrScan>Ai Paper Checker</Link></li>
+                        <li className="text-xl"><Link to="/myhome/checkout" className="btn btn-neutral font-bold text-[#d4af37]"><IoDiamond></IoDiamond>Buy Ai Paper Checker</Link></li>
                 }
-                <li className="text-xl font-bold"><Link> <MdOutlineLiveHelp></MdOutlineLiveHelp> Help</Link></li>
+                <li className="text-xl font-bold"><Link> <MdOutlineLiveHelp></MdOutlineLiveHelp>Help</Link></li>
             </ul>
         </div>
     );

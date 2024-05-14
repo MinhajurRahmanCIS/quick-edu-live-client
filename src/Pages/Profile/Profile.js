@@ -158,7 +158,7 @@ const Profile = () => {
                         {
                             account === "Premium" ?
                                 <span className="flex items-center gap-2 text-xl text-[#d4af37] ms-0. btn bg-slate-900 hover:bg-slate-700 w-1/2 "><strong>Premium</strong><IoDiamond></IoDiamond></span>
-                                : <Link className="btn btn-neutral w-1/5">Buy Premium</Link>
+                                : <Link to="/myhome/checkout" className="btn btn-neutral w-1/5">Buy Premium</Link>
                         }
                         <div className="label" >
                             {errors.date && <p className="text-red-600">{errors.date.message}</p>}

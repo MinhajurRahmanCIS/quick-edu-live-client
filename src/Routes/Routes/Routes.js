@@ -20,6 +20,8 @@ import PaperSummery from "../../Pages/PaperChecker/PaperSummery/PaperSummery";
 import AllPaper from "../../Pages/PaperChecker/AllPaper/AllPaper";
 import TeacherRoute from "../TeacherRoute/TeacherRoute";
 import PremiumRoute from "../PremiumRoute/PremiumRoute";
+import Checkout from "../../Pages/Payment/Checkout/Checkout";
+import Payment from "../../Pages/Payment/Payment/Payment";
 
 const router = createBrowserRouter([
     //Home Directory
@@ -72,6 +74,14 @@ const router = createBrowserRouter([
             {
                 path: "/myhome/papersummery/:id",
                 element: <TeacherRoute><PremiumRoute><PaperSummery></PaperSummery></PremiumRoute></TeacherRoute>
+            },
+            {
+                path: "/myhome/checkout",
+                element: <TeacherRoute><Checkout></Checkout></TeacherRoute>
+            },
+            {
+                path: "/myhome/payment",
+                element: <TeacherRoute><Payment></Payment></TeacherRoute>
             },
             {
                 path: "/myhome/classinfo",
