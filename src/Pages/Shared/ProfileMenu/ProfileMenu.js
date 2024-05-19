@@ -35,10 +35,11 @@ const ProfileMenu = () => {
                     <li>
                         <Link className="justify-between">
                             Whats New
-                            <span className="badge">Version 0.1</span>
+                            <span className="badge">Version 0.5</span>
                         </Link>
                     </li>
                     <li><Link>Report a Problem</Link></li>
+                    <li><Link>Feedback</Link></li>
                     {
                         user?.uid && <li><Link onClick={handelLogout} className="bg-error text-white border-2 border-neutral hover:bg-slate-300 hover:text-black">Logout</Link></li>
                     }

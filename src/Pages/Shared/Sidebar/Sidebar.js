@@ -55,7 +55,7 @@ const Sidebar = ({ classes }) => {
                             </li>
                         </ul>
                         :
-                        <li className="text-xl"><Link to="/myhome/checkout" className="btn btn-neutral font-bold text-[#d4af37]"><IoDiamond></IoDiamond>Buy Ai Paper Checker</Link></li>
+                        isTeacher &&  <li className="text-xl"><Link to="/myhome/checkout" className="btn btn-neutral font-bold text-[#d4af37]"><IoDiamond></IoDiamond>Buy Ai Paper Checker</Link></li>
                 }
                 <li className="text-xl font-bold"><Link> <MdOutlineLiveHelp></MdOutlineLiveHelp>Help</Link></li>
             </ul>

@@ -13,7 +13,7 @@ const useLoadUser = user => {
             return data;
         }
     });
-    return { userInfo, isLoading, refetch };
+    return { userInfo, userIsLoading: isLoading, refetch };
 };
 
 export default useLoadUser;

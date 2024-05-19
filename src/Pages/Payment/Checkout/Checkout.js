@@ -7,10 +7,10 @@ import toast from 'react-hot-toast';
 
 const Checkout = () => {
     const {user} = useContext(AuthContext);
-    const {userInfo, isLoading} = useLoadUser(user);
+    const {userInfo, userIsLoading} = useLoadUser(user);
     const navigate = useNavigate();
 
-    if(isLoading){
+    if(userIsLoading){
         return <Loading></Loading>
     };
 

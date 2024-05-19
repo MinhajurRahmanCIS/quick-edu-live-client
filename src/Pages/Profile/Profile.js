@@ -6,13 +6,14 @@ import useLoadUser from '../../hooks/useLoadUser';
 import { IoDiamond } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import { FaChalkboardTeacher } from "react-icons/fa";
+import { PiStudentDuotone } from "react-icons/pi";
 
 const Profile = () => {
     const { user } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit, watch } = useForm();
-    const { userInfo, isLoading, refetch } = useLoadUser(user);
-    if (isLoading) {
-        return <Loading></Loading>
+    const { userInfo, userIsLoading, refetch } = useLoadUser(user);
+    if (userIsLoading) {
+        return <Loading></Loading>;
     };
     const { _id, role, name, email, institution, country, dob, image, account } = userInfo.data;
     // console.log(userInfo.data);
@@ -132,7 +133,7 @@ const Profile = () => {
                                         role === "Teacher" ?
                                             <span className="flex items-center gap-2 text-xl ms-0.5"><FaChalkboardTeacher></FaChalkboardTeacher>Teacher</span>
                                             :
-                                            <span className="flex items-center gap-2 text-xl ms-0.5">Student<IoDiamond></IoDiamond></span>
+                                            <span className="flex items-center gap-2 text-xl ms-0.5">Student<PiStudentDuotone></PiStudentDuotone></span>
                                     }
                                 </Link>
                                 :
@@ -151,21 +152,27 @@ const Profile = () => {
                         }
                     </div>
 
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Account Type</span>
-                        </label>
-                        {
-                            account === "Premium" ?
-                                <span className="flex items-center gap-2 text-xl text-[#d4af37] ms-0. btn bg-slate-900 hover:bg-slate-700 w-1/2 "><strong>Premium</strong><IoDiamond></IoDiamond></span>
-                                : <Link to="/myhome/checkout" className="btn btn-neutral w-1/5">Buy Premium</Link>
-                        }
-                        <div className="label" >
-                            {errors.date && <p className="text-red-600">{errors.date.message}</p>}
+                    {
+                        role === "Teacher" &&
+
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Account Type</span>
+                            </label>
+                            {
+                                account === "Premium" ?
+                                    <span className="flex items-center gap-2 text-xl text-[#d4af37] ms-0.5 btn bg-slate-900 hover:bg-slate-700 w-1/2 "><strong>Premium</strong><IoDiamond></IoDiamond></span>
+                                    : <Link to="/myhome/checkout" className="btn btn-neutral w-1/5">Buy Premium</Link>
+                            }
+                            <div className="label" >
+                                {errors.date && <p className="text-red-600">{errors.date.message}</p>}
+                            </div>
                         </div>
-                    </div>
+
+                    }
+
                 </div>
-                <div className="form-control">
+                <div className="form-control mt-2">
                     <input type="submit" value="Update Profile" className="btn btn-neutral hover:bg-slate-600 text-xl font-semibold" />
                 </div>
             </form>

@@ -3,11 +3,9 @@ import { MdOutlineAddToPhotos } from "react-icons/md";
 import Loading from '../../Shared/Loading/Loading';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import ClassCard from './ClassCard';
-import useTeacher from '../../../hooks/useTeacher';
-const Classes = ({ classes, classLoading, setModal, refetch}) => {
+const Classes = ({ classes, classLoading, setModal, refetch }) => {
     const { user } = useContext(AuthContext);
-    const [isTeacher] = useTeacher(user?.email);
-    if(classLoading){
+    if (classLoading) {
         return <Loading></Loading>
     };
 
@@ -16,23 +14,17 @@ const Classes = ({ classes, classLoading, setModal, refetch}) => {
     // };
     return (
         <div className="card-body grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-4 sm:grid-cols-1 gap-3 gap-y-10">
-            {
-                isTeacher ? 
-                <label htmlFor="class-modal" className="card justify-center items-center bg-base-100 hover:bg-base-300 border cursor-pointer" onClick={() => setModal(user?.email)}>
+            <label htmlFor="class-modal" className="card justify-center items-center bg-base-100 hover:bg-base-300 border cursor-pointer" onClick={() => setModal(user?.email)}>
                 <MdOutlineAddToPhotos className="text-9xl"></MdOutlineAddToPhotos>
                 {/* <span className="text-md font-bold">Create Class</span> */}
             </label >
-            :
-            <div>Enroll</div>
-            }
-            
             {
                 classes &&
                 classes?.map(c =>
                     <ClassCard
-                    key={c._id}
-                    c={c}
-                    refetch={refetch}
+                        key={c._id}
+                        c={c}
+                        refetch={refetch}
                     >
                     </ClassCard>)
             }
