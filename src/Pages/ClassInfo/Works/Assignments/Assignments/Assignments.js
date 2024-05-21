@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CreateAssignment from '../CreateAssignment/CreateAssignment';
 import AssignmentModal from '../CreateAssignment/AssignmentModal';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../../Shared/Loading/Loading';
 import AllAssignment from '../AllAssignment/AllAssignment';
+import useTeacher from '../../../../../hooks/useTeacher';
+import { AuthContext } from '../../../../../contexts/AuthProvider';
 
 const Assignments = () => {
     const { id } = useParams();
+    const { user } = useContext(AuthContext);
+    const [isTeacher, isTeacherLoading] = useTeacher(user?.email)
     const [modal, setModal] = useState(null);
     const { data: assignments = [], isLoading, refetch } = useQuery({
         queryKey: ["assignments", id],
@@ -28,24 +32,33 @@ const Assignments = () => {
         return <Loading></Loading>;
     };
 
-    
+    if (isTeacherLoading) {
+        return <Loading></Loading>;
+    };
+
 
     return (
         <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-5 p-5 mt-6">
-            <CreateAssignment
-                id={id}
-                setModal={setModal}
-            >
-            </CreateAssignment>
 
             {
-                modal &&
-                <AssignmentModal
-                    modal={modal}
-                    setModal={setModal}
-                    refetch={refetch}
-                >
-                </AssignmentModal>
+                isTeacher &&
+                <>
+                    <CreateAssignment
+                        id={id}
+                        setModal={setModal}
+                    >
+                    </CreateAssignment>
+
+                    {
+                        modal &&
+                        <AssignmentModal
+                            modal={modal}
+                            setModal={setModal}
+                            refetch={refetch}
+                        >
+                        </AssignmentModal>
+                    }
+                </>
             }
 
             {
@@ -55,7 +68,9 @@ const Assignments = () => {
                     <AllAssignment
                         key={i}
                         assignment={assignment}
+                        i={i}
                         refetch={refetch}
+                        isTeacher={isTeacher}
                     >
                     </AllAssignment>)
             }

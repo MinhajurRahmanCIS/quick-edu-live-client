@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
-const EnrollmentModal = ({ modal, setModal }) => {
+const EnrollmentModal = ({ modal, setModal, refetch }) => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const handelEnrollClass = (data, event) => {
         data.studentEmail = modal;
@@ -18,10 +18,11 @@ const EnrollmentModal = ({ modal, setModal }) => {
             // console.log(data);
             if(data?.data?.insertedId){
                 toast.success("Class Enrolled Successfully");
-                setModal(null)
+                setModal(null);
+                refetch();
             }
             if(data?.alreadyEnrolledMessage){
-                toast.error(data?.message);
+                toast.error(data?.alreadyEnrolledMessage);
             }
             if(data?.noClassMessage){
                 toast.error(data?.noClassMessage);

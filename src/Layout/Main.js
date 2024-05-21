@@ -6,11 +6,17 @@ import ProfileMenu from '../Pages/Shared/ProfileMenu/ProfileMenu';
 import { AuthContext } from '../contexts/AuthProvider';
 import Loading from '../Pages/Shared/Loading/Loading';
 import useClasses from '../hooks/useClasses';
+import useEnrollClasses from '../hooks/useEnrollClasses';
 const Main = () => {
     const { user } = useContext(AuthContext);
     const {classes, classLoading} = useClasses(user);
+    const {enrollClasses, classLoading: enrollLoading} = useEnrollClasses(user);
 
     if (classLoading) {
+        return <Loading></Loading>
+    };
+
+    if (enrollLoading) {
         return <Loading></Loading>
     };
 
@@ -38,6 +44,7 @@ const Main = () => {
                     </div>
                     <Sidebar 
                     classes={classes.data}
+                    enrollClasses={enrollClasses.data}
                     ></Sidebar>
                 </div>
             </div>

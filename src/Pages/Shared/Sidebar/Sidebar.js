@@ -10,7 +10,7 @@ import { IoDiamond } from "react-icons/io5";
 import { AuthContext } from '../../../contexts/AuthProvider';
 import useTeacher from '../../../hooks/useTeacher';
 import usePremium from '../../../hooks/UsePremium';
-const Sidebar = ({ classes }) => {
+const Sidebar = ({ classes, enrollClasses }) => {
     const { user } = useContext(AuthContext);
     const [isTeacher] = useTeacher(user?.email);
     const [isPremium] = usePremium(user?.email);
@@ -29,20 +29,27 @@ const Sidebar = ({ classes }) => {
                                 }
                             </summary>
                             <ul className="text-md font-semibold">
-                                {
+                                {isTeacher ?
                                     classes &&
                                     classes?.map(c =>
                                         <li
                                             key={c._id}
                                             c={c}
                                             className="mt-0.5"><Link to={`/myhome/classinfo/${c._id}`}>{c.name}</Link></li>)
+                                    :
+                                    enrollClasses &&
+                                    enrollClasses?.map(c =>
+                                        <li
+                                            key={c.classInfo[0]._id}
+                                            c={c}
+                                            className="mt-0.5"><Link to={`/myhome/classinfo/${c.classInfo[0]._id}`}>{c.classInfo[0].name}</Link></li>)
                                 }
                             </ul>
                         </details>
                     </li>
                 </ul>
                 {
-                  isTeacher && isPremium ?
+                    isTeacher && isPremium ?
                         <ul className="menu">
                             <li>
                                 <details open>
@@ -55,7 +62,7 @@ const Sidebar = ({ classes }) => {
                             </li>
                         </ul>
                         :
-                        isTeacher &&  <li className="text-xl"><Link to="/myhome/checkout" className="btn btn-neutral font-bold text-[#d4af37]"><IoDiamond></IoDiamond>Buy Ai Paper Checker</Link></li>
+                        isTeacher && <li className="text-xl"><Link to="/myhome/checkout" className="btn btn-neutral font-bold text-[#d4af37]"><IoDiamond></IoDiamond>Buy Ai Paper Checker</Link></li>
                 }
                 <li className="text-xl font-bold"><Link> <MdOutlineLiveHelp></MdOutlineLiveHelp>Help</Link></li>
             </ul>

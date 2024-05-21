@@ -75,10 +75,10 @@ const QuizModal = ({ modal, setModal, refetch }) => {
                             <div className="modal-box ">
                                 <label htmlFor="quiz-modal" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-xl font-bold border border-black">X</label>
                                 <form onSubmit={handleSubmit(handelGenerateQuestion)} className="card-body">
-                                <div className="flex items-center gap-1 text-2xl">
-                                    <h1 className="font-semibold">Generate Quiz with Gemini </h1>
-                                    <SiGooglebard className="text-sky-600"></SiGooglebard>
-                                </div>
+                                    <div className="flex items-center gap-1 text-2xl">
+                                        <h1 className="font-semibold">Generate Quiz with Gemini </h1>
+                                        <SiGooglebard className="text-sky-600"></SiGooglebard>
+                                    </div>
                                     <div className="form-control">
                                         <label className="label">
                                             <span className="label-text font-semibold">Quiz Subject</span>
@@ -120,6 +120,13 @@ const QuizModal = ({ modal, setModal, refetch }) => {
                                                 type="time"
                                                 className="input input-bordered w-full"
                                             />
+                                            {/* <select {...register("timePeriod",
+                                                {
+                                                    required: { value: true, message: "Class Name is Required" }
+                                                })} className="select select-bordered w-20">
+                                                <option value={"AM"}>AM</option>
+                                                <option value={"PM"}>PM</option>
+                                            </select> */}
                                         </div>
 
                                     </div>
@@ -130,8 +137,8 @@ const QuizModal = ({ modal, setModal, refetch }) => {
                                         <div className="flex gap-1">
                                             <input {...register("duration",
                                                 {
-                                                    required: { value: true, message: "Class Name is Required" }
-                                                })} type="number" placeholder="10 M / 1 H / 1.30 HM" className="input input-bordered" min={1}/>
+                                                    required: { value: true, message: "duration is Required" }
+                                                })} type="number" placeholder="10 M / 1 H / 1.30 HM" className="input input-bordered" min={1} />
                                             <select {...register("timeUnit",
                                                 {
                                                     required: { value: true, message: "Class Name is Required" }
