@@ -22,6 +22,7 @@ import TeacherRoute from "../TeacherRoute/TeacherRoute";
 import PremiumRoute from "../PremiumRoute/PremiumRoute";
 import Checkout from "../../Pages/Payment/Checkout/Checkout";
 import Payment from "../../Pages/Payment/Payment/Payment";
+import StartQuiz from "../../Pages/ClassInfo/StartQuiz/StartQuiz";
 
 const router = createBrowserRouter([
     //Home Directory
@@ -111,7 +112,14 @@ const router = createBrowserRouter([
             },
         ]
     },
-
+    {
+        path: '/start/:examId',
+        element: <PrivateRoute><StartQuiz></StartQuiz></PrivateRoute>
+    },
+    {
+        path: '*',
+        element: <div>Error</div>
+    }
 
 ])
 

@@ -100,7 +100,7 @@ const AllQuiz = ({ quiz, i, refetch, isTeacher }) => {
                         !isTeacher &&
 
                             checkDate === date ?
-                            <button className="btn btn-neutral text-xl font-semibold">Start Quiz</button>
+                            <Link to={`/start/${_id}`} className="btn btn-neutral text-xl font-semibold">Start Quiz</Link>
                             :
                             <>
 
