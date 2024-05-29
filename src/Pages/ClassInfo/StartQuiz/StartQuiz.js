@@ -52,19 +52,38 @@ const StartQuiz = () => {
         }, 1000);
 
         return () => clearInterval(intervalId);
-       
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [handleSubmit, timeLeft]);
 
     if (isLoading || userIsLoading) {
         return <Loading />;
     }
 
-    const handleSubmitAnswer = (data) => {
-        console.log(data);
+    const handleSubmitAnswer = (formData) => {
+        const correctAnswers = startQuiz.data.questions.map((q) => q.correctAnswer);
+        const userAnswers = startQuiz.data.questions.map((q, index) => formData[`question-${index + 1}`]);
+        const results = startQuiz.data.questions.map((q, index) => ({
+            questionId: q._id,
+            isCorrect: userAnswers[index] === correctAnswers[index],
+            userAnswer: userAnswers[index],
+            correctAnswer: correctAnswers[index],
+        }));
 
-        toast.success("Quiz Submitted")
-        navigate(`/myhome/classinfo/${classId}`)
+        fetch("http://localhost:5000/submission", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json",
+                authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
+            },
+            body: JSON.stringify({ classId, quizId : examId, userId: userInfo?.data?._id, results })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                toast.success("Quiz Submitted");
+                navigate(`/myhome/classinfo/${startQuiz.data.classId}`);
+            });
     };
 
     const formatTime = (seconds) => {
@@ -77,36 +96,36 @@ const StartQuiz = () => {
 
     return (
         <div className="max-w-[1440px] mx-auto p-1">
-                <div className="text-center text-xl my-3">
-                    <h1><strong>Topic : </strong>{topic}</h1>
-                    <p><strong>Total Question : </strong>{questions?.length || 0}</p>
-                    <p><strong>Date : </strong>{date}</p>
-                    <p><strong>Duration : </strong>{examDuration}</p>
-                    <p><strong>Marks : </strong>{questions?.length || 0}</p>
+            <div className="text-center text-xl my-3">
+                <h1><strong>Topic : </strong>{topic}</h1>
+                <p><strong>Total Question : </strong>{questions?.length || 0}</p>
+                <p><strong>Date : </strong>{date}</p>
+                <p><strong>Duration : </strong>{examDuration}</p>
+                <p><strong>Marks : </strong>{questions?.length || 0}</p>
+            </div>
+            <div className="text-xl ms-1">
+                <p><strong>Best of luck </strong> {userInfo?.data?.name}</p>
+            </div>
+            <div className="my-5">
+                <div className="text-end text-2xl font-bold sticky top-0">
+                    <span className="border p-2 bg-slate-400">Time Left: {formatTime(timeLeft)}</span>
                 </div>
-                <div className="text-xl ms-1">
-                    <p><strong>Best of luck </strong> {userInfo?.data?.name}</p>
-                </div>
-                <div className="my-5">
-                    <div className="text-end text-2xl font-bold sticky top-0">
-                        <span className="border p-2 bg-slate-400">Time Left: {formatTime(timeLeft)}</span>
-                    </div>
 
-                    <form onSubmit={handleSubmit(handleSubmitAnswer)}>
-                        {
-                            questions.map((q, i) =>
-                                <Questions
-                                    key={q._id}
-                                    i={i + 1}
-                                    q={q}
-                                    register={register}
-                                >
-                                </Questions>)
-                        }
-                        <input className="btn btn-neutral w-full my-5" type="submit" value="Submit" />
-                    </form>
-                    <Toaster />
-                </div>
+                <form onSubmit={handleSubmit(handleSubmitAnswer)}>
+                    {
+                        questions.map((q, i) =>
+                            <Questions
+                                key={q._id}
+                                i={i + 1}
+                                q={q}
+                                register={register}
+                            >
+                            </Questions>)
+                    }
+                    <input className="btn btn-neutral w-full my-5" type="submit" value="Submit" />
+                </form>
+                <Toaster />
+            </div>
         </div>
     );
 };

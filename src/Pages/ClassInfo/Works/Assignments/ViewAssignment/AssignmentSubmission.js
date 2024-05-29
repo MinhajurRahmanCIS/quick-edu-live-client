@@ -44,10 +44,11 @@ const AssignmentSubmission = () => {
     };
     return (
         <div className="my-5">
-            <h1 className="text-3xl font-bold">Note:</h1>
-            <p className="text-xl text-justify"><span className="font-bold text-red-600">Read It Carefully :</span>
+            <h1 className="text-3xl font-bold">Note</h1>
+            <p className="text-xl text-justify"><span className="font-bold text-red-600">Read It Carefully -</span>
                 <br />
-                1. Document Name must contain Student Name, Id and Subject. Example: Md_Minhajur_Rahman_193_16_477_OOP
+                1. Document Name must contain Student Name, Id and Subject.    
+                <span className="font-bold"> Example : Md_Minhajur_Rahman_193_16_477_OOP</span>
                 <br />
                 2. Complete Your Submission on before deadline. No excuse after deadline.
                 <br />
@@ -57,7 +58,10 @@ const AssignmentSubmission = () => {
             <div className="flex flex-col">
                 {!url &&
                     <>
-                        <input className="file-input file-input-bordered file-input-lg w-full max-w-xs my-5" type="file" onChange={handleFileChange} />
+                        <input className="file-input file-input-bordered file-input-lg w-full max-w-xs my-5"
+                        accept=".pdf, .docx" 
+                        type="file" 
+                        onChange={handleFileChange} />
                         {message && <p>{message}</p>}
 
                         <button className="btn btn-neutral w-full max-w-xs" onClick={handleUpload}>Upload</button>
