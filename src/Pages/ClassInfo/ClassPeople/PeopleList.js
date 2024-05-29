@@ -4,9 +4,7 @@ import useTeacher from '../../../hooks/useTeacher';
 import Loading from '../../Shared/Loading/Loading';
 import Swal from 'sweetalert2';
 
-const PeopleList = ({ people, i, refetch }) => {
-    const { user } = useContext(AuthContext);
-    const [isTeacher, isTeacherLoading] = useTeacher(user?.email)
+const PeopleList = ({ people, i, refetch, isTeacher }) => {
     const { image, name, email } = people;
 
     const handelDeletePeople = email => {
@@ -46,10 +44,6 @@ const PeopleList = ({ people, i, refetch }) => {
                     })
             };
         });
-    };
-
-    if (isTeacherLoading) {
-        return <Loading></Loading>
     };
 
     return (

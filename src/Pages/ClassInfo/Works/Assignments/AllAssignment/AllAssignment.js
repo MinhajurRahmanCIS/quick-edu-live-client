@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import React from 'react';
 import { FaRegEye } from 'react-icons/fa6';
 import { RiDeleteBin6Line } from 'react-icons/ri';
@@ -5,6 +6,8 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const AllAssignment = ({ assignment, i, refetch, isTeacher }) => {
+    const currentDate = new Date();
+    const checkDate = format(currentDate, "yyyy-MM-d");
     const { _id, topic, assignmentNo, date, level } = assignment;
     const handelDeleteQuiz = id => {
         Swal.fire({
@@ -79,11 +82,18 @@ const AllAssignment = ({ assignment, i, refetch, isTeacher }) => {
                     <p><strong>Difficulty Level : </strong>{level}</p>
                 }
                 <div className="card-actions justify-end gap-3">
-                    <Link to={`/myhome/viewassignment/${_id}`} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"View Assignment"}><FaRegEye></FaRegEye></Link>
+                    {
+                        !isTeacher ?
+                        checkDate === date &&
+                        <Link to={`/myhome/viewassignment/${_id}`} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"View Assignment"}><FaRegEye></FaRegEye></Link>
+                        :
+                        <Link to={`/myhome/viewassignment/${_id}`} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"View Assignment"}><FaRegEye></FaRegEye></Link>
+                    }
+
                     {
                         isTeacher &&
 
-                            <div onClick={() => handelDeleteQuiz(_id)} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"Delete Assignment"}><RiDeleteBin6Line></RiDeleteBin6Line></div>
+                        <div onClick={() => handelDeleteQuiz(_id)} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"Delete Assignment"}><RiDeleteBin6Line></RiDeleteBin6Line></div>
                     }
                 </div>
             </div>

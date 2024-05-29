@@ -76,8 +76,7 @@ const StartQuiz = () => {
     const { classId, topic, date, examDuration, questions } = startQuiz?.data;
 
     return (
-        <div className="max-w-[1440px] mx-auto">
-            <div>
+        <div className="max-w-[1440px] mx-auto p-1">
                 <div className="text-center text-xl my-3">
                     <h1><strong>Topic : </strong>{topic}</h1>
                     <p><strong>Total Question : </strong>{questions?.length || 0}</p>
@@ -108,7 +107,6 @@ const StartQuiz = () => {
                     </form>
                     <Toaster />
                 </div>
-            </div>
         </div>
     );
 };

@@ -8,6 +8,7 @@ import { FaPrint, FaRegEye, FaRegEyeSlash } from 'react-icons/fa6';
 import { IoArrowUndoOutline } from 'react-icons/io5';
 import { AuthContext } from '../../../../../contexts/AuthProvider';
 import useTeacher from '../../../../../hooks/useTeacher';
+import AssignmentSubmission from './AssignmentSubmission';
 
 const ViewAssignment = () => {
     const { id } = useParams();
@@ -68,7 +69,7 @@ const ViewAssignment = () => {
                 </>
             }
 
-            <div className="print-container" ref={printRef}>
+            <div className="print-container p-2" ref={printRef}>
                 <div className="text-center text-xl my-3">
                     <h1><strong>Assignment No : </strong>{assignmentNo}</h1>
                     <h1><strong>Topic : </strong>{topic}</h1>
@@ -85,7 +86,7 @@ const ViewAssignment = () => {
                 }
 
                 <div className="my-5 border p-2">
-                    <h1 className="text-2xl my-3"><strong>Scenario : </strong> {scenario} </h1>
+                    <h1 className="text-2xl text-justify my-3"><strong>Scenario : </strong> {scenario} </h1>
                     {
                         questions.map((q, i) =>
                             <ViewAssignmentQuestions
@@ -97,6 +98,11 @@ const ViewAssignment = () => {
                             </ViewAssignmentQuestions>)
                     }
                 </div>
+                {
+                    !isTeacher &&
+                    <AssignmentSubmission></AssignmentSubmission>
+                }
+
             </div>
         </div>
     );
