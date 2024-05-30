@@ -60,9 +60,9 @@ const StartQuiz = () => {
         return <Loading />;
     }
 
-    const handleSubmitAnswer = (formData) => {
+    const handleSubmitAnswer = (data) => {
         const correctAnswers = startQuiz.data.questions.map((q) => q.correctAnswer);
-        const userAnswers = startQuiz.data.questions.map((q, index) => formData[`question-${index + 1}`]);
+        const userAnswers = startQuiz.data.questions.map((q, index) => data[`question-${index + 1}`]);
         const results = startQuiz.data.questions.map((q, index) => ({
             questionId: q._id,
             isCorrect: userAnswers[index] === correctAnswers[index],
@@ -76,7 +76,7 @@ const StartQuiz = () => {
                 "content-type": "application/json",
                 authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
             },
-            body: JSON.stringify({ classId, quizId : examId, userId: userInfo?.data?._id, results })
+            body: JSON.stringify({ classId, quizId : examId, userEmail: userInfo?.data?.email, results })
         })
             .then(res => res.json())
             .then(data => {

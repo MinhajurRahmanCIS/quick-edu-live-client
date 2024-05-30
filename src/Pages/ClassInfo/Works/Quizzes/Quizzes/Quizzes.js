@@ -13,7 +13,8 @@ const Quizzes = () => {
     const { user } = useContext(AuthContext);
     const [modal, setModal] = useState(null);
     const [isTeacher, isTeacherLoading] = useTeacher(user?.email);
-    const { data: quizzes = [], isLoading, refetch } = useQuery({
+
+    const { data: quizzes = [], isLoading: quizzesLoading, refetch } = useQuery({
         queryKey: ["quizzes", id],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/classwork?classId=${id}&quizNo=true`, {
@@ -26,53 +27,41 @@ const Quizzes = () => {
         }
     });
 
-    if (isLoading) {
-        return <Loading></Loading>;
-    };
+    const { data: submissions = [], isLoading: submissionsLoading } = useQuery({
+        queryKey: ["submissions", user?.email],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/checkSubmission?email=${user?.email}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
+                }
+            });
+            const data = await res.json();
+            return data;
+        }
+    });
 
-    if (isTeacherLoading) {
-        return <Loading></Loading>;
+    if (quizzesLoading || isTeacherLoading || submissionsLoading) {
+        return <Loading />;
     };
 
     return (
         <div className="grid md:grid-cols-3 sm:grid-cols-1 gap-5 p-5 mt-6">
-
-            {
-                isTeacher &&
+            {isTeacher && (
                 <>
-                    <CreateQuiz
-                        id={id}
-                        setModal={setModal}
-                    >
-                    </CreateQuiz>
-
-                    {
-                        modal && <QuizModal
-                            modal={modal}
-                            setModal={setModal}
-                            refetch={refetch}
-                        >
-
-                        </QuizModal>
-                    }
+                    <CreateQuiz id={id} setModal={setModal} />
+                    {modal && <QuizModal modal={modal} setModal={setModal} refetch={refetch} />}
                 </>
-
-            }
-
-            {
-                quizzes
-                &&
-                quizzes.data?.map((quiz, i) =>
-                    <AllQuiz
-                        key={i}
-                        quiz={quiz}
-                        i={i + 1}
-                        refetch={refetch}
-                        isTeacher={isTeacher}
-                    >
-                    </AllQuiz>)
-            }
-
+            )}
+            {quizzes.data?.map((quiz, i) => (
+                <AllQuiz
+                    key={i}
+                    quiz={quiz}
+                    i={i + 1}
+                    refetch={refetch}
+                    isTeacher={isTeacher}
+                    submissions={submissions}
+                />
+            ))}
         </div>
     );
 };
