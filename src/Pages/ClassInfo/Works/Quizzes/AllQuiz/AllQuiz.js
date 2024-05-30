@@ -7,6 +7,7 @@ import { FaRegEye } from "react-icons/fa6";
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { TbReportAnalytics } from 'react-icons/tb';
 
 const AllQuiz = ({ quiz, i, refetch, isTeacher, submissions }) => {
     const { _id, topic, quizNo, questions, date, time, examDuration, level } = quiz;
@@ -93,9 +94,14 @@ const AllQuiz = ({ quiz, i, refetch, isTeacher, submissions }) => {
                         </>
                     )}
 
-                    {!isTeacher && checkDate === date && !hasSubmitted && (
+                    {
+                        !isTeacher &&
+                        checkDate === date &&
+                        !hasSubmitted ?
                         <Link to={`/start/${_id}`} className="btn btn-neutral text-xl font-semibold">Start Quiz</Link>
-                    )}
+                        :
+                        <Link className="text-4xl hover:bg-slate-400 tooltip" data-tip={"Result"}><TbReportAnalytics ></TbReportAnalytics></Link>
+                    }
                 </div>
             </div>
         </div>
