@@ -62,7 +62,7 @@ const QuizResult = () => {
                     <p><strong>Duration : </strong>{examDuration}</p>
                     <p><strong>Marks : </strong>{totalQuestions}</p>
                     <div className="text-start">
-                        <p><strong>Total Marks Obtained : </strong>{totalCorrect} / {totalQuestions}</p>
+                        <p><strong>Total Marks Obtained : </strong>{totalCorrect} out of {totalQuestions}</p>
                         <p><strong>Total Correct Answers : </strong>{totalCorrect}</p>
                         <p><strong>Total Incorrect : </strong>{totalIncorrect}</p>
                     </div>
