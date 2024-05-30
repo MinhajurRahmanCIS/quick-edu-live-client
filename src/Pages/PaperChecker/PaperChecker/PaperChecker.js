@@ -107,8 +107,8 @@ const PaperChecker = () => {
                     :
                     <>
                         <div className="navbar bg-base-300 my-4">
-                            <button className="btn btn-ghost text-xl">
-                                Paper Checker with Gemini Ai</button>
+                            <span className="text-xl font-bold">
+                                Paper Checker with Gemini Ai</span>
                         </div>
                         <form className="card-body" onSubmit={handelCheck}>
                             <div className="grid grid-col-1 md:grid-cols-2 gap-5">

@@ -97,10 +97,10 @@ const AllQuiz = ({ quiz, i, refetch, isTeacher, submissions }) => {
                     {
                         !isTeacher &&
                         checkDate === date &&
-                        !hasSubmitted ?
+                        ( !hasSubmitted ?
                         <Link to={`/start/${_id}`} className="btn btn-neutral text-xl font-semibold">Start Quiz</Link>
                         :
-                        <Link className="text-4xl hover:bg-slate-400 tooltip" data-tip={"Result"}><TbReportAnalytics ></TbReportAnalytics></Link>
+                        <Link to={`/result/${_id}`} className="text-4xl hover:bg-slate-400 tooltip" data-tip={"Result"}><TbReportAnalytics ></TbReportAnalytics></Link>)
                     }
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Questions = ({ q, i, register }) => {
-    const { question, options, correctAnswer } = q;
+    const { question, options} = q;
     return (
         <div className="p-5 border-black border-2 my-5">
         <h1 className="text-xl"><strong>Q.{i}</strong> {question} </h1>

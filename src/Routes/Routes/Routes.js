@@ -23,6 +23,7 @@ import PremiumRoute from "../PremiumRoute/PremiumRoute";
 import Checkout from "../../Pages/Payment/Checkout/Checkout";
 import Payment from "../../Pages/Payment/Payment/Payment";
 import StartQuiz from "../../Pages/ClassInfo/StartQuiz/StartQuiz";
+import QuizResult from "../../Pages/ClassInfo/QuizResult/QuizResult";
 
 const router = createBrowserRouter([
     //Home Directory
@@ -115,6 +116,10 @@ const router = createBrowserRouter([
     {
         path: '/start/:examId',
         element: <PrivateRoute><StartQuiz></StartQuiz></PrivateRoute>
+    },
+    {
+        path: '/result/:id',
+        element: <PrivateRoute><QuizResult></QuizResult></PrivateRoute>
     },
     {
         path: '*',
