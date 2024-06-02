@@ -1,15 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React from 'react';
 import { IoArrowUndoOutline } from 'react-icons/io5';
 import { Link, useParams } from 'react-router-dom';
-import { AuthContext } from '../../../contexts/AuthProvider';
 import Loading from '../../Shared/Loading/Loading';
 import Results from './Results';
 
 const QuizResult = () => {
-    const { user } = useContext(AuthContext);
-    const { id } = useParams();
-
+    const { id, userEmail } = useParams();
     const { data: quizQuestion, isLoading: quizQuestionIsLoading } = useQuery({
         queryKey: ["quizQuestion", id],
         queryFn: async () => {
@@ -24,9 +21,9 @@ const QuizResult = () => {
     });
 
     const { data: quizResult, isLoading: quizResultIsLoading } = useQuery({
-        queryKey: ["quizResult", user?.email],
+        queryKey: ["quizResult", userEmail],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/submission?email=${user?.email}&qId=${id}`, {
+            const res = await fetch(`http://localhost:5000/submission?email=${userEmail}&qId=${id}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
                 }
@@ -42,12 +39,13 @@ const QuizResult = () => {
 
     const { classId, topic, date, examDuration, questions } = quizQuestion?.data;
 
-    console.log(quizQuestion, quizResult)
-
     // Calculate total correct answers
     const totalCorrect = quizResult?.data?.results?.filter(result => result.isCorrect).length || 0;
     const totalQuestions = questions?.length || 0;
     const totalIncorrect = totalQuestions - totalCorrect;
+
+    console.log(quizResult?.data?.results.filter(r => r.isCorrect
+    ))
 
     return (
         <div className="max-w-[1440px] mx-auto p-1">

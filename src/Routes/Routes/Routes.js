@@ -118,7 +118,7 @@ const router = createBrowserRouter([
         element: <PrivateRoute><StartQuiz></StartQuiz></PrivateRoute>
     },
     {
-        path: '/result/:id',
+        path: '/result/:id/:userEmail',
         element: <PrivateRoute><QuizResult></QuizResult></PrivateRoute>
     },
     {

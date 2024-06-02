@@ -13,7 +13,7 @@ const Questions = ({ q, i, register }) => {
                         <input {...register(`question-${i}`)}
                             type="radio" 
                             name={`question-${i}`} // unique name for each question
-                            value={option}
+                            value={option.slice(0,2)}
                             className="radio hover:bg-slate-400 hover:text-black" 
                         />
                         <span>

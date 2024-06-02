@@ -9,10 +9,10 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { TbReportAnalytics } from 'react-icons/tb';
 
-const AllQuiz = ({ quiz, i, refetch, isTeacher, submissions }) => {
+const AllQuiz = ({ quiz, i, refetch, isTeacher, submissions, user }) => {
     const { _id, topic, quizNo, questions, date, time, examDuration, level } = quiz;
     const currentDate = new Date();
-    const checkDate = format(currentDate, "yyyy-MM-d");
+    const checkDate = format(currentDate, "yyyy-MM-dd");
 
     const handelDeleteQuiz = id => {
         Swal.fire({
@@ -53,7 +53,6 @@ const AllQuiz = ({ quiz, i, refetch, isTeacher, submissions }) => {
     };
 
     const hasSubmitted = submissions.some(submission => submission.quizId === _id);
-
     return (
         <div className="card bg-base-100 shadow-md rounded-none hover:shadow-xl border-2">
             {isTeacher ? (
@@ -100,7 +99,7 @@ const AllQuiz = ({ quiz, i, refetch, isTeacher, submissions }) => {
                         ( !hasSubmitted ?
                         <Link to={`/start/${_id}`} className="btn btn-neutral text-xl font-semibold">Start Quiz</Link>
                         :
-                        <Link to={`/result/${_id}`} className="text-4xl hover:bg-slate-400 tooltip" data-tip={"Result"}><TbReportAnalytics ></TbReportAnalytics></Link>)
+                        <Link to={`/result/${_id}/${user?.email}`} className="text-4xl hover:bg-slate-400 tooltip" data-tip={"Result"}><TbReportAnalytics ></TbReportAnalytics></Link>)
                     }
                 </div>
             </div>

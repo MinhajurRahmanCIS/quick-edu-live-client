@@ -65,9 +65,9 @@ const StartQuiz = () => {
         const userAnswers = startQuiz.data.questions.map((q, index) => data[`question-${index + 1}`]);
         const results = startQuiz.data.questions.map((q, index) => ({
             questionId: q._id,
-            isCorrect: userAnswers[index] === correctAnswers[index],
+            isCorrect: userAnswers[index].slice(0,2) === correctAnswers[index].slice(0,2),
             userAnswer: userAnswers[index],
-            correctAnswer: correctAnswers[index],
+            correctAnswer: correctAnswers[index].slice(0,2),
         }));
 
         fetch("http://localhost:5000/submission", {

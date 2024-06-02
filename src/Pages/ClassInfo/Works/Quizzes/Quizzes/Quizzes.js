@@ -60,6 +60,7 @@ const Quizzes = () => {
                     refetch={refetch}
                     isTeacher={isTeacher}
                     submissions={submissions}
+                    user={user}
                 />
             ))}
         </div>

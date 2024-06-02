@@ -6,8 +6,11 @@ const Results = ({ q, i, userResult }) => {
     if (!userResult) {
         return <Loading></Loading>
     }
-    const userAnswer = userResult.userAnswer;
-    const isCorrect = userResult.isCorrect;
+
+    // Slice the userAnswer and correctAnswer to only take the first two characters
+    const userAnswer = userResult.userAnswer.slice(0, 2);
+    const sliceCorrectAnswer = correctAnswer.slice(0, 2);
+    const isCorrect = userAnswer === sliceCorrectAnswer;
 
     return (
         <div className="p-5 border-black border-2 my-5">
@@ -26,9 +29,9 @@ const Results = ({ q, i, userResult }) => {
                 {options.map((option, index) => {
                     let optionStyle = "flex items-center text-xl font-semibold p-5 gap-2";
 
-                    if (option === correctAnswer) {
+                    if (option.slice(0, 2) === sliceCorrectAnswer) {
                         optionStyle += " bg-green-300"; // correct answer
-                    } else if (option === userAnswer) {
+                    } else if (option.slice(0, 2) === userAnswer) {
                         optionStyle += " bg-red-300"; // wrong answer
                     }
 
@@ -38,7 +41,7 @@ const Results = ({ q, i, userResult }) => {
                                 type="radio"
                                 name={`question-${i}`}
                                 value={option}
-                                checked={option === userAnswer}
+                                checked={option.slice(0, 2) === userAnswer}
                                 readOnly
                                 className="radio"
                             />
