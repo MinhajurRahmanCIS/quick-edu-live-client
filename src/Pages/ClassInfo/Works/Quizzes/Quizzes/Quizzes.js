@@ -30,7 +30,7 @@ const Quizzes = () => {
     const { data: submissions = [], isLoading: submissionsLoading } = useQuery({
         queryKey: ["submissions", user?.email],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/checkSubmission?email=${user?.email}`, {
+            const res = await fetch(`http://localhost:5000/checkSubmission?email=${user?.email}&quizNo=true`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
                 }
@@ -59,7 +59,7 @@ const Quizzes = () => {
                     i={i + 1}
                     refetch={refetch}
                     isTeacher={isTeacher}
-                    submissions={submissions}
+                    submissions={submissions?.data}
                     user={user}
                 />
             ))}

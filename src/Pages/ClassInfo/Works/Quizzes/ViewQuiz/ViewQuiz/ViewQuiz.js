@@ -7,6 +7,7 @@ import { FaPrint, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import ViewQuestion from '../ViewQuestion/ViewQuestion';
 import { useReactToPrint } from "react-to-print";
 import "./print.css";
+import GoBackButton from '../../../../../../components/GoBackButton';
 
 const ViewQuiz = () => {
     const { id } = useParams();
@@ -41,7 +42,7 @@ const ViewQuiz = () => {
 
     return (
         <div className="max-w-[1440px] mx-auto my-3 p-2 print-container" >
-            <Link to={-1} className="btn btn-neutral rounded-none hover:bg-slate-500 text-xl"> <IoArrowUndoOutline></IoArrowUndoOutline> Go Back</Link>
+            <GoBackButton></GoBackButton>
 
             <div className="text-end">
                 <span onClick={handleClick}>

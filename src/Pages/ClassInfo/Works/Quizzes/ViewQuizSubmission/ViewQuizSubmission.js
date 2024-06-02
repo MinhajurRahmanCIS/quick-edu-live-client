@@ -18,18 +18,18 @@ const ViewQuizSubmission = () => {
             <GoBackButton></GoBackButton>
             <div>
                 {
-                    viewSubmissions.length > 0 ?
+                    viewSubmissions?.data?.length > 0 ?
                         <div className="p-2">
                             <div className="flex flex-col w-full">
-                                <div className="divider divider-end font-semibold text-2xl">{viewSubmissions?.length} Submission </div>
+                                <div className="divider divider-end font-semibold text-2xl">{viewSubmissions?.data?.length} Submission </div>
                             </div>
                             <div className="overflow-x-auto border">
                                 <table className="table text-center text-xl">
                                     {/* head */}
                                     <thead>
                                         <tr className="text-black text-xl">
-                                            <th>No</th>
-                                            <th></th>
+                                            <th>No of Students</th>
+                                            <th>Profile</th>
                                             <th>Email</th>
                                             <th>Total</th>
                                             <th>Action</th>
@@ -37,8 +37,8 @@ const ViewQuizSubmission = () => {
                                     </thead>
                                     <tbody>
                                         {
-                                            viewSubmissions &&
-                                            viewSubmissions?.map((submissions, i) =>
+                                            viewSubmissions?.data &&
+                                            viewSubmissions?.data?.map((submissions, i) =>
                                                 <ViewQuizSubmissionList
                                                     key={submissions._id}
                                                     submissions={submissions}

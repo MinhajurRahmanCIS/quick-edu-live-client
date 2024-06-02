@@ -5,7 +5,6 @@ const ViewQuizSubmissionList = ({ submissions, i }) => {
     const { quizId, userName, userEmail, userPicture, results } = submissions;
     const totalCorrect = results?.filter(result => result.isCorrect).length || 0;
     const totalQuestions = results?.length || 0;
-    const totalIncorrect = totalQuestions - totalCorrect;
 
     return (
         <tr className="hover">

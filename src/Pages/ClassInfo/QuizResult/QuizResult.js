@@ -4,6 +4,7 @@ import { IoArrowUndoOutline } from 'react-icons/io5';
 import { Link, useParams } from 'react-router-dom';
 import Loading from '../../Shared/Loading/Loading';
 import Results from './Results';
+import GoBackButton from '../../../components/GoBackButton';
 
 const QuizResult = () => {
     const { id, userEmail } = useParams();
@@ -46,9 +47,7 @@ const QuizResult = () => {
 
     return (
         <div className="max-w-[1440px] mx-auto p-1">
-            <Link to={-1} className="btn btn-neutral rounded-none hover:bg-slate-500 text-xl">
-                <IoArrowUndoOutline /> Go Back
-            </Link>
+            <GoBackButton></GoBackButton>
             <div className="max-w-[1440px] mx-auto p-1">
                 <div className="text-center text-xl my-3">
                     <h1><strong>Topic : </strong>{topic}</h1>

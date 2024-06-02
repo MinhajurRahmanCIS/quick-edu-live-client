@@ -9,6 +9,7 @@ import { IoArrowUndoOutline } from 'react-icons/io5';
 import { AuthContext } from '../../../../../contexts/AuthProvider';
 import useTeacher from '../../../../../hooks/useTeacher';
 import AssignmentSubmission from './AssignmentSubmission';
+import GoBackButton from '../../../../../components/GoBackButton';
 
 const ViewAssignment = () => {
     const { id } = useParams();
@@ -48,8 +49,7 @@ const ViewAssignment = () => {
     const { assignmentNo, topic, date, scenario, questions } = viewAssignment.data;
     return (
         <div className="max-w-[1440px] mx-auto my-3 p-2 print-container" >
-            <Link to={-1} className="btn btn-neutral rounded-none hover:bg-slate-500 text-xl"> <IoArrowUndoOutline></IoArrowUndoOutline> Go Back</Link>
-
+            <GoBackButton></GoBackButton>
             {
                 isTeacher &&
                 <>

@@ -92,12 +92,12 @@ const AllQuiz = ({ quiz, i, refetch, isTeacher, submissions, user }) => {
                 <p><strong>Duration: </strong>{examDuration}</p>
                 <p><strong>Total Question: </strong>{questions.length}</p>
                 {isTeacher && <p><strong>Difficulty Level: </strong>{level}</p>}
-                <p><strong>Total Submitted: </strong>{viewSubmissions?.length}</p>
+                <p><strong>Total Submitted: </strong>{viewSubmissions?.data?.length}</p>
                 <div className="card-actions justify-end gap-3 mt-1">
                     {isTeacher && (
                         <>
                             {
-                                viewSubmissions.length > 0 &&
+                                viewSubmissions?.data?.length > 0 &&
                                 <Link to={`/viewquizsubmission/${_id}`} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"View Submission"}><BsFileEarmarkSpreadsheet /></Link>
                             }
                             <Link to={`/myhome/viewquizzes/${_id}`} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"View Question"}><FaRegEye /></Link>
