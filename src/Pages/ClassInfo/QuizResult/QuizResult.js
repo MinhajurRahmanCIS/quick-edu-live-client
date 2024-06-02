@@ -44,9 +44,6 @@ const QuizResult = () => {
     const totalQuestions = questions?.length || 0;
     const totalIncorrect = totalQuestions - totalCorrect;
 
-    console.log(quizResult?.data?.results.filter(r => r.isCorrect
-    ))
-
     return (
         <div className="max-w-[1440px] mx-auto p-1">
             <Link to={-1} className="btn btn-neutral rounded-none hover:bg-slate-500 text-xl">

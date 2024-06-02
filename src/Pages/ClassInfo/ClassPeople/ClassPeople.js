@@ -50,7 +50,6 @@ const ClassPeople = () => {
                                         isTeacher &&
                                             <th>Action</th>
                                         }
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>

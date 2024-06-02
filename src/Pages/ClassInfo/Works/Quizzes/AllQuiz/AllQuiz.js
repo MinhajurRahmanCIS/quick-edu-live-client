@@ -8,9 +8,12 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { TbReportAnalytics } from 'react-icons/tb';
+import { BsFileEarmarkSpreadsheet } from 'react-icons/bs';
+import useLoadSubmission from '../../../../../hooks/useLoadSubmission';
 
 const AllQuiz = ({ quiz, i, refetch, isTeacher, submissions, user }) => {
     const { _id, topic, quizNo, questions, date, time, examDuration, level } = quiz;
+    const { viewSubmissions, viewSubmissionsLoading } = useLoadSubmission(_id);
     const currentDate = new Date();
     const checkDate = format(currentDate, "yyyy-MM-dd");
 
@@ -53,6 +56,10 @@ const AllQuiz = ({ quiz, i, refetch, isTeacher, submissions, user }) => {
     };
 
     const hasSubmitted = submissions.some(submission => submission.quizId === _id);
+
+    if (viewSubmissionsLoading) {
+        return <Loading></Loading>
+    };
     return (
         <div className="card bg-base-100 shadow-md rounded-none hover:shadow-xl border-2">
             {isTeacher ? (
@@ -85,9 +92,14 @@ const AllQuiz = ({ quiz, i, refetch, isTeacher, submissions, user }) => {
                 <p><strong>Duration: </strong>{examDuration}</p>
                 <p><strong>Total Question: </strong>{questions.length}</p>
                 {isTeacher && <p><strong>Difficulty Level: </strong>{level}</p>}
-                <div className="card-actions justify-end gap-3">
+                <p><strong>Total Submitted: </strong>{viewSubmissions?.length}</p>
+                <div className="card-actions justify-end gap-3 mt-1">
                     {isTeacher && (
                         <>
+                            {
+                                viewSubmissions.length > 0 &&
+                                <Link to={`/viewquizsubmission/${_id}`} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"View Submission"}><BsFileEarmarkSpreadsheet /></Link>
+                            }
                             <Link to={`/myhome/viewquizzes/${_id}`} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"View Question"}><FaRegEye /></Link>
                             <div onClick={() => handelDeleteQuiz(_id)} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"Delete Quiz"}><RiDeleteBin6Line /></div>
                         </>
@@ -96,10 +108,10 @@ const AllQuiz = ({ quiz, i, refetch, isTeacher, submissions, user }) => {
                     {
                         !isTeacher &&
                         checkDate === date &&
-                        ( !hasSubmitted ?
-                        <Link to={`/start/${_id}`} className="btn btn-neutral text-xl font-semibold">Start Quiz</Link>
-                        :
-                        <Link to={`/result/${_id}/${user?.email}`} className="text-4xl hover:bg-slate-400 tooltip" data-tip={"Result"}><TbReportAnalytics ></TbReportAnalytics></Link>)
+                        (!hasSubmitted ?
+                            <Link to={`/start/${_id}`} className="btn btn-neutral text-xl font-semibold">Start Quiz</Link>
+                            :
+                            <Link to={`/result/${_id}/${user?.email}`} className="text-4xl hover:bg-slate-400 tooltip" data-tip={"Result"}><TbReportAnalytics ></TbReportAnalytics></Link>)
                     }
                 </div>
             </div>

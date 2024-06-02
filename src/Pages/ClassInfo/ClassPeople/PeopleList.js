@@ -1,7 +1,4 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../../../contexts/AuthProvider';
-import useTeacher from '../../../hooks/useTeacher';
-import Loading from '../../Shared/Loading/Loading';
 import Swal from 'sweetalert2';
 
 const PeopleList = ({ people, i, refetch, isTeacher }) => {
