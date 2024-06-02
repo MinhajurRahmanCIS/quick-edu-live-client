@@ -25,6 +25,7 @@ import Payment from "../../Pages/Payment/Payment/Payment";
 import StartQuiz from "../../Pages/ClassInfo/StartQuiz/StartQuiz";
 import QuizResult from "../../Pages/ClassInfo/QuizResult/QuizResult";
 import ViewQuizSubmission from "../../Pages/ClassInfo/Works/Quizzes/ViewQuizSubmission/ViewQuizSubmission";
+import ViewAssignmentSubmission from "../../Pages/ClassInfo/Works/Assignments/ViewAssignmentSubmission/ViewAssignmentSubmission";
 
 const router = createBrowserRouter([
     //Home Directory
@@ -125,6 +126,10 @@ const router = createBrowserRouter([
     {
         path: "/viewquizsubmission/:id",
         element: <PrivateRoute><ViewQuizSubmission></ViewQuizSubmission></PrivateRoute>
+    },
+    {
+        path: "/viewassignmentsubmission/:id",
+        element: <PrivateRoute><ViewAssignmentSubmission></ViewAssignmentSubmission></PrivateRoute>
     },
     {
         path: '*',

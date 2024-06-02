@@ -1,27 +1,37 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import Loading from '../../../../Shared/Loading/Loading';
-import useLoadSubmission from '../../../../../hooks/useLoadSubmission';
-import ViewQuizSubmissionList from './ViewQuizSubmissionList';
 import GoBackButton from '../../../../../components/GoBackButton';
+import { useQuery } from '@tanstack/react-query';
+import ViewAssignmentSubmissionList from './ViewAssignmentSubmissionList';
 
-const ViewQuizSubmission = () => {
+const ViewAssignmentSubmission = () => {
     const { id } = useParams();
-    const { viewSubmissions, viewSubmissionsLoading } = useLoadSubmission(id);
+    const { data: viewAssignmentSubmissions = [], isLoading: viewAssignmentSubmissionsLoading } = useQuery({
+        queryKey: ["viewSubmissions", id],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/viewAssignmentSubmission/${id}`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
+                }
+            });
+            const data = await res.json();
+            return data;
+        }
+    });
 
-    if (viewSubmissionsLoading) {
+    if (viewAssignmentSubmissionsLoading) {
         return <Loading></Loading>
     };
-
     return (
         <div className="max-w-[1440px] mx-auto p-1">
             <GoBackButton></GoBackButton>
             <div>
                 {
-                    viewSubmissions?.data?.length > 0 ?
+                    viewAssignmentSubmissions?.data?.length > 0 ?
                         <div className="p-2">
                             <div className="flex flex-col w-full">
-                                <div className="divider divider-end font-semibold text-2xl">{viewSubmissions?.data?.length} Submission </div>
+                                <div className="divider divider-end font-semibold text-2xl">{viewAssignmentSubmissions?.data?.length} Submission </div>
                             </div>
                             <div className="overflow-x-auto border">
                                 <table className="table text-center text-xl">
@@ -31,20 +41,20 @@ const ViewQuizSubmission = () => {
                                             <th>No of Students</th>
                                             <th>Profile</th>
                                             <th>Email</th>
-                                            <th>Total</th>
+                                            <th>File Name</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {
-                                            viewSubmissions?.data &&
-                                            viewSubmissions?.data?.map((submissions, i) =>
-                                                <ViewQuizSubmissionList
-                                                    key={submissions._id}
-                                                    submissions={submissions}
+                                            viewAssignmentSubmissions?.data &&
+                                            viewAssignmentSubmissions?.data?.map((viewAssignmentSubmission, i) =>
+                                                <ViewAssignmentSubmissionList
+                                                    key={viewAssignmentSubmission._id}
+                                                    viewAssignmentSubmission={viewAssignmentSubmission}
                                                     i={i}
                                                 >
-                                                </ViewQuizSubmissionList>)
+                                                </ViewAssignmentSubmissionList>)
                                         }
                                     </tbody>
                                 </table>
@@ -60,4 +70,4 @@ const ViewQuizSubmission = () => {
     );
 };
 
-export default ViewQuizSubmission;
+export default ViewAssignmentSubmission;

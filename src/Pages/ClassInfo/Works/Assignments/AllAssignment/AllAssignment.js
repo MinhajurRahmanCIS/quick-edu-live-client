@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaRegEye } from 'react-icons/fa6';
 import { RiDeleteBin6Line } from 'react-icons/ri';
+import { TbReportAnalytics } from 'react-icons/tb';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
@@ -84,6 +85,10 @@ const AllAssignment = ({ assignment, i, refetch, isTeacher, assignmentSubmission
                     </>
                 }
                 <div className="card-actions justify-end gap-3">
+                    {
+                        isTeacher &&
+                        <Link to={`/viewassignmentsubmission/${_id}`} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"View Assignment"}><TbReportAnalytics></TbReportAnalytics></Link>
+                    }
                     <Link to={`/viewassignment/${_id}/${hasSubmitted}`} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"View Assignment"}><FaRegEye></FaRegEye></Link>
                     {
                         isTeacher &&
