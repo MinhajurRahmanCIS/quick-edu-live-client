@@ -63,10 +63,6 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><ViewQuiz></ViewQuiz></PrivateRoute>
             },
             {
-                path: "/myhome/viewassignment/:id",
-                element: <PrivateRoute><ViewAssignment></ViewAssignment></PrivateRoute>
-            },
-            {
                 path: "/myhome/paperchecker",
                 element: <TeacherRoute><PremiumRoute><PaperChecker></PaperChecker></PremiumRoute></TeacherRoute>
             },
@@ -121,6 +117,10 @@ const router = createBrowserRouter([
     {
         path: '/result/:id/:userEmail',
         element: <PrivateRoute><QuizResult></QuizResult></PrivateRoute>
+    },
+    {
+        path: "/viewassignment/:id/:hasSubmitted",
+        element: <PrivateRoute><ViewAssignment></ViewAssignment></PrivateRoute>
     },
     {
         path: "/viewquizsubmission/:id",

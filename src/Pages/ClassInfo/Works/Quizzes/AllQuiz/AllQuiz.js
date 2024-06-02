@@ -1,7 +1,5 @@
 import { format } from 'date-fns';
 import React, { useContext } from 'react';
-import { AuthContext } from '../../../../../contexts/AuthProvider';
-import useLoadUser from '../../../../../hooks/useLoadUser';
 import Loading from '../../../../Shared/Loading/Loading';
 import { FaRegEye } from "react-icons/fa6";
 import { RiDeleteBin6Line } from 'react-icons/ri';
@@ -91,8 +89,12 @@ const AllQuiz = ({ quiz, i, refetch, isTeacher, submissions, user }) => {
                 <p><strong>Time: </strong>{time}</p>
                 <p><strong>Duration: </strong>{examDuration}</p>
                 <p><strong>Total Question: </strong>{questions.length}</p>
-                {isTeacher && <p><strong>Difficulty Level: </strong>{level}</p>}
-                <p><strong>Total Submitted: </strong>{viewSubmissions?.data?.length}</p>
+                {isTeacher &&
+                    <>
+                        <p><strong>Difficulty Level: </strong>{level}</p>
+                        <p><strong>Total Submitted: </strong>{viewSubmissions?.data?.length}</p>
+                    </>
+                }
                 <div className="card-actions justify-end gap-3 mt-1">
                     {isTeacher && (
                         <>

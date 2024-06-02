@@ -1,23 +1,22 @@
 import React, { useContext, useRef, useState } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import Loading from '../../../../Shared/Loading/Loading';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import ViewAssignmentQuestions from './ViewAssignmentQuestions';
 import { FaPrint, FaRegEye, FaRegEyeSlash } from 'react-icons/fa6';
-import { IoArrowUndoOutline } from 'react-icons/io5';
 import { AuthContext } from '../../../../../contexts/AuthProvider';
 import useTeacher from '../../../../../hooks/useTeacher';
 import AssignmentSubmission from './AssignmentSubmission';
 import GoBackButton from '../../../../../components/GoBackButton';
 
 const ViewAssignment = () => {
-    const { id } = useParams();
+    const { id, hasSubmitted } = useParams();
     const { user } = useContext(AuthContext);
     const [isTeacher, isTeacherLoading] = useTeacher(user?.email)
     const printRef = useRef();
     const [showAnswer, setShowAnswer] = useState(false);
-    const { data: viewAssignment = [], isLoading } = useQuery({
+    const { data: viewAssignment = [], isLoading: viewAssignmentLoading } = useQuery({
         queryKey: ["viewAssignment", id],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/classwork/${id}`, {
@@ -34,19 +33,25 @@ const ViewAssignment = () => {
         content: () => printRef.current
     });
 
-    if (isLoading) {
-        return <Loading></Loading>
+    if (viewAssignmentLoading || isTeacherLoading) {
+        return <Loading></Loading>;
     };
 
     const handleClick = () => {
         setShowAnswer(!showAnswer);
     };
 
-    if (isTeacherLoading) {
-        return <Loading></Loading>;
+
+    const { _id, assignmentNo, topic, date, scenario, questions, classId } = viewAssignment.data;
+
+    const assignment = {
+        assignmentId: _id,
+        classId: classId,
+        userEmail: user?.email
     };
 
-    const { assignmentNo, topic, date, scenario, questions } = viewAssignment.data;
+    const hasSubmittedBoolean = hasSubmitted === 'true'; 
+
     return (
         <div className="max-w-[1440px] mx-auto my-3 p-2 print-container" >
             <GoBackButton></GoBackButton>
@@ -100,7 +105,10 @@ const ViewAssignment = () => {
                 </div>
                 {
                     !isTeacher &&
-                    <AssignmentSubmission></AssignmentSubmission>
+                    <AssignmentSubmission
+                        assignment={assignment}
+                        hasSubmitted={hasSubmittedBoolean}
+                    ></AssignmentSubmission>
                 }
 
             </div>

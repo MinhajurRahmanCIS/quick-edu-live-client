@@ -4,7 +4,7 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-const AllAssignment = ({ assignment, i, refetch, isTeacher }) => {
+const AllAssignment = ({ assignment, i, refetch, isTeacher, assignmentSubmissions }) => {
     const { _id, topic, assignmentNo, date, level } = assignment;
     const handelDeleteQuiz = id => {
         Swal.fire({
@@ -25,7 +25,6 @@ const AllAssignment = ({ assignment, i, refetch, isTeacher }) => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        // console.log(data);
                         if (data.data.deletedCount > 0) {
                             refetch();
                             Swal.fire({
@@ -45,6 +44,8 @@ const AllAssignment = ({ assignment, i, refetch, isTeacher }) => {
             };
         });
     };
+    const hasSubmitted = assignmentSubmissions.some(submission => submission.assignmentId === _id);
+
     return (
         <div className="card bg-base-100 shadow-md rounded-none hover:shadow-xl border-2">
             {
@@ -59,7 +60,7 @@ const AllAssignment = ({ assignment, i, refetch, isTeacher }) => {
                         </div>
                     </Link>
                     :
-                    <Link>
+                    <Link to={`/viewassignment/${_id}/${hasSubmitted}`}>
                         <div className="flex justify-center items-center">
                             <div className="avatar placeholder mt-3">
                                 <div className="bg-neutral text-neutral-content rounded-full w-32 border-10 border-red-600 hover:shadow-2xl">
@@ -76,14 +77,17 @@ const AllAssignment = ({ assignment, i, refetch, isTeacher }) => {
                 <p><strong>Date : </strong>{date}</p>
                 {
                     isTeacher &&
-                    <p><strong>Difficulty Level : </strong>{level}</p>
+                    <>
+                        {assignmentSubmissions.length > 0 &&
+                            <p><strong>Total Submission : </strong>{assignmentSubmissions.length} </p>}
+                        <p><strong>Difficulty Level : </strong>{level}</p>
+                    </>
                 }
                 <div className="card-actions justify-end gap-3">
-                    <Link to={`/myhome/viewassignment/${_id}`} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"View Assignment"}><FaRegEye></FaRegEye></Link>
+                    <Link to={`/viewassignment/${_id}/${hasSubmitted}`} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"View Assignment"}><FaRegEye></FaRegEye></Link>
                     {
                         isTeacher &&
-
-                            <div onClick={() => handelDeleteQuiz(_id)} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"Delete Assignment"}><RiDeleteBin6Line></RiDeleteBin6Line></div>
+                        <div onClick={() => handelDeleteQuiz(_id)} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"Delete Assignment"}><RiDeleteBin6Line></RiDeleteBin6Line></div>
                     }
                 </div>
             </div>
