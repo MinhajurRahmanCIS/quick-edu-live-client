@@ -26,6 +26,7 @@ import StartQuiz from "../../Pages/ClassInfo/StartQuiz/StartQuiz";
 import QuizResult from "../../Pages/ClassInfo/QuizResult/QuizResult";
 import ViewQuizSubmission from "../../Pages/ClassInfo/Works/Quizzes/ViewQuizSubmission/ViewQuizSubmission";
 import ViewAssignmentSubmission from "../../Pages/ClassInfo/Works/Assignments/ViewAssignmentSubmission/ViewAssignmentSubmission";
+import Help from "../../Pages/Help/Help";
 
 const router = createBrowserRouter([
     //Home Directory
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
             {
                 path: "/myhome/papersummery/:id",
                 element: <TeacherRoute><PremiumRoute><PaperSummery></PaperSummery></PremiumRoute></TeacherRoute>
+            },
+            {
+                path: "/myhome/help",
+                element: <TeacherRoute><Help></Help></TeacherRoute>
             },
             {
                 path: "/myhome/checkout",
