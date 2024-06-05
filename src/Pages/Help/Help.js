@@ -8,6 +8,7 @@ import { TbReportAnalytics } from 'react-icons/tb';
 import { AuthContext } from '../../contexts/AuthProvider';
 import useTeacher from '../../hooks/useTeacher';
 import Loading from '../Shared/Loading/Loading';
+import { RxCross2 } from 'react-icons/rx';
 
 const Help = () => {
     const { user } = useContext(AuthContext);
@@ -81,6 +82,12 @@ const Help = () => {
                         </>
                     }
 
+                    <tr className="hover text-center border-b border-black font-semibold">
+                        <td className="border-e border-black flex justify-center items-center">
+                            <RxCross2  className="text-5xl" />
+                        </td>
+                        <td className="text-lg">Close</td>
+                    </tr>
                     <tr className="hover text-center border-b border-black font-semibold">
                         <td className="border-e border-black flex justify-center items-center">
                             <IoIosArrowDown className="text-5xl" />
