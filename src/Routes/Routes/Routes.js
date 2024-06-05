@@ -78,7 +78,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/myhome/help",
-                element: <TeacherRoute><Help></Help></TeacherRoute>
+                element: <PrivateRoute><Help></Help></PrivateRoute>
             },
             {
                 path: "/myhome/checkout",

@@ -1,6 +1,5 @@
 import React from 'react';
 import { FaFileDownload } from 'react-icons/fa';
-import { GrView } from 'react-icons/gr';
 
 const ViewAssignmentSubmissionList = ({ viewAssignmentSubmission, i }) => {
     const { assignmentId, userName, userEmail, userPicture, fileURL, fileName} = viewAssignmentSubmission;
