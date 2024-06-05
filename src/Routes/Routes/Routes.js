@@ -27,6 +27,9 @@ import QuizResult from "../../Pages/ClassInfo/QuizResult/QuizResult";
 import ViewQuizSubmission from "../../Pages/ClassInfo/Works/Quizzes/ViewQuizSubmission/ViewQuizSubmission";
 import ViewAssignmentSubmission from "../../Pages/ClassInfo/Works/Assignments/ViewAssignmentSubmission/ViewAssignmentSubmission";
 import Help from "../../Pages/Help/Help";
+import FeedBack from "../../Pages/Logs/FeedBack/FeedBack";
+import ReportAProblem from "../../Pages/Logs/ReportAProblem/ReportAProblem";
+import WhatsNew from "../../Pages/Logs/WhatsNew/WhatsNew";
 
 const router = createBrowserRouter([
     //Home Directory
@@ -79,6 +82,18 @@ const router = createBrowserRouter([
             {
                 path: "/myhome/help",
                 element: <PrivateRoute><Help></Help></PrivateRoute>
+            },
+            {
+                path: "/myhome/feedback",
+                element: <PrivateRoute><FeedBack></FeedBack></PrivateRoute>
+            },
+            {
+                path: "/myhome/report",
+                element: <PrivateRoute><ReportAProblem></ReportAProblem></PrivateRoute>
+            },
+            {
+                path: "/myhome/whatsnew",
+                element: <PrivateRoute><WhatsNew></WhatsNew></PrivateRoute>
             },
             {
                 path: "/myhome/checkout",
