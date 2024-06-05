@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import signupImage from '../../assets/signup/Signup.png';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from "react-icons/fc";
@@ -15,7 +15,9 @@ const Signup = () => {
     const [signupError, setSignupError] = useState("");
     const [createdUserEmail, setCreatedUserEmail] = useState("")
     const [token] = useToken(createdUserEmail);
+    const location = useLocation();
     const navigate = useNavigate();
+    const from = location.state?.from?.pathname || "/myhome";
 
     const handelSignup = (data, event) => {
         setSignupError("");
@@ -99,10 +101,12 @@ const Signup = () => {
             });
     };
 
-    if (token) {
-        navigate("/myhome");
-        toast.success("Account Created!");
-    };
+    useEffect(() => {
+        if (token) {
+            toast.success("Account Created!");
+            navigate(from, { replace: true });
+        }
+    }, [token, from, navigate]);
 
     return (
         <div className="hero my-10">

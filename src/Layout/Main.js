@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import Sidebar from '../Pages/Shared/Sidebar/Sidebar';
-import { Toaster } from 'react-hot-toast';
 import ProfileMenu from '../Pages/Shared/ProfileMenu/ProfileMenu';
 import { AuthContext } from '../contexts/AuthProvider';
 import Loading from '../Pages/Shared/Loading/Loading';
@@ -40,7 +39,6 @@ const Main = () => {
                     <div className="drawer-content">
                         {/* Page content here */}
                         <Outlet></Outlet>
-                        <Toaster></Toaster>
                     </div>
                     <Sidebar 
                     classes={classes.data}

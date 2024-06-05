@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { format } from 'date-fns';
 
-const ClassModal = ({refetch, modal, setModal}) => {
+const ClassModal = ({ refetch, modal, setModal }) => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const currentDate = new Date();
     const imageHostKey = process.env.REACT_APP_imgBB_key;
@@ -28,18 +28,19 @@ const ClassModal = ({refetch, modal, setModal}) => {
                     classCode: Math.random().toString(36).substr(2, 6).toUpperCase(),
                     createdDate: format(currentDate, "d/MM/yyyy HH:mm:ss")
                 }
-                
+
                 fetch("http://localhost:5000/classes", {
                     method: "POST",
                     headers: {
-                        "content-type": "application/json"
+                        "content-type": "application/json",
+                        authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
                     },
                     body: JSON.stringify(classInfo)
                 })
                     .then(res => res.json())
                     .then(data => {
                         // console.log(data.data);
-                        if (data.data.insertedId) { 
+                        if (data.data.insertedId) {
                             toast.success("Class Created!");
                             setModal(null);
                             refetch();

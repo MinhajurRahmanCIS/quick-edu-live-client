@@ -9,26 +9,27 @@ const EnrollmentModal = ({ modal, setModal, refetch }) => {
         fetch("http://localhost:5000/enrollments", {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
             },
             body: JSON.stringify(data)
         })
-        .then(res => res.json()
-        .then(data => {
-            // console.log(data);
-            if(data?.data?.insertedId){
-                toast.success("Class Enrolled Successfully");
-                setModal(null);
-                refetch();
-            }
-            if(data?.alreadyEnrolledMessage){
-                toast.error(data?.alreadyEnrolledMessage);
-            }
-            if(data?.noClassMessage){
-                toast.error(data?.noClassMessage);
-            }
-        })
-    )
+            .then(res => res.json()
+                .then(data => {
+                    // console.log(data);
+                    if (data?.data?.insertedId) {
+                        toast.success("Class Enrolled Successfully");
+                        setModal(null);
+                        refetch();
+                    }
+                    if (data?.alreadyEnrolledMessage) {
+                        toast.error(data?.alreadyEnrolledMessage);
+                    }
+                    if (data?.noClassMessage) {
+                        toast.error(data?.noClassMessage);
+                    }
+                })
+            )
     };
     return (
         <div>

@@ -15,11 +15,7 @@ const MyHome = () => {
     const { classes, classLoading, refetch } = useClasses(user);
     const [modal, setModal] = useState(null);
 
-    if (userIsLoading) {
-        return <Loading></Loading>;
-    };
-
-    if (isTeacherLoading) {
+    if (userIsLoading || isTeacherLoading) {
         return <Loading></Loading>;
     };
     return (
@@ -46,9 +42,13 @@ const MyHome = () => {
                     </>
                     :
                     <>
-                    <Enroll>
-                        
-                    </Enroll>
+                        {
+                            userInfo.data?.role &&
+                            <Enroll>
+
+                            </Enroll>
+                        }
+
                     </>
             }
 

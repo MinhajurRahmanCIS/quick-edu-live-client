@@ -7,36 +7,30 @@ import { IoDiamond } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { PiStudentDuotone } from "react-icons/pi";
+import toast from 'react-hot-toast';
 
 const Profile = () => {
     const { user } = useContext(AuthContext);
-    const { register, formState: { errors }, handleSubmit, watch } = useForm();
+    const { register, formState: { errors }, handleSubmit } = useForm();
     const { userInfo, userIsLoading, refetch } = useLoadUser(user);
     if (userIsLoading) {
         return <Loading></Loading>;
     };
-    const { _id, role, name, email, institution, country, dob, image, account } = userInfo.data;
+    const { _id, name, email, institution, country, dob, role, image, account } = userInfo.data;
     // console.log(userInfo.data);
 
     const handelUpdateProfile = data => {
-        // const haveImage = data.image.length === 0 ? "" : data.image;
-        // const newData = {
-        //     institution: data.institution,
-        //     country: data.country,
-        //     dob: data.dob,
-        //     image: haveImage,
-        //     role: data.role
-        // };
-        // console.log(newData)
         fetch(`http://localhost:5000/users/${_id}`, {
             method: "PUT",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
             },
             body: JSON.stringify(data)
         })
             .then(res => res.json())
             .then(data => {
+                toast.success("Profile Update Successfully");
                 refetch();
                 console.log(data);
             })
@@ -52,16 +46,6 @@ const Profile = () => {
                             <img src={image} alt="" />
                         </div>
                     </div>
-                    <div className="form-control">
-                        <label className="label">
-                            <span className="label-text">Update Your Photo</span>
-                        </label>
-                        <input {...register("image")}
-                            type="file" accept=".png, .jpg, .jpeg, .gif" className="file-input file-input-bordered file-input-sm" />
-                        <div className="label">
-                            {errors.image && <p className="text-red-600">{errors.image.message}</p>}
-                        </div>
-                    </div>
                 </div>
                 <div className="grid md:grid-cols-2 sm:grid-cols-1 gap-5">
                     <div className="form-control">
@@ -69,25 +53,37 @@ const Profile = () => {
                             <span className="label-text">Email</span>
                         </label>
                         <input
-                            type="email" placeholder="Enter Your Email Address" className="input input-bordered" disabled defaultValue={email} />
+                            type="email"
+                            placeholder="Enter Your Email Address"
+                            className="input input-bordered"
+                            defaultValue={email}
+                            disabled />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Name</span>
                         </label>
                         <input
-                            type="text" placeholder="Enter Your Name" className="input input-bordered" disabled defaultValue={name} />
+                            type="text"
+                            placeholder="Enter Your Name"
+                            className="input input-bordered"
+                            defaultValue={name}
+                            disabled
+                        />
                     </div>
 
-                    {/* <div className="form-control">
+                    <div className="form-control">
                         <label className="label">
                             <span className="label-text">Institution</span>
                         </label>
                         <input {...register("institution",
                             {
-                                // required: { value: true, message: "Institution Name is Required" }
+                                required: { value: true, message: "Institution Name is Required" }
                             })}
-                            type="text" placeholder="Please Enter Your Institution Name" className="input input-bordered" defaultValue={institution} />
+                            type="text"
+                            placeholder="Please Enter Your Institution Name" className="input input-bordered"
+                            defaultValue={institution}
+                            disabled={institution} />
                         <div className="label">
                             {errors.institution && <p className="text-red-600">{errors.institution.message}</p>}
                         </div>
@@ -99,9 +95,14 @@ const Profile = () => {
                         </label>
                         <input {...register("country",
                             {
-                                // required: { value: true, message: "Country Name is Required" }
+                                required: { value: true, message: "Country Name is Required" }
                             })}
-                            type="text" placeholder="Please Enter Your Country Name" className="input input-bordered" defaultValue={country} />
+                            type="text"
+                            placeholder="Please Enter Your Country Name"
+                            className="input input-bordered"
+                            defaultValue={country}
+                            disabled={country}
+                        />
                         <div className="label">
                             {errors.country && <p className="text-red-600">{errors.country.message}</p>}
                         </div>
@@ -112,15 +113,18 @@ const Profile = () => {
                         <label className="label">
                             <span className="label-text">Date of Birth</span>
                         </label>
-                        <input {...register("date",
+                        <input {...register("dob",
                             {
-                                // required: { value: true, message: "Please Enter your Date of birth" }
+                                required: { value: true, message: "Please Enter your Date of birth" }
                             })}
-                            type="date" className="input input-bordered" defaultValue={dob} />
+                            type="date"
+                            className="input input-bordered"
+                            defaultValue={dob}
+                            disabled={dob} />
                         <div className="label" >
-                            {errors.date && <p className="text-red-600">{errors.date.message}</p>}
+                            {errors.dob && <p className="text-red-600">{errors.dob.message}</p>}
                         </div>
-                    </div> */}
+                    </div>
 
                     <div className="form-control">
                         <label className="label">
@@ -128,12 +132,12 @@ const Profile = () => {
                         </label>
                         {
                             role ?
-                                <Link className="btn w-1/5">
+                                <Link className="btn md:w-1/3">
                                     {
                                         role === "Teacher" ?
-                                            <span className="flex items-center gap-2 text-xl ms-0.5"><FaChalkboardTeacher></FaChalkboardTeacher>Teacher</span>
+                                            <span className="flex items-center gap-2 ms-0.5"><FaChalkboardTeacher></FaChalkboardTeacher>Teacher</span>
                                             :
-                                            <span className="flex items-center gap-2 text-xl ms-0.5">Student<PiStudentDuotone></PiStudentDuotone></span>
+                                            <span className="flex items-center gap-2 ms-0.5">Student<PiStudentDuotone></PiStudentDuotone></span>
                                     }
                                 </Link>
                                 :
@@ -141,15 +145,26 @@ const Profile = () => {
                                     <input {...register("role",
                                         {
                                             required: { value: true, message: "Role is Required" }
-                                        })} type="radio" name="role" value={"Teacher"} className="radio radio-neutral" />
+                                        })}
+                                        type="radio"
+                                        name="role"
+                                        value={"Teacher"}
+                                        className="radio radio-neutral" />
                                     <span className="mx-3 text-xl">Teacher</span>
                                     <input {...register("role",
                                         {
                                             required: { value: true, message: "Role is Required" }
-                                        })} type="radio" name="role" value={"Student"} className="radio radio-info" />
+                                        })}
+                                        type="radio"
+                                        name="role"
+                                        value={"Student"}
+                                        className="radio radio-info" />
                                     <span className="mx-3 text-xl">Student</span>
                                 </div>
                         }
+                        <div className="label" >
+                            {errors.role && <p className="text-red-600">{errors.role.message}</p>}
+                        </div>
                     </div>
 
                     {
@@ -161,20 +176,24 @@ const Profile = () => {
                             </label>
                             {
                                 account === "Premium" ?
-                                    <span className="flex items-center gap-2 text-xl text-[#d4af37] ms-0.5 btn bg-slate-900 hover:bg-slate-700 w-1/2 "><strong>Premium</strong><IoDiamond></IoDiamond></span>
+                                    <span className="flex items-center gap-2 text-xl text-[#d4af37] ms-0.5 btn md:w-1/2 bg-slate-900 hover:bg-slate-700"><strong>Premium</strong><IoDiamond></IoDiamond></span>
                                     : <Link to="/myhome/checkout" className="btn btn-neutral w-1/5">Buy Premium</Link>
                             }
                             <div className="label" >
                                 {errors.date && <p className="text-red-600">{errors.date.message}</p>}
                             </div>
                         </div>
-
                     }
-
                 </div>
-                <div className="form-control mt-2">
-                    <input type="submit" value="Update Profile" className="btn btn-neutral hover:bg-slate-600 text-xl font-semibold" />
-                </div>
+                {
+                    !role
+                    &&
+                    (
+                        <div className="form-control mt-2">
+                            <input type="submit" value="Update Profile" className="btn btn-neutral hover:bg-slate-600 text-xl font-semibold" />
+                        </div>
+                    )
+                }
             </form>
         </section>
     );

@@ -78,7 +78,8 @@ const PaperChecker = () => {
                         fetch("http://localhost:5000/check", {
                             method: "POST",
                             headers: {
-                                "content-type": "application/json"
+                                "content-type": "application/json",
+                                authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
                             },
                             body: JSON.stringify(images)
                         })

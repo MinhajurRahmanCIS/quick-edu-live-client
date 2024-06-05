@@ -22,7 +22,8 @@ const ReplyModal = ({ modal, setModal }) => {
         fetch("http://localhost:5000/announcements", {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
             },
             body: JSON.stringify(classComment)
         })
@@ -49,9 +50,9 @@ const ReplyModal = ({ modal, setModal }) => {
                     <label htmlFor="reply-modal" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-xl font-bold">X</label>
                     <form onSubmit={handleSubmit(handelComment)} className="card-body">
                         <h1 className="text-2xl font-bold">Replies</h1>
-                        <Replies 
-                        modal={modal}
-                        isTeacher={modal.isTeacher}
+                        <Replies
+                            modal={modal}
+                            isTeacher={modal.isTeacher}
                         >
                         </Replies>
                         <div className="form-control">

@@ -23,7 +23,8 @@ const QuizModal = ({ modal, setModal, refetch }) => {
         fetch("http://localhost:5000/classwork", {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
             },
             body: JSON.stringify(data)
         })

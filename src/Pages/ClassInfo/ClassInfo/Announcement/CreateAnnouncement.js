@@ -16,7 +16,8 @@ const CreateAnnouncement = ({ user, classData, refetch }) => {
         fetch("http://localhost:5000/announcements", {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
             },
             body: JSON.stringify(classAnnouncement)
         })

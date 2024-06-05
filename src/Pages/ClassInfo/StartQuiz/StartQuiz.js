@@ -6,7 +6,7 @@ import useLoadUser from '../../../hooks/useLoadUser';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import Questions from './Questions';
 import { useForm } from 'react-hook-form';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const StartQuiz = () => {
     const { examId } = useParams();
@@ -124,7 +124,6 @@ const StartQuiz = () => {
                     }
                     <input className="btn btn-neutral w-full my-5" type="submit" value="Submit" />
                 </form>
-                <Toaster />
             </div>
         </div>
     );

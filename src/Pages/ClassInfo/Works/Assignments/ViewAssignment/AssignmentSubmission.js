@@ -95,7 +95,10 @@ const AssignmentSubmission = ({ assignment, hasSubmitted }) => {
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(`http://localhost:5000/submission/${id}`, {
-                    method: "DELETE"
+                    method: "DELETE",
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
+                    }
                 })
                     .then(res => res.json())
                     .then(data => {

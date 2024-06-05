@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import loginImage from '../../assets/login/Login.png';
@@ -33,17 +33,19 @@ const Login = () => {
 
     const handleGoogleSignIn = () => {
         signInWithGoogle()
-        .then( result => {
-            const loggedUser = result.user;
-            setLoginUserEmail(loggedUser.email);
-        })
-        .catch(error => console.error(error));
+            .then(result => {
+                const loggedUser = result.user;
+                setLoginUserEmail(loggedUser.email);
+            })
+            .catch(error => console.error(error));
     };
 
-    if (token) {
-        toast.success("Login Successfully!")
-        navigate(from, { replace: true });
-    };
+    useEffect(() => {
+        if (token) {
+            toast.success("Login Successfully!");
+            navigate(from, { replace: true });
+        }
+    }, [token, from, navigate]);
 
     return (
         <div className="hero my-10">

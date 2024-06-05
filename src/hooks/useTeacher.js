@@ -5,7 +5,11 @@ const useTeacher = email => {
     const [isTeacherLoading, setIsTeacherLoading] = useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/users/teacher/${email}`)
+            fetch(`http://localhost:5000/users/teacher/${email}`,{
+                headers: {
+                    authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
+                }
+            })
                 .then(res => res.json())
                 .then(data => {
                     // console.log("Teacher", data.data);

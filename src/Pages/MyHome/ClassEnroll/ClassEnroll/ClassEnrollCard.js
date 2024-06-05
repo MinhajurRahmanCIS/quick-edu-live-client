@@ -58,9 +58,7 @@ const ClassEnrollCard = ({c, refetch}) => {
                 <div className="card-actions justify-end gap-3">
                     <Link to={`/myhome/classinfo/${_id}`} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"Class Info"}><FaRegAddressCard></FaRegAddressCard></Link>
 
-                   
-
-                    <div onClick={() => handelEnrollDeleteClass(c._id)} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"Delete Class"}><RiDeleteBin6Line></RiDeleteBin6Line></div>
+                    <div onClick={() => handelEnrollDeleteClass(c._id)} className="text-3xl hover:bg-slate-400 tooltip" data-tip={"Unenroll Class"}><RiDeleteBin6Line></RiDeleteBin6Line></div>
                 </div>
             </div>
         </div>
