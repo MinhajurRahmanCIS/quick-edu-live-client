@@ -30,6 +30,7 @@ import Help from "../../Pages/Help/Help";
 import FeedBack from "../../Pages/Logs/FeedBack/FeedBack";
 import ReportAProblem from "../../Pages/Logs/ReportAProblem/ReportAProblem";
 import WhatsNew from "../../Pages/Logs/WhatsNew/WhatsNew";
+import Fail from "../../Pages/Payment/Payment/Fail";
 
 const router = createBrowserRouter([
     //Home Directory
@@ -100,8 +101,12 @@ const router = createBrowserRouter([
                 element: <TeacherRoute><Checkout></Checkout></TeacherRoute>
             },
             {
-                path: "/myhome/payment",
+                path: "/myhome/payment/success/:email/:transactionId",
                 element: <TeacherRoute><Payment></Payment></TeacherRoute>
+            },
+            {
+                path: "/myhome/payment/fail",
+                element: <TeacherRoute><Fail></Fail></TeacherRoute>
             },
             {
                 path: "/myhome/classinfo",

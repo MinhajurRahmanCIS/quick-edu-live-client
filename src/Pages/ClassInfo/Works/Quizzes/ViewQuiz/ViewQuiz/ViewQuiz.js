@@ -1,8 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useRef, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Loading from '../../../../../Shared/Loading/Loading';
-import { IoArrowUndoOutline } from "react-icons/io5";
 import { FaPrint, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import ViewQuestion from '../ViewQuestion/ViewQuestion';
 import { useReactToPrint } from "react-to-print";

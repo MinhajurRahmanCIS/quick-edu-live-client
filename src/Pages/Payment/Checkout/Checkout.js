@@ -1,56 +1,91 @@
-import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import useLoadUser from '../../../hooks/useLoadUser';
 import Loading from '../../Shared/Loading/Loading';
-import toast from 'react-hot-toast';
 import paper from "../../../assets/other/paper.jpg"
+import { HiOutlineCurrencyBangladeshi } from 'react-icons/hi';
+import { HiMiniCurrencyDollar } from 'react-icons/hi2';
 
 const Checkout = () => {
     const { user } = useContext(AuthContext);
     const { userInfo, userIsLoading } = useLoadUser(user);
     const navigate = useNavigate();
 
+    const [currency, setCurrency] = useState('USD');
+    const [price, setPrice] = useState(10.99);
+
+    const exchangeRate = 117.44; // Exchange rate from USD to BDT
+
     if (userIsLoading) {
-        return <Loading></Loading>
+        return <Loading />;
+    }
+
+    const handleCurrencyChange = () => {
+        if (currency === 'USD') {
+            setCurrency('BDT');
+            setPrice(parseInt(4.26 * exchangeRate));
+        } else {
+            setCurrency('USD');
+            setPrice(4.26);
+        }
     };
 
-    const purchase = data => {
-        fetch(`http://localhost:5000/payment/${data.data._id}`, {
-            method: "PUT",
+    const handlePurchase = () => {
+        const purchase = {
+            name: userInfo?.data?.name,
+            email: userInfo?.data?.email,
+            currency: currency,
+            amount: price,
+        }
+
+        fetch(`http://localhost:5000/payment`, {
+            method: "POST",
             headers: {
+                "content-type" : "application/json",
                 authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
-            }
+            },
+            body: JSON.stringify(purchase)
         })
             .then(res => res.json())
             .then(data => {
-                if (data.data.modifiedCount > 0) {
-                    toast.success('Payment successfully!')
-                    navigate("/myhome/payment");
-                };
+                window.location.replace(data.url)
+                console.log(data);
             });
     };
+
+
     return (
-        // <div className="flex flex-col justify-center items-center p-48">
-        //     <span className="text-xl"><strong>Price : </strong> 500</span>
-        //     <Link onClick={()=>purchase(userInfo)} className="btn btn-neutral">Purchase Premium</Link>
-        // </div>
         <div className="hero min-h-screen p-5">
             <div className="card lg:card-side bg-base-100 border rounded-none shadow-xl">
-                <figure className="border-e"><img className="rounded-none w-[400px]" src={paper} alt="Album" /></figure>
+                <figure className="border-e">
+                    <img className="rounded-none w-[400px]" src={paper} alt="Album" />
+                </figure>
                 <div className="card-body">
                     <h1 className="card-title">Unlock The Future </h1>
                     <div className="flex gap-2">
-                        <h3 className="font-semibold"><span className="text-5xl" >$10</span><span className="text-xl">.99</span></h3>
+                        <h3 className="font-semibold">
+                            <span className="text-5xl">{currency === 'USD' ? '$' : '৳'}{price}</span>
+                        </h3>
                         <p className="font-bold">Life <br /> Time</p>
+                        <div className="justify-end">
+                            <button onClick={handleCurrencyChange} className="btn text-5xl">
+                                {currency === 'USD' ?
+                                    <div className="tooltip" data-tip="USD">
+                                        <HiOutlineCurrencyBangladeshi></HiOutlineCurrencyBangladeshi>
+                                    </div>
+                                    :
+                                    <div className="tooltip" data-tip="Taka">
+                                        <HiMiniCurrencyDollar ></HiMiniCurrencyDollar>
+                                    </div>
+                                }
+
+                            </button>
+                        </div>
                     </div>
                     <div className="flex justify-between my-2">
-                        <div>
-                            Ai Paper Checker
-                        </div>
-                        <div>
-                            $10.99
-                        </div>
+                        <div>Ai Paper Checker</div>
+                        <div>{currency === 'USD' ? '$' : '৳'}{price}</div>
                     </div>
                     <hr />
                     <div className="flex justify-between my-1">
@@ -60,23 +95,19 @@ const Checkout = () => {
                             Tax
                         </div>
                         <div>
-                            $10.99
+                            {currency === 'USD' ? '$' : '৳'}{price}
                             <br />
-                             $0.00
+                            {currency === 'USD' ? '$0.00' : '৳0.00'}
                         </div>
                     </div>
                     <hr />
                     <div className="flex justify-between">
-                        <div>
-                            Total
-                        </div>
-                        <div>
-                            $10.99
-                        </div>
+                        <div>Total</div>
+                        <div>{currency === 'USD' ? '$' : '৳'}{price}</div>
                     </div>
                     <p>There will be no refund! <span className="text-blue-400 link-hover hover:text-blue-600 cursor-pointer">Term and condition</span></p>
-                    <div className="card-actions justify-end">
-                        <button className="btn btn-neutral">Purchase</button>
+                    <div className="flex justify-between items-center">
+                        <button onClick={handlePurchase} className="btn btn-neutral">Purchase</button>
                     </div>
                 </div>
             </div>
