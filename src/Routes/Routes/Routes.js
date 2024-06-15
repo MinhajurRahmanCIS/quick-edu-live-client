@@ -31,12 +31,14 @@ import FeedBack from "../../Pages/Logs/FeedBack/FeedBack";
 import ReportAProblem from "../../Pages/Logs/ReportAProblem/ReportAProblem";
 import WhatsNew from "../../Pages/Logs/WhatsNew/WhatsNew";
 import Fail from "../../Pages/Payment/Payment/Fail";
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
     //Home Directory
     {
         path: '/',
         element: <HomeLayout></HomeLayout>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -155,10 +157,6 @@ const router = createBrowserRouter([
     {
         path: "/viewassignmentsubmission/:id",
         element: <PrivateRoute><ViewAssignmentSubmission></ViewAssignmentSubmission></PrivateRoute>
-    },
-    {
-        path: '*',
-        element: <div>Error</div>
     }
 
 ])

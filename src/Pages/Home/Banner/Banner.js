@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import b1 from '../../../assets/banner/b1.png';
 import b2 from '../../../assets/banner/b2.png';
 import b3 from '../../../assets/banner/b3.png';
@@ -51,19 +51,31 @@ const Banner = () => {
             img: b7
         }
     ];
+    const [currentSlide, setCurrentSlide] = useState(1);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentSlide((prev) => (prev === bannerImage.length ? 1 : prev + 1));
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, [bannerImage.length]);
     return (
         <div>
             <div className="carousel h-[300px] md:h-[400px] lg:h-[600px] w-full">
                 {
                     bannerImage.map(bi =>
-                        <div 
-                        key={bi._id}
-                        id={`slide${bi._id}`} 
-                        className="carousel-item relative w-full">
-                            <img src={bi.img} className="w-full" alt="banner"/>
+                        <div
+                            key={bi._id}
+                            id={`slide${bi._id}`}
+                            className={`carousel-item relative w-full ${currentSlide === bi._id ? 'flex' : 'hidden'}`}
+                        >
+                            <img src={bi.img} className="w-full" alt="banner" />
                             <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                                <a href={`#slide${bi.prev}`} className="btn btn-circle btn-neutral">❮</a>
-                                <a href={`#slide${bi.next}`} className="btn btn-circle btn-neutral">❯</a>
+                                <div className='hidden'>
+                                <a onClick={() => setCurrentSlide(bi.prev)} href={`#slide${bi.prev}`} className="btn btn-circle btn-neutral">❮</a>
+                                <a onClick={() => setCurrentSlide(bi.next)} href={`#slide${bi.next}`} className="btn btn-circle btn-neutral">❯</a>
+                                </div>
                             </div>
                         </div>
                     )

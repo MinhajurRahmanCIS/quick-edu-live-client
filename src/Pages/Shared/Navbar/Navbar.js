@@ -22,7 +22,7 @@ const Navbar = () => {
                         {menu}
                     </ul>
                 </div>
-                <Link to="/" className="btn btn-ghost text-sm md:text-xl -ms-5">Quick Edu Live</Link>
+                <Link to="/" className="btn btn-ghost text-sm md:text-xl">Quick Edu Live</Link>
                 <ul className="menu menu-horizontal px-1 hidden lg:flex font-semibold gap-0.5">
                     {menu}
                 </ul>
