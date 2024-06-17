@@ -92,7 +92,10 @@ const AllQuiz = ({ quiz, i, refetch, isTeacher, submissions, user }) => {
                 {isTeacher &&
                     <>
                         <p><strong>Difficulty Level: </strong>{level}</p>
-                        <p><strong>Total Submitted: </strong>{viewSubmissions?.data?.length}</p>
+                        {
+                            viewSubmissions?.data?.length > 0 &&
+                            <p><strong>Total Submitted: </strong>{viewSubmissions?.data?.length}</p>
+                        }
                     </>
                 }
                 <div className="card-actions justify-end gap-3 mt-1">

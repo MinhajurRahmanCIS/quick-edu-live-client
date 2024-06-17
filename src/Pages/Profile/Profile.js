@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { PiStudentDuotone } from "react-icons/pi";
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 const Profile = () => {
     const { user } = useContext(AuthContext);
@@ -39,6 +40,11 @@ const Profile = () => {
 
     return (
         <section>
+            <Helmet>
+                <title>
+                   {name}'s Profile
+                </title>
+            </Helmet>
             <form onSubmit={handleSubmit(handelUpdateProfile)} className="card-body">
                 <div>
                     <div className="avatar">

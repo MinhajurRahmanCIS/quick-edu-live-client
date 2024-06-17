@@ -9,6 +9,7 @@ import { AuthContext } from '../../../../../contexts/AuthProvider';
 import useTeacher from '../../../../../hooks/useTeacher';
 import AssignmentSubmission from './AssignmentSubmission';
 import GoBackButton from '../../../../../components/GoBackButton';
+import { Helmet } from 'react-helmet-async';
 
 const ViewAssignment = () => {
     const { id, hasSubmitted } = useParams();
@@ -54,6 +55,11 @@ const ViewAssignment = () => {
 
     return (
         <div className="max-w-[1440px] mx-auto my-3 p-2 print-container" >
+            <Helmet>
+                <title>
+                    {topic} Assignment
+                </title>
+            </Helmet>
             <GoBackButton></GoBackButton>
             {
                 isTeacher &&

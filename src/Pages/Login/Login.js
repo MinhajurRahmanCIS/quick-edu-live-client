@@ -7,6 +7,7 @@ import { FaGithub } from "react-icons/fa";
 import { AuthContext } from '../../contexts/AuthProvider';
 import useToken from '../../hooks/useToken';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 const Login = () => {
     const { signIn, signInWithGoogle } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
@@ -49,6 +50,11 @@ const Login = () => {
 
     return (
         <div className="hero my-10">
+            <Helmet>
+                <title>
+                  Login
+                </title>
+            </Helmet>
             <div className="hero-content grid md:grid-cols-2 gap-20">
                 <div className="card shadow-2xl border">
                     <form onSubmit={handleSubmit(handelLogin)} className="card-body">

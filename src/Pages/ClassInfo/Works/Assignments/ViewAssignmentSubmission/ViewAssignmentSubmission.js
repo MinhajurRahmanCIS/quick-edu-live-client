@@ -4,6 +4,7 @@ import Loading from '../../../../Shared/Loading/Loading';
 import GoBackButton from '../../../../../components/GoBackButton';
 import { useQuery } from '@tanstack/react-query';
 import ViewAssignmentSubmissionList from './ViewAssignmentSubmissionList';
+import { Helmet } from 'react-helmet-async';
 
 const ViewAssignmentSubmission = () => {
     const { id } = useParams();
@@ -25,6 +26,11 @@ const ViewAssignmentSubmission = () => {
     };
     return (
         <div className="max-w-[1440px] mx-auto p-1">
+            <Helmet>
+                <title>
+                    View Assignment Submission
+                </title>
+            </Helmet>
             <GoBackButton></GoBackButton>
             <div>
                 {

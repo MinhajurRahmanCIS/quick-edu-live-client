@@ -1,8 +1,14 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const WhatsNew = () => {
     return (
         <div className="p-10">
+            <Helmet>
+                <title>
+                  What's New
+                </title>
+            </Helmet>
             <ul className="timeline timeline-snap-icon max-md:timeline-compact timeline-vertical">
                 <li>
                     <div className="timeline-middle">

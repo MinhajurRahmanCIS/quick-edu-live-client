@@ -5,6 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 import Loading from '../../Shared/Loading/Loading';
 import Results from './Results';
 import GoBackButton from '../../../components/GoBackButton';
+import { Helmet } from 'react-helmet-async';
 
 const QuizResult = () => {
     const { id, userEmail } = useParams();
@@ -47,6 +48,11 @@ const QuizResult = () => {
 
     return (
         <div className="max-w-[1440px] mx-auto p-1">
+             <Helmet>
+                <title>
+                    {topic} Quiz Result
+                </title>
+            </Helmet>
             <GoBackButton></GoBackButton>
             <div className="max-w-[1440px] mx-auto p-1">
                 <div className="text-center text-xl my-3">

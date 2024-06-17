@@ -6,6 +6,7 @@ import Loading from '../../Shared/Loading/Loading';
 import paper from "../../../assets/other/paper.jpg"
 import { HiOutlineCurrencyBangladeshi } from 'react-icons/hi';
 import { HiMiniCurrencyDollar } from 'react-icons/hi2';
+import { Helmet } from 'react-helmet-async';
 
 const Checkout = () => {
     const { user } = useContext(AuthContext);
@@ -42,7 +43,7 @@ const Checkout = () => {
         fetch(`http://localhost:5000/payment`, {
             method: "POST",
             headers: {
-                "content-type" : "application/json",
+                "content-type": "application/json",
                 authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
             },
             body: JSON.stringify(purchase)
@@ -57,6 +58,11 @@ const Checkout = () => {
 
     return (
         <div className="hero min-h-screen p-5">
+            <Helmet>
+                <title>
+                    Checkout
+                </title>
+            </Helmet>
             <div className="card lg:card-side bg-base-100 border rounded-none shadow-xl">
                 <figure className="border-e">
                     <img className="rounded-none w-[400px]" src={paper} alt="Album" />

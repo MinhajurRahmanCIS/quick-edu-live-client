@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 const ReportAProblem = () => {
     const { user } = useContext(AuthContext);
@@ -38,6 +39,11 @@ const ReportAProblem = () => {
     };
     return (
         <div>
+            <Helmet>
+                <title>
+                  Report
+                </title>
+            </Helmet>
             <h1 className="text-3xl text-center font-bold mt-5">Report A Problem</h1>
             <form onSubmit={handelReport} className="card-body">
                 <label className="input input-bordered flex items-center gap-2">

@@ -9,6 +9,7 @@ import { AuthContext } from '../../contexts/AuthProvider';
 import useTeacher from '../../hooks/useTeacher';
 import Loading from '../Shared/Loading/Loading';
 import { RxCross2 } from 'react-icons/rx';
+import { Helmet } from 'react-helmet-async';
 
 const Help = () => {
     const { user } = useContext(AuthContext);
@@ -18,6 +19,11 @@ const Help = () => {
     };
     return (
         <div className="overflow-x-auto p-10">
+            <Helmet>
+                <title>
+                    Help
+                </title>
+            </Helmet>
             <table className="table border border-black">
                 <thead>
                     <tr className="text-center text-xl border border-black">

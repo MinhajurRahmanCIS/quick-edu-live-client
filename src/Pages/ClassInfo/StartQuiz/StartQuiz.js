@@ -7,6 +7,7 @@ import { AuthContext } from '../../../contexts/AuthProvider';
 import Questions from './Questions';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { Helmet } from 'react-helmet-async';
 
 const StartQuiz = () => {
     const { examId } = useParams();
@@ -96,6 +97,11 @@ const StartQuiz = () => {
 
     return (
         <div className="max-w-[1440px] mx-auto p-1">
+            <Helmet>
+                <title>
+                    {topic} Quiz
+                </title>
+            </Helmet>
             <div className="text-center text-xl my-3">
                 <h1><strong>Topic : </strong>{topic}</h1>
                 <p><strong>Total Question : </strong>{questions?.length || 0}</p>

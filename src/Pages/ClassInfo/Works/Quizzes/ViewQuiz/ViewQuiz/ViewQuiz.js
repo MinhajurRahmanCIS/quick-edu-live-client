@@ -7,6 +7,7 @@ import ViewQuestion from '../ViewQuestion/ViewQuestion';
 import { useReactToPrint } from "react-to-print";
 import "./print.css";
 import GoBackButton from '../../../../../../components/GoBackButton';
+import { Helmet } from 'react-helmet-async';
 
 const ViewQuiz = () => {
     const { id } = useParams();
@@ -41,6 +42,11 @@ const ViewQuiz = () => {
 
     return (
         <div className="max-w-[1440px] mx-auto my-3 p-2 print-container" >
+             <Helmet>
+                <title>
+                    {topic} Quiz
+                </title>
+            </Helmet>
             <GoBackButton></GoBackButton>
 
             <div className="text-end">

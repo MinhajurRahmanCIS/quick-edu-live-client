@@ -4,6 +4,7 @@ import Loading from '../../../../Shared/Loading/Loading';
 import useLoadSubmission from '../../../../../hooks/useLoadSubmission';
 import ViewQuizSubmissionList from './ViewQuizSubmissionList';
 import GoBackButton from '../../../../../components/GoBackButton';
+import { Helmet } from 'react-helmet-async';
 
 const ViewQuizSubmission = () => {
     const { id } = useParams();
@@ -15,6 +16,11 @@ const ViewQuizSubmission = () => {
 
     return (
         <div className="max-w-[1440px] mx-auto p-1">
+            <Helmet>
+                <title>
+                    View Submission
+                </title>
+            </Helmet>
             <GoBackButton></GoBackButton>
             <div>
                 {

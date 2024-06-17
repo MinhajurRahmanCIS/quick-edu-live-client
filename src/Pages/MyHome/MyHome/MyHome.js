@@ -7,6 +7,7 @@ import useTeacher from '../../../hooks/useTeacher';
 import Loading from '../../Shared/Loading/Loading';
 import useLoadUser from '../../../hooks/useLoadUser';
 import Enroll from '../ClassEnroll/Enroll/Enroll';
+import { Helmet } from 'react-helmet-async';
 
 const MyHome = () => {
     const { user } = useContext(AuthContext);
@@ -20,6 +21,14 @@ const MyHome = () => {
     };
     return (
         <div>
+            <Helmet>
+                <title>
+                    {isTeacher ?
+                        "Teacher's Home"
+                        :
+                        "Students's Home"}
+                </title>
+            </Helmet>
             {
                 isTeacher ?
                     <>

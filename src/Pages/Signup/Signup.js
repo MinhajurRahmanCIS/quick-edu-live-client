@@ -7,6 +7,7 @@ import { FaGithub } from "react-icons/fa";
 import { AuthContext } from '../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
 import useToken from '../../hooks/useToken';
+import { Helmet } from 'react-helmet-async';
 const Signup = () => {
     // Taking Signup Data with React Hook Form
     const { register, formState: { errors }, handleSubmit, watch } = useForm();
@@ -110,6 +111,11 @@ const Signup = () => {
 
     return (
         <div className="hero my-10">
+            <Helmet>
+                <title>
+                  Sign Up
+                </title>
+            </Helmet>
             <div className="hero-content grid md:grid-cols-2 gap-20">
                 <div className="card shadow-2xl border">
                     <form onSubmit={handleSubmit(handelSignup)} className="card-body">

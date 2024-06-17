@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import useLoadUser from '../../../hooks/useLoadUser';
 import Loading from '../../Shared/Loading/Loading';
 import { format } from 'date-fns';
+import { Helmet } from 'react-helmet-async';
 
 const FeedBack = () => {
     const { user } = useContext(AuthContext);
@@ -59,6 +60,11 @@ const FeedBack = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>
+                  Feedback
+                </title>
+            </Helmet>
             <h1 className="text-3xl text-center font-bold mt-5">Give Us Feedback</h1>
             <form onSubmit={handelSubmit} className="card-body">
                 <label className="input input-bordered flex items-center gap-2">
