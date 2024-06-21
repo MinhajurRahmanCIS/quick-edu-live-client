@@ -1,71 +1,58 @@
-# Quick Edu Live
+# Created By Md. Minhajur Rahman
+
+# Project Name : Quick Edu Live (Ai Classroom)
+
+# Project Info
 Quick Edu Live is an Educational Platform. With Ai Classroom Feature. It makes every thing easy With less human interaction, less time and less thinking.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Technologies  –
+1.      Programming Language JavaScript.
+2.      JavaScript Library React JS.
+3.      CSS Framework Tailwind CSS components Daisy Ui.
+4.      React Router.
+5.      Firebase Authentication.
+8.      React Hook Form.
+9.      TanStack Query.
+10.     React Icons.
+11.     React Hot Toast.
+12.     DATE-FNS.
+13.     SweetAlert2.
+14.     React Helmet Async.
+15.     React to print.
 
-## Available Scripts
+## Features and functionality –
+·         User can create account via email password or Google One Click Login. \
+·         User can login account by providing email password or Google One Click Login\
+·         User Can select role (Teacher or Student) for first time\
+·         Teachers can Create Classroom\
+·         Teachers can Share Classroom code.\
+·         Teachers can Delete Classroom .\
+·         Teachers can Post Announcement Classroom.\
+·         Teachers can Reply Announcement Classroom.\
+·         Teachers can Delete Announcement Classroom.\
+·         Teachers can Generate Quiz With Ai.\
+·         Teachers can View Quiz Question.\
+·         Teachers can Print Quiz Question.\
+·         Teachers can View Quiz submission.\
+·         Teachers can Generate Assignment With Ai.\
+·         Teachers can View Assignment Question.\
+·         Teachers can Print Assignment Question.\
+·         Teachers can View Assignment submission.\
+·         Student can Join in a Classroom via Classroom Code.\
+·         Student can View Announcement.\
+·         Student can Reply Announcement.\
+·         Student can Participant in Quizzes which has been generated or posted.\
+·         Student can Gets Instant Marks after submitting Quizzes.\
+·         Student can Participant in Assignment which has been generated or posted.\
+·         Both User (Teacher or Student) Can view What's New.\
+·         Both User (Teacher or Student) Can give feedback.\
+·         Both User (Teacher or Student) Can give Report for problem.\
+·         Both User (Teacher or Student) Can view Helps to get helps.\
 
-In the project directory, you can run:
+Project Deploy Site For Client side: 
+  \
+Project Deploy Site For Server side: 
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Project Repository Link For Client side:  \
+Project Repository Link For Server side: 
