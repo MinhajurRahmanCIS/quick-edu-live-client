@@ -22,11 +22,11 @@ Quick Edu Live is an Educational Platform. With Ai Classroom Feature. It makes e
 
 ## Features and functionality –
 ·         User can create account via email password or Google One Click Login. \
-·         User can login account by providing email password or Google One Click Login\
-·         User Can select role (Teacher or Student) for first time\
-·         Teachers can Create Classroom\
-·         Teachers can Share Classroom code.\
-·         Teachers can Delete Classroom .\
+·         User can login account by providing email password or Google One Click Login.\
+·         User Can select role (Teacher or Student) for first time.\
+·         Teachers can Create Classroom.\
+·         Teachers can Share Classroom Code.\
+·         Teachers can Delete Classroom.\
 ·         Teachers can Post Announcement Classroom.\
 ·         Teachers can Reply Announcement Classroom.\
 ·         Teachers can Delete Announcement Classroom.\
@@ -54,5 +54,6 @@ Project Deploy Site For Client side:
 Project Deploy Site For Server side: 
 
 
-Project Repository Link For Client side:  \
+Project Repository Link For Client side:  
+\
 Project Repository Link For Server side: 
