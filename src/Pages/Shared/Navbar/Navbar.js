@@ -7,9 +7,9 @@ const Navbar = () => {
     const { user } = useContext(AuthContext);
     const menu =
         <>
-            <li><Link to="/">Home</Link></li>
+            {/* <li><Link to="/">Home</Link></li>
             <li><Link to="/">Blog</Link></li>
-            <li><Link to="/">About Us</Link></li>
+            <li><Link to="/">About Us</Link></li> */}
         </>;
     return (
         <nav className="navbar bg-base-200 py-2">

@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import CreateClassInfo from '../CreateClassInfo/CreateClassInfo';
 import AiQuizInfo from '../AiQuizInfo/AiQuizInfo';
 import AiAssignmentInfo from '../AiAssignmentInfo/AiAssignmentInfo';
+import Feature from '../Feature/Feature';
 
 const Home = () => {
     return (
@@ -16,6 +17,7 @@ const Home = () => {
             </Helmet>
             <Banner></Banner>
             <CreateClassInfo></CreateClassInfo>
+            <Feature></Feature>
             <AiQuizInfo></AiQuizInfo>
             <AiAssignmentInfo></AiAssignmentInfo>
             <Reviews></Reviews>

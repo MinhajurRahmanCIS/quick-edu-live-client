@@ -12,12 +12,12 @@ const CreateClassInfo = () => {
                     </p>
                     <Link to="/signup" className="btn btn-neutral w-full sm:w-2/6 mt-2">Join Us Today</Link>
                 </div>
-                <div className="flex justify-center">
-                    {/* <video className="lg:w-full xl:w-4/5  and" height="auto" autoPlay muted loop>
+                {/* <div className="flex justify-center">
+                    <video className="lg:w-full xl:w-4/5  and" height="auto" autoPlay muted loop>
                         <source src={createClass} type="video/mp4" />
                         Your browser does not support the video. Please Use Another One.
-                    </video> */}
-                </div>
+                    </video>
+                </div> */}
             </div>
         </div>
     );
