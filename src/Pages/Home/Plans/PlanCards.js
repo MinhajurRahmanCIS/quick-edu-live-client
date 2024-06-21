@@ -17,7 +17,7 @@ const PlanCards = ({ plan }) => {
                     </li>
                 ))}
             </ul>
-            {price ? <Link to="/signup" className="btn btn-neutral w-full">Buy Now</Link> : <Link to="/signup" className="btn btn-neutral  w-full">Sing Up</Link>}
+            {price ? <Link to="/signup" className="btn btn-neutral w-full">Buy Now</Link> : <Link to="/signup" className="btn btn-neutral  w-full">Singup Now</Link>}
         </div>
     );
 };

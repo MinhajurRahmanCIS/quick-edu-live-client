@@ -7,6 +7,7 @@ import AiQuizInfo from '../AiQuizInfo/AiQuizInfo';
 import AiAssignmentInfo from '../AiAssignmentInfo/AiAssignmentInfo';
 import Feature from '../Feature/Feature';
 import Plans from '../Plans/Plans';
+import Subscribe from '../Subscribe/Subscribe';
 
 const Home = () => {
     return (
@@ -23,6 +24,7 @@ const Home = () => {
             <AiAssignmentInfo></AiAssignmentInfo>
             <Plans></Plans>
             <Reviews></Reviews>
+            <Subscribe></Subscribe>
         </div>
     );
 };
