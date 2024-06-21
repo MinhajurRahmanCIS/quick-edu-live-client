@@ -1,7 +1,5 @@
 import React from 'react';
-import { FcAnswers } from 'react-icons/fc';
 import { MdOutlineAssignment, MdOutlineQuiz } from 'react-icons/md';
-import { RiBardLine } from 'react-icons/ri';
 import { SiGooglebard, SiGoogleclassroom } from 'react-icons/si';
 const Feature = () => {
     return (

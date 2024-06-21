@@ -6,6 +6,7 @@ import CreateClassInfo from '../CreateClassInfo/CreateClassInfo';
 import AiQuizInfo from '../AiQuizInfo/AiQuizInfo';
 import AiAssignmentInfo from '../AiAssignmentInfo/AiAssignmentInfo';
 import Feature from '../Feature/Feature';
+import Plans from '../Plans/Plans';
 
 const Home = () => {
     return (
@@ -20,6 +21,7 @@ const Home = () => {
             <Feature></Feature>
             <AiQuizInfo></AiQuizInfo>
             <AiAssignmentInfo></AiAssignmentInfo>
+            <Plans></Plans>
             <Reviews></Reviews>
         </div>
     );
