@@ -60,6 +60,7 @@ Project Repository Link For Server side:
 
 ## Installation  –
 1. npm i
-2. .env file create on root (send message for Secret Keys Name)
+2. .env.local file create on root (send message for Secret Keys Name)
 3. npm start
-Lest Rock
+\
+Lets Rock
