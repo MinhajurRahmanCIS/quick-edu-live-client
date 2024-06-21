@@ -57,7 +57,7 @@ const AssignmentModal = ({ modal, setModal, refetch }) => {
                         <div className="modal" role="dialog">
                             <div className="modal-box ">
                                 <label htmlFor="assignment-modal" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-xl font-bold">X</label>
-                                <div className="flex flex-col justify-center items-center sm:text-md md:text-xl p-7">
+                                <div className="flex flex-col justify-center items-center sm:text-sm md:text-xl p-7">
                                     <span>Generating Your Assignment</span>
                                     <span>Please Wait</span>
                                     <br />

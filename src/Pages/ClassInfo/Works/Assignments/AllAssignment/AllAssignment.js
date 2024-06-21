@@ -78,7 +78,7 @@ const AllAssignment = ({ assignment, i, refetch, isTeacher, assignmentSubmission
                     </Link>
             }
 
-            <div className="card-body text-md">
+            <div className="card-body">
                 <p><strong>Assignment No : </strong> {i + 1}</p>
                 <h2><strong>Topic : </strong> {topic} </h2>
                 <p><strong>Date : </strong>{date}</p>

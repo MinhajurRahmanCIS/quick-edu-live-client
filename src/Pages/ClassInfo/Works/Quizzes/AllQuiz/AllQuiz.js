@@ -82,7 +82,7 @@ const AllQuiz = ({ quiz, i, refetch, isTeacher, submissions, user }) => {
                 </button>
             )}
 
-            <div className="card-body text-md">
+            <div className="card-body">
                 <p><strong>Quiz No: </strong> {i}</p>
                 <h2><strong>Topic: </strong> {topic} </h2>
                 <p><strong>Date: </strong>{date}</p>

@@ -22,7 +22,7 @@ const ClassMenu = () => {
         </>;
     return (
         <div className="navbar bg-base-300 my-3">
-            <div className="hidden md:flex items-center gap-1 text-md md:text-xl">
+            <div className="hidden md:flex items-center gap-1 md:text-xl">
                 <SiGooglebard className="text-sky-600"></SiGooglebard>
                 <p className="font-bold"><span className="text-slate-950">Ai</span> <span className="text-cyan-700">Classroom</span></p>
             </div>

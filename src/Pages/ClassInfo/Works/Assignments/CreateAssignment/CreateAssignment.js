@@ -13,7 +13,6 @@ const CreateAssignment = ({ id, setModal }) => {
         <div>
         <label onClick={()=>setModal(classData.data)} htmlFor="assignment-modal" className="card justify-center items-center bg-base-100 hover:bg-base-300 border cursor-pointer h-full">
             <MdOutlineAddToPhotos className="text-9xl"></MdOutlineAddToPhotos> Create Assignment
-            {/* <span className="text-md font-bold">Create Class</span> */}
         </label >
     </div>
     );

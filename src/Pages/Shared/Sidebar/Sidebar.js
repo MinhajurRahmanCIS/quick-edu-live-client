@@ -28,7 +28,7 @@ const Sidebar = ({ classes, enrollClasses }) => {
                                     isTeacher ? "Teaching" : "Enrolled"
                                 }
                             </summary>
-                            <ul className="text-md font-semibold">
+                            <ul className="font-semibold">
                                 {isTeacher ?
                                     classes &&
                                     classes?.map(c =>
@@ -54,7 +54,7 @@ const Sidebar = ({ classes, enrollClasses }) => {
                             <li>
                                 <details open>
                                     <summary className="text-xl font-bold"><GrScan></GrScan>Paper Checker</summary>
-                                    <ul className="text-md font-semibold">
+                                    <ul className="font-semibold">
                                         <li className="text-xl font-bold"><Link to="/myhome/paperchecker"> <LuFileScan></LuFileScan>Check Paper</Link></li>
                                         <li className="text-xl font-bold mt-0.5"><Link to="/myhome/allpaper"> <FcDocument></FcDocument>All Paper</Link></li>
                                     </ul>

@@ -72,7 +72,6 @@ const AllAnnouncement = ({ announcement, refetch, setModal }) => {
             <div className="flex justify-end items-center gap-2">
                 <label htmlFor="reply-modal" className="btn btn-neutral btn-sm" onClick={() => setModal(userComment)}>
                     Reply
-                    {/* <span className="text-md font-bold">Create Class</span> */}
                 </label >
                 {
                     isTeacher &&
