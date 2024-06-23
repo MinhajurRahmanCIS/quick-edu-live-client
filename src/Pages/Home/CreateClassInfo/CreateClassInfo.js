@@ -1,5 +1,5 @@
 import React from 'react';
-// import createClass from '../../../assets/video/Create_Class.mp4';
+import createClass from '../../../assets/video/Create_Class.mp4';
 import { Link } from 'react-router-dom';
 const CreateClassInfo = () => {
     return (
@@ -12,12 +12,12 @@ const CreateClassInfo = () => {
                     </p>
                     <Link to="/signup" className="btn btn-neutral w-full sm:w-2/6 mt-2">Join Us Today</Link>
                 </div>
-                {/* <div className="flex justify-center">
+                <div className="flex justify-center">
                     <video className="lg:w-full xl:w-4/5  and" height="auto" autoPlay muted loop>
                         <source src={createClass} type="video/mp4" />
                         Your browser does not support the video. Please Use Another One.
                     </video>
-                </div> */}
+                </div>
             </div>
         </div>
     );

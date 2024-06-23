@@ -97,15 +97,16 @@ const Login = () => {
                             {loginError && <p className="text-red-600">{loginError}</p>}
                         </div>
 
+                        <div>
+                            <button onClick={handleGoogleSignIn} className="btn w-full"><FcGoogle className="text-4xl"></FcGoogle> <span className="text-xl">Google</span></button>
+                            {/* <div className="divider">OR</div>
+                            <button className="btn w-full"><FaGithub className="text-4xl"></FaGithub> <span className="text-xl">Github</span></button> */}
+                        </div>
+
                         <label className="text-center">
                             <span className="">Haven't an Account! <Link to="/signup" className="text-info hover:text-primary">Signup</Link></span>
                         </label>
 
-                        <div>
-                            <button onClick={handleGoogleSignIn} className="btn w-full"><FcGoogle className="text-4xl"></FcGoogle> <span className="text-xl">Google</span></button>
-                            <div className="divider">OR</div>
-                            <button className="btn w-full"><FaGithub className="text-4xl"></FaGithub> <span className="text-xl">Github</span></button>
-                        </div>
                     </form>
                 </div>
                 <div>

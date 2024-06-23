@@ -8,6 +8,7 @@ import Loading from '../../Shared/Loading/Loading';
 import useLoadUser from '../../../hooks/useLoadUser';
 import Enroll from '../ClassEnroll/Enroll/Enroll';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 
 const MyHome = () => {
     const { user } = useContext(AuthContext);
@@ -61,9 +62,14 @@ const MyHome = () => {
                     </>
             }
 
-            {
-                !userInfo.data?.role && "Please Select Role First"
-            }
+            <div className="flex justify-center items-center">
+                {
+                    !userInfo.data?.role && <Link className="btn btn-neutral" to="profile">Please Select Role First</Link>
+                }
+                
+            </div>
+
+
 
         </div>
     );

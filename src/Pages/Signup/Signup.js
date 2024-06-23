@@ -9,7 +9,6 @@ import toast from 'react-hot-toast';
 import useToken from '../../hooks/useToken';
 import { Helmet } from 'react-helmet-async';
 const Signup = () => {
-    // Taking Signup Data with React Hook Form
     const { register, formState: { errors }, handleSubmit, watch } = useForm();
     const { createUser, updateUser, signInWithGoogle } = useContext(AuthContext);
     const imageHostKey = process.env.REACT_APP_imgBB_key;
@@ -27,8 +26,6 @@ const Signup = () => {
         createUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
-                console.log(loggedUser);
-                // Image formatting to send ImageBB Host Server
                 const image = data.image[0];
                 const formData = new FormData();
                 formData.append('image', image);
@@ -99,6 +96,7 @@ const Signup = () => {
             .then(data => {
                 // console.log(data)
                 setCreatedUserEmail(user.email);
+                toast.success(data.message);
             });
     };
 
@@ -278,15 +276,15 @@ const Signup = () => {
                             {signupError && <p className="text-red-600">{signupError}</p>}
                         </div>
 
+                        <div>
+                            <button onClick={handleGoogleSignIn} className="btn w-full"><FcGoogle className="text-4xl"></FcGoogle> <span className="text-xl">Google</span></button>
+                            {/* <div className="divider">OR</div>
+                            <button className="btn w-full"><FaGithub className="text-4xl"></FaGithub> <span className="text-xl">Github</span></button> */}
+                        </div>
+
                         <label className="text-center">
                             <span className="">Already Have Account! <Link to="/login" className="text-info hover:text-primary">Login</Link></span>
                         </label>
-
-                        <div>
-                            <button onClick={handleGoogleSignIn} className="btn w-full"><FcGoogle className="text-4xl"></FcGoogle> <span className="text-xl">Google</span></button>
-                            <div className="divider">OR</div>
-                            <button className="btn w-full"><FaGithub className="text-4xl"></FaGithub> <span className="text-xl">Github</span></button>
-                        </div>
                     </form>
                 </div>
                 <div>
