@@ -12,30 +12,38 @@ import { Helmet } from 'react-helmet-async';
 import GoBackButton from '../../components/GoBackButton';
 
 const EditProfile = () => {
-    const { user } = useContext(AuthContext);
+    const { user, updateUser } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { userInfo, userIsLoading, refetch } = useLoadUser(user);
     if (userIsLoading) {
         return <Loading></Loading>;
     };
-    const { _id, name, email, institution, country, dob, role, image, account } = userInfo.data;
+    const { _id, name, email, institution, country, dob, image } = userInfo.data;
 
     const handelUpdateProfile = data => {
-        fetch(`http://localhost:5000/users/${_id}`, {
-            method: "PUT",
-            headers: {
-                "content-type": "application/json",
-                authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
-            },
-            body: JSON.stringify(data)
-        })
-            .then(res => res.json())
-            .then(data => {
-                toast.success("Profile Update Successfully");
-                refetch();
-                console.log(data);
+        const userInfo = {
+            displayName: data.name
+        };
+        updateUser(userInfo)
+            .then(() => {
+                fetch(`http://localhost:5000/users/${_id}`, {
+                    method: "PUT",
+                    headers: {
+                        "content-type": "application/json",
+                        authorization: `bearer ${localStorage.getItem("quickEdu-token")}`
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        toast.success("Profile Update Successfully");
+                        refetch();
+                        console.log(data);
+                    })
             })
+            .catch(err => console.log(err));
     };
+
     return (
         <section>
             <Helmet>
