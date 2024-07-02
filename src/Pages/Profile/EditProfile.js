@@ -1,16 +1,17 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthProvider';
 import Loading from '../Shared/Loading/Loading';
-import { useForm } from 'react-hook-form';
+import { AuthContext } from '../../contexts/AuthProvider';
 import useLoadUser from '../../hooks/useLoadUser';
-import { IoDiamond } from "react-icons/io5";
-import { Link } from 'react-router-dom';
-import { FaChalkboardTeacher } from "react-icons/fa";
-import { PiStudentDuotone } from "react-icons/pi";
+import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
+import { IoDiamond } from 'react-icons/io5';
+import { PiStudentDuotone } from 'react-icons/pi';
+import { FaChalkboardTeacher } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
+import GoBackButton from '../../components/GoBackButton';
 
-const Profile = () => {
+const EditProfile = () => {
     const { user } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { userInfo, userIsLoading, refetch } = useLoadUser(user);
@@ -18,7 +19,6 @@ const Profile = () => {
         return <Loading></Loading>;
     };
     const { _id, name, email, institution, country, dob, role, image, account } = userInfo.data;
-    // console.log(userInfo.data);
 
     const handelUpdateProfile = data => {
         fetch(`http://localhost:5000/users/${_id}`, {
@@ -40,9 +40,12 @@ const Profile = () => {
         <section>
             <Helmet>
                 <title>
-                   {name}'s Profile
+                    Edit Profile
                 </title>
             </Helmet>
+            <div className="p-10">
+            <GoBackButton></GoBackButton>
+            </div>
             <form onSubmit={handleSubmit(handelUpdateProfile)} className="card-body">
                 <div>
                     <div className="avatar">
@@ -72,7 +75,6 @@ const Profile = () => {
                             placeholder="Enter Your Name"
                             className="input input-bordered"
                             defaultValue={name}
-                            disabled
                         />
                     </div>
 
@@ -86,8 +88,7 @@ const Profile = () => {
                             })}
                             type="text"
                             placeholder="Please Enter Your Institution Name" className="input input-bordered"
-                            defaultValue={institution}
-                            disabled={institution} />
+                            defaultValue={institution}/>
                         <div className="label">
                             {errors.institution && <p className="text-red-600">{errors.institution.message}</p>}
                         </div>
@@ -105,7 +106,6 @@ const Profile = () => {
                             placeholder="Please Enter Your Country Name"
                             className="input input-bordered"
                             defaultValue={country}
-                            disabled={country}
                         />
                         <div className="label">
                             {errors.country && <p className="text-red-600">{errors.country.message}</p>}
@@ -123,14 +123,13 @@ const Profile = () => {
                             })}
                             type="date"
                             className="input input-bordered"
-                            defaultValue={dob}
-                            disabled={dob} />
+                            defaultValue={dob}/>
                         <div className="label" >
                             {errors.dob && <p className="text-red-600">{errors.dob.message}</p>}
                         </div>
                     </div>
 
-                    <div className="form-control">
+                    {/* <div className="form-control">
                         <label className="label">
                             <span className="label-text font-semibold">Role</span>
                         </label>
@@ -169,42 +168,14 @@ const Profile = () => {
                         <div className="label" >
                             {errors.role && <p className="text-red-600">{errors.role.message}</p>}
                         </div>
-                    </div>
-
-                    {
-                        role === "Teacher" &&
-
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Account Type</span>
-                            </label>
-                            {
-                                account === "Premium" ?
-                                    <span className="flex items-center gap-2 text-xl text-[#d4af37] ms-0.5 btn md:w-1/2 bg-slate-900 hover:bg-slate-700"><strong>Premium</strong><IoDiamond></IoDiamond></span>
-                                    : <Link to="/myhome/checkout" className="btn btn-neutral w-1/5">Buy Premium</Link>
-                            }
-                            <div className="label" >
-                                {errors.date && <p className="text-red-600">{errors.date.message}</p>}
-                            </div>
-                        </div>
-                    }
+                    </div> */}
                 </div>
-                {
-                    !role
-                    ?
-                    (
-                        <div className="form-control mt-2">
-                            <input type="submit" value="Update Profile" className="btn btn-neutral hover:bg-slate-600 text-xl font-semibold" />
-                        </div>
-                    )
-                    :
-                    <>
-                    <Link to="/myhome/editprofile" className="btn btn-neutral">Edit Profile</Link>
-                    </>
-                }
+                <div className="form-control mt-2">
+                    <input type="submit" value="Update Profile" className="btn btn-neutral hover:bg-slate-600 text-xl font-semibold" />
+                </div>
             </form>
         </section>
     );
 };
 
-export default Profile;
+export default EditProfile;

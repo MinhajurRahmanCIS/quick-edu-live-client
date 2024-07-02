@@ -32,6 +32,7 @@ import ReportAProblem from "../../Pages/Logs/ReportAProblem/ReportAProblem";
 import WhatsNew from "../../Pages/Logs/WhatsNew/WhatsNew";
 import Fail from "../../Pages/Payment/Payment/Fail";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
+import EditProfile from "../../Pages/Profile/EditProfile";
 
 const router = createBrowserRouter([
     //Home Directory
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
             {
                 path: "/myhome/profile",
                 element: <PrivateRoute><Profile></Profile></PrivateRoute>
+            },
+            {
+                path: "/myhome/editprofile",
+                element: <PrivateRoute><EditProfile></EditProfile></PrivateRoute>
             },
             {
                 path: "/myhome/viewquizzes/:id",
