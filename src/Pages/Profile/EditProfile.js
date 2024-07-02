@@ -43,8 +43,8 @@ const EditProfile = () => {
                     Edit Profile
                 </title>
             </Helmet>
-            <div className="p-10">
-            <GoBackButton></GoBackButton>
+            <div className="pt-5 ps-10">
+                <GoBackButton></GoBackButton>
             </div>
             <form onSubmit={handleSubmit(handelUpdateProfile)} className="card-body">
                 <div>
@@ -71,6 +71,10 @@ const EditProfile = () => {
                             <span className="label-text">Name</span>
                         </label>
                         <input
+                            {...register("name",
+                                {
+                                    required: { value: true, message: "Name is Required" }
+                                })}
                             type="text"
                             placeholder="Enter Your Name"
                             className="input input-bordered"
@@ -88,7 +92,7 @@ const EditProfile = () => {
                             })}
                             type="text"
                             placeholder="Please Enter Your Institution Name" className="input input-bordered"
-                            defaultValue={institution}/>
+                            defaultValue={institution} />
                         <div className="label">
                             {errors.institution && <p className="text-red-600">{errors.institution.message}</p>}
                         </div>
@@ -123,7 +127,7 @@ const EditProfile = () => {
                             })}
                             type="date"
                             className="input input-bordered"
-                            defaultValue={dob}/>
+                            defaultValue={dob} />
                         <div className="label" >
                             {errors.dob && <p className="text-red-600">{errors.dob.message}</p>}
                         </div>
