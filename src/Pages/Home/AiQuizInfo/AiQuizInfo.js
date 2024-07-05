@@ -5,12 +5,12 @@ const AiQuizInfo = () => {
     return (
         <div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-10 items-center">
-                <div className="flex justify-center">
-                    {/* <video className="lg:w-full xl:w-4/5 border" height="auto" autoPlay muted loop>
+                {/* <div className="flex justify-center">
+                    <video className="lg:w-full xl:w-4/5 border" height="auto" autoPlay muted loop>
                         <source src={aiQuiz} type="video/mp4" />
                         Your browser does not support the video. Please Use Another One.
-                    </video> */}
-                </div>
+                    </video>
+                </div> */}
                 <div>
                     <h1 className="sm:text-2xl md:text-xl lg:text-2xl xl:text-5xl font-bold">AI Quiz Generator: Elevate Your Learning Experience</h1>
                     <p className="md:text-xs lg:text-sm xl:text-xl mt-4 text-justify">
