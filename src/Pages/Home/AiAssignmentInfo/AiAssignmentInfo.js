@@ -13,10 +13,10 @@ const AiAssignmentInfo = () => {
                     </p>
                 </div>
                 <div className="flex justify-center">
-                    {/* <video className="lg:w-full xl:w-4/5 border" height="auto" autoPlay muted loop>
-                        <source src={aiAssignment} type="video/mp4" />
+                    <video className="lg:w-full xl:w-4/5 border" height="auto" autoPlay muted loop>
+                        {/* <source src={aiAssignment} type="video/mp4" /> */}
                         Your browser does not support the video. Please Use Another One.
-                    </video> */}
+                    </video>
                 </div>
             </div>
         </div>
