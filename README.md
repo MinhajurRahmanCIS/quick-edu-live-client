@@ -2,6 +2,15 @@
 
 # Project Name : Quick Edu Live (Ai Classroom)
 
+Project Deploy Site For Client side: https://quickedulive.web.app
+  \
+Project Deploy Site For Server side: https://vercel.com/rkznews-projects/quick-edu-live-server-side
+
+
+Project Repository Link For Client side: https://github.com/MinhajurRahmanCIS/quick-edu-live-client
+\
+Project Repository Link For Server side: https://github.com/MinhajurRahmanCIS/quickedulive-server
+
 ## Teacher Account
 Email: teacher@gmail.com
 Password: Teacher123#
@@ -56,15 +65,6 @@ Quick Edu Live is an Educational Platform. With Ai Classroom Feature. It makes e
 ·         Both User (Teacher or Student) Can give Report for problem.\
 ·         Both User (Teacher or Student) Can view Helps to get helps.\
 
-Project Deploy Site For Client side: https://quickedulive.web.app
-  \
-Project Deploy Site For Server side: https://vercel.com/rkznews-projects/quick-edu-live-server-side
-
-
-
-Project Repository Link For Client side: https://github.com/MinhajurRahmanCIS/quick-edu-live-client
-\
-Project Repository Link For Server side: https://github.com/MinhajurRahmanCIS/quickedulive-server
 
 ## Installation  –
 1. npm i
