@@ -4,7 +4,7 @@
 
 Project Deploy Site For Client side: https://quickedulive.web.app
   \
-Project Deploy Site For Server side: https://vercel.com/rkznews-projects/quick-edu-live-server-side
+Project Deploy Site For Server side: https://quick-edu-live-server-side.vercel.app
 
 
 Project Repository Link For Client side: https://github.com/MinhajurRahmanCIS/quick-edu-live-client
