@@ -121,13 +121,6 @@ const QuizModal = ({ modal, setModal, refetch }) => {
                                                 type="time"
                                                 className="input input-bordered w-full"
                                             />
-                                            {/* <select {...register("timePeriod",
-                                                {
-                                                    required: { value: true, message: "Class Name is Required" }
-                                                })} className="select select-bordered w-20">
-                                                <option value={"AM"}>AM</option>
-                                                <option value={"PM"}>PM</option>
-                                            </select> */}
                                         </div>
 
                                     </div>
