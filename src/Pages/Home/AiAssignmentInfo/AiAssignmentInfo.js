@@ -1,5 +1,5 @@
 import React from 'react';
-// import aiAssignment from '../../../assets/video/Ai_Assignment.mp4';
+import aiAssignment from '../../../assets/video/Ai_Assignment.mp4';
 
 const AiAssignmentInfo = () => {
     return (
@@ -14,7 +14,7 @@ const AiAssignmentInfo = () => {
                 </div>
                 <div className="flex justify-center">
                     <video className="lg:w-full xl:w-4/5 border" height="auto" autoPlay muted loop>
-                        {/* <source src={aiAssignment} type="video/mp4" /> */}
+                        <source src={aiAssignment} type="video/mp4" />
                         Your browser does not support the video. Please Use Another One.
                     </video>
                 </div>
