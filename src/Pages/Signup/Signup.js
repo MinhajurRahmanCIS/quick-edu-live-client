@@ -116,7 +116,7 @@ const Signup = () => {
             <div className="hero-content grid md:grid-cols-2 gap-20">
                 <div className="card shadow-2xl border">
                     <form onSubmit={handleSubmit(handelSignup)} className="card-body">
-                        <h1 className="text-2xl text-center font-semibold">Signup</h1>
+                        <h1 className="text-2xl text-center font-semibold">Sign Up</h1>
                         <hr />
 
                         <div className="form-control">
@@ -268,7 +268,7 @@ const Signup = () => {
                         </div>
 
                         <div className="form-control">
-                            <input type="submit" value="Signup" className="btn btn-neutral hover:bg-slate-600 text-xl font-semibold" />
+                            <input type="submit" value="Sign Up" className="btn btn-neutral hover:bg-slate-600 text-xl font-semibold" />
                         </div>
 
                         <div className="label">

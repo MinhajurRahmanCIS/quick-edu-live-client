@@ -112,7 +112,7 @@ const PaperChecker = () => {
                                 Paper Checker with Gemini Ai</span>
                         </div>
                         <form className="card-body" onSubmit={handelCheck}>
-                            <div className="grid grid-col-1 md:grid-cols-2 gap-5">
+                            {/* <div className="grid grid-col-1 md:grid-cols-2 gap-5">
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="text-xl  font-bold">Student Name</span>
@@ -133,7 +133,7 @@ const PaperChecker = () => {
                                     </label>
                                     <input name="subject" type="text" placeholder="Subject" className="input input-bordered w-full" />
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <div className="form-control">
                                     <label className="label">

@@ -116,7 +116,12 @@ const AllQuiz = ({ quiz, i, refetch, isTeacher, submissions, user }) => {
                         (!hasSubmitted ?
                             <Link to={`/start/${_id}`} className="btn btn-neutral text-xl font-semibold">Start Quiz</Link>
                             :
-                            <Link to={`/result/${_id}/${user?.email}`} className="text-4xl hover:bg-slate-400 tooltip" data-tip={"Result"}><TbReportAnalytics ></TbReportAnalytics></Link>)
+                            "")
+                    }
+
+                    {
+                        hasSubmitted &&
+                        <Link to={`/result/${_id}/${user?.email}`} className="text-4xl hover:bg-slate-400 tooltip" data-tip={"Result"}><TbReportAnalytics ></TbReportAnalytics></Link>
                     }
                 </div>
             </div>
