@@ -1,5 +1,5 @@
 import React from 'react';
-import aiQuiz from '../../../assets/video/Ai_Quiz.mp4';
+// import aiQuiz from '../../../assets/video/Ai_Quiz.mp4';
 
 const AiQuizInfo = () => {
     return (
@@ -7,7 +7,7 @@ const AiQuizInfo = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 p-10 items-center">
                 <div className="flex justify-center">
                     <video className="lg:w-full xl:w-4/5 border" height="auto" autoPlay muted loop>
-                        <source src={aiQuiz} type="video/mp4" />
+                        {/* <source src={aiQuiz} type="video/mp4" /> */}
                         Your browser does not support the video. Please Use Another One.
                     </video>
                 </div>
