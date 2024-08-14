@@ -14,7 +14,7 @@ const Checkout = () => {
     const navigate = useNavigate();
 
     const [currency, setCurrency] = useState('USD');
-    const [price, setPrice] = useState(10.99);
+    const [price, setPrice] = useState(4.26);
 
     const exchangeRate = 117.44; // Exchange rate from USD to BDT
 

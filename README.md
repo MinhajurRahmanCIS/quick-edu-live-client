@@ -12,10 +12,12 @@ Project Repository Link For Client side: https://github.com/MinhajurRahmanCIS/qu
 Project Repository Link For Server side: https://github.com/MinhajurRahmanCIS/quickedulive-server
 
 ## Teacher Account
-Email: teacher@gmail.com
+Email: teacher@gmail.com 
+\
 Password: Teacher123#
 ## Student Account
 Email: student@gmail.com
+\
 Password: Student123#
 
 # Project Info

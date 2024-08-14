@@ -18,6 +18,7 @@ const Footer = () => {
                     <h6 className="footer-title">Company</h6>
                     <Link className="link link-hover">About us</Link>
                     <Link className="link link-hover">Contact</Link>
+                    <Link className="link link-hover">+8801638-850567</Link>
                 </nav>
                 <nav>
                     <h6 className="footer-title">Legal</h6>

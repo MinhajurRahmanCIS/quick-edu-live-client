@@ -49,7 +49,7 @@ const Login = () => {
     }, [token, from, navigate]);
 
     return (
-        <div className="hero my-10">
+        <div className="hero mt-10 mb-36">
             <Helmet>
                 <title>
                   Login
